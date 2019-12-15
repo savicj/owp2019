@@ -1,4 +1,4 @@
-package models;
+package model;
 
 public class ProjectionType {
 	//2d,3d,4d
