@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Hall {
 
 	private int id;//generise app
-	private String naziv;
+	private String name;
 	private ArrayList<EProjectionType> projtypes;
 	
 	public int getId() {
@@ -14,11 +14,11 @@ public class Hall {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getNaziv() {
-		return naziv;
+	public String getName() {
+		return name;
 	}
-	public void setNaziv(String naziv) {
-		this.naziv = naziv;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public ArrayList<EProjectionType> getProjtypes() {
 		return projtypes;
@@ -26,15 +26,15 @@ public class Hall {
 	public void setProjtypes(ArrayList<EProjectionType> projtypes) {
 		this.projtypes = projtypes;
 	}
-	public Hall(int id, String naziv, ArrayList<EProjectionType> projtypes) {
+	public Hall(int id, String name, ArrayList<EProjectionType> projtypes) {
 		super();
 		this.id = id;
-		this.naziv = naziv;
+		this.name = name;
 		this.projtypes = projtypes;
 	}
 	@Override
 	public String toString() {
-		return "Hall [id=" + id + ", naziv=" + naziv + ", projtypes=" + projtypes + "]";
+		return "Hall [id=" + id + ", name=" + name + ", projtypes=" + projtypes + "]";
 	}
 	
 	

@@ -1,12 +1,12 @@
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Projection {
 
 	private int id;//generise app
 	private Movie movie;
-	private ProjectionType projType;
+	private ProjectionType projectionType;
 	private Hall hall;//mora biti slobodna za trazeno vreme i da podrzava tip proj
 	private Date datetime;//ne sme biti u proslosti
 	private double price;
@@ -24,11 +24,11 @@ public class Projection {
 	public void setMovie(Movie movie) {
 		this.movie = movie;
 	}
-	public ProjectionType getProjType() {
-		return projType;
+	public ProjectionType getProjectionType() {
+		return projectionType;
 	}
-	public void setProjType(ProjectionType projType) {
-		this.projType = projType;
+	public void setProjectionType(ProjectionType projprojectionTypeType) {
+		this.projectionType = projectionType;
 	}
 	public Hall getHall() {
 		return hall;
@@ -54,12 +54,12 @@ public class Projection {
 	public void setAdmin(User admin) {
 		this.admin = admin;
 	}
-	public Projection(int id, Movie movie, ProjectionType projType, Hall hall, Date datetime, double price,
+	public Projection(int id, Movie movie, ProjectionType projectionType, Hall hall, Date datetime, double price,
 			User admin) {
 		super();
 		this.id = id;
 		this.movie = movie;
-		this.projType = projType;
+		this.projectionType = projectionType;
 		this.hall = hall;
 		this.datetime = datetime;
 		this.price = price;
@@ -67,7 +67,7 @@ public class Projection {
 	}
 	@Override
 	public String toString() {
-		return "Projection [id=" + id + ", movie=" + movie + ", projType=" + projType + ", hall=" + hall + ", datetime="
+		return "Projection [id=" + id + ", movie=" + movie + ", projectionType=" + projectionType + ", hall=" + hall + ", datetime="
 				+ datetime + ", price=" + price + ", admin=" + admin + "]";
 	}
 	

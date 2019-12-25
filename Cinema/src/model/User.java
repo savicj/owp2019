@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class User {
 
@@ -8,6 +8,15 @@ public class User {
 	private String password;//alfanumericki karakteri bez razmaka
 	private Date registrationDate;//generise app
 	private ERole role;//automatski je user
+
+	
+	public User(String username, String password, Date registrationDate, ERole role) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.registrationDate = registrationDate;
+		this.role = role;
+	}
 	
 	public String getUsername() {
 		return username;
@@ -18,6 +27,7 @@ public class User {
 	public String getPassword() {
 		return password;
 	}
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
