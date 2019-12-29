@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -16,15 +17,13 @@ public class ConnectionManager {
 
 	private static final String PATH = WINDOWS_PATH;
 	
-	private static DataSource dataSource;
+	private static Connection conn;
 
 	public static void open() {
 		try {
-			Properties dataSourceProperties = new Properties();
-			dataSourceProperties.setProperty("driverClassName", "com.sqlite.JDBC");
-			dataSourceProperties.setProperty("url", "jdbc::sqlite:" + PATH);
+			Class.forName("org.sqlite.JDBC");
 			
-			dataSource = BasicDataSourceFactory.createDataSource(dataSourceProperties);
+			conn = DriverManager.getConnection("jdbc::sqlite:"+PATH);
 		} catch (Exception ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
@@ -33,7 +32,7 @@ public class ConnectionManager {
 
 	public static Connection getConnection() {
 		try {
-			return dataSource.getConnection();
+			return conn;
 		} catch (Exception ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
@@ -41,5 +40,15 @@ public class ConnectionManager {
 
 		return null;
 	}
+
+	public static void close() {
+		try {
+			conn.close();
+		} catch (Exception ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+		}
+	}
+
 
 }
