@@ -13,6 +13,41 @@ import model.User;
 public class UserDAO {
 
 	
+	public static User getUser(String username, String password) {
+		Connection conn = ConnectionManager.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String query = "SELECT * FROM users WHERE username like ? AND password like ?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, username);
+			pstmt.setString(2, password);
+			System.out.println(pstmt);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				int index = 0;
+				String uName = rs.getString(index++);
+				String pword = rs.getString(index++);
+				Date regDate = rs.getDate(index++);
+				String role = rs.getString(index++);
+				ERole erole = ERole.valueOf(role);
+				
+				return new User(uName, pword, regDate, erole);
+			}
+			
+		} catch (Exception e) {e.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {rs.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+		return null;
+		
+	}
+	
 	public static User findByUsername(String username) {
 		Connection conn = ConnectionManager.getConnection();
 		PreparedStatement pstmt = null;
