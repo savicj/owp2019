@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class ProjectionDAO {
 				Movie movie = MovieDAO.findByName(movieName);
 				
 				String pt = rs.getString(index++);
-				ProjectionType projT = ProjectionTypeDAO.getPTypeByName(pt);
+				EProjectionType projT = EProjectionType.valueOf(pt);
 				
 				String hallName = rs.getString(index++);
 				Hall hall = HallDAO.findByName(hallName);
@@ -82,7 +83,7 @@ public class ProjectionDAO {
 				Movie movie = MovieDAO.findByName(movieName);
 				
 				String pt = rs.getString(index++);
-				ProjectionType projT = ProjectionTypeDAO.getPTypeByName(pt);
+				EProjectionType projT = EProjectionType.valueOf(pt);
 				
 				String hallName = rs.getString(index++);
 				Hall hall = HallDAO.findByName(hallName);
@@ -132,7 +133,7 @@ public class ProjectionDAO {
 				Movie m = MovieDAO.findByName(movieName);
 				
 				String pt = rs.getString(index++);
-				ProjectionType projT = ProjectionTypeDAO.getPTypeByName(pt);
+				EProjectionType projT = EProjectionType.valueOf(pt);;
 				
 				String hallName = rs.getString(index++);
 				Hall hall = HallDAO.findByName(hallName);
@@ -181,7 +182,7 @@ public class ProjectionDAO {
 				Movie m = MovieDAO.findByName(movieName);
 				
 				String pt = rs.getString(index++);
-				ProjectionType projT = ProjectionTypeDAO.getPTypeByName(pt);
+				EProjectionType projT = EProjectionType.valueOf(pt);;
 				
 				String hallName = rs.getString(index++);
 				Hall hall = HallDAO.findByName(hallName);
@@ -220,9 +221,9 @@ public class ProjectionDAO {
 			
 			int i = 1;
 			pstmt.setString(i++, p.getMovie().getName());
-			pstmt.setInt(i++, p.getProjectionType().getId());
+			pstmt.setString(i++, p.getProjectionType().toString());
 			pstmt.setInt(i++, p.getHall().getId());
-			pstmt.setDate(i++, p.getDatetime());
+			pstmt.setTimestamp(i++, new Timestamp(p.getDatetime().getTime()));
 			pstmt.setDouble(i++, p.getPrice());
 			String user = p.getAdmin().getUsername();
 			pstmt.setString(i++, user);
@@ -253,9 +254,9 @@ public class ProjectionDAO {
 			
 			int i = 1;
 			pstmt.setString(i++, p.getMovie().getName());
-			pstmt.setInt(i++, p.getProjectionType().getId());
+			pstmt.setString(i++, p.getProjectionType().toString());
 			pstmt.setInt(i++, p.getHall().getId());
-			pstmt.setDate(i++, p.getDatetime());
+			pstmt.setTimestamp(i++, new Timestamp(p.getDatetime().getTime()));
 			pstmt.setDouble(i++, p.getPrice());
 			String user = p.getAdmin().getUsername();
 			pstmt.setString(i++, user);

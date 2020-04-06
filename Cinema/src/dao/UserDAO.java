@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
@@ -132,7 +133,7 @@ public class UserDAO {
 			int i = 1;
 			pstmt.setString(i++, user.getUsername());
 			pstmt.setString(i++, user.getPassword());
-			pstmt.setDate(i++, user.getRegistrationDate());
+			pstmt.setTimestamp(i++, new Timestamp(user.getRegistrationDate().getTime()));
 			pstmt.setString(i++, user.getRole().toString());
 			System.out.println(pstmt);
 			
@@ -158,7 +159,7 @@ public class UserDAO {
 			pstmt = conn.prepareStatement(query);
 			int i = 1;
 			pstmt.setString(i++, user.getPassword());
-			pstmt.setDate(i++, user.getRegistrationDate());
+			pstmt.setTimestamp(i++, new Timestamp(user.getRegistrationDate().getTime()));
 			pstmt.setString(i++, user.getRole().toString());
 			System.out.println(pstmt);
 			

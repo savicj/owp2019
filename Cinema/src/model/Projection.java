@@ -1,12 +1,12 @@
 package model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Projection {
 
 	private int id;//generise app
 	private Movie movie;
-	private ProjectionType projectionType;
+	private EProjectionType projectionType;
 	private Hall hall;//mora biti slobodna za trazeno vreme i da podrzava tip proj
 	private Date datetime;//ne sme biti u proslosti
 	private double price;
@@ -24,7 +24,7 @@ public class Projection {
 	public void setMovie(Movie movie) {
 		this.movie = movie;
 	}
-	public ProjectionType getProjectionType() {
+	public EProjectionType getProjectionType() {
 		return projectionType;
 	}
 	public void setProjectionType(ProjectionType projprojectionTypeType) {
@@ -54,7 +54,7 @@ public class Projection {
 	public void setAdmin(User admin) {
 		this.admin = admin;
 	}
-	public Projection(int id, Movie movie, ProjectionType projectionType, Hall hall, Date datetime, double price,
+	public Projection(int id, Movie movie, EProjectionType projectionType, Hall hall, Date datetime, double price,
 			User admin) {
 		super();
 		this.id = id;
