@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import model.EProjectionType;
@@ -120,9 +120,11 @@ public class ProjectionDAO {
 			pstmt = conn.prepareStatement(query);
 			
 			int i = 1;
-			pstmt.setString(i++, movie.getName());
-			pstmt.setDate(i++, from);
-			pstmt.setDate(i++, to);
+			pstmt.setInt(i++, movie.getId());
+			pstmt.setTimestamp(i++, new Timestamp(from.getTime()));
+			pstmt.setTimestamp(i++, new Timestamp(to.getTime()));
+			//pstmt.setDate(i++, from);
+			//pstmt.setDate(i++, to);
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			
@@ -130,7 +132,7 @@ public class ProjectionDAO {
 				int index = 1;
 				int id = rs.getInt(index++);
 				String movieName = rs.getString(index++);
-				Movie m = MovieDAO.findByName(movieName);
+				//Movie m = MovieDAO.findByName(movieName);
 				
 				String pt = rs.getString(index++);
 				EProjectionType projT = EProjectionType.valueOf(pt);;
@@ -170,8 +172,8 @@ public class ProjectionDAO {
 			pstmt = conn.prepareStatement(query);
 			
 			int i = 1;
-			
-			pstmt.setDate(i++, today);
+			pstmt.setTimestamp(i++, new Timestamp(today.getTime()));
+			//pstmt.setDate(i++, today);
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			

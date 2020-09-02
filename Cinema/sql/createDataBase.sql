@@ -1,9 +1,9 @@
-DROP TABLE IF EXISTS halls;
-DROP TABLE IF EXISTS movies;
-DROP TABLE IF EXISTS projections;
-DROP TABLE IF EXISTS projectionTypes;
-DROP TABLE IF EXISTS seats;
 DROP TABLE IF EXISTS tickets;
+DROP TABLE IF EXISTS projections;
+DROP TABLE IF EXISTS seats;
+DROP TABLE IF EXISTS halls;
+DROP TABLE IF EXISTS projectionTypes;
+DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS users;
 
 
@@ -57,16 +57,20 @@ INSERT INTO movies(name, directors, actors, genres, duration, distributor, origi
 
 
 CREATE TABLE users(
-    username VARCHAR(30) UNIQUE PRIMARY KEY,
+	id INTEGER PRIMARY KEY,
+    username VARCHAR(30) UNIQUE NOT NULL,
     password VARCHAR(30) NOT NULL,
     registrationDate DATE NOT NULL,
-    role VARCHAR(5) NOT NULL DEFAULT 'USER'
+    role VARCHAR(5) NOT NULL DEFAULT 'USER',
+    deleted BOOL NOT NULL
 );
 
-INSERT INTO users(username, password, registrationDate, role) VALUES('a', 'a', '2020-01-03', 'ADMIN');
-INSERT INTO users(username, password, registrationDate, role) VALUES('admin', 'admin', '2020-01-14', 'ADMIN');
-INSERT INTO users(username, password, registrationDate, role) VALUES('b', 'b', '2020-02-15', 'USER');
-INSERT INTO users(username, password, registrationDate, role) VALUES('user', 'user', '2020-03-05', 'USER');
+INSERT INTO users(username, password, registrationDate, role, deleted) VALUES('a', 'a', '2020-01-03 10:30:45', 'ADMIN', false);
+INSERT INTO users(username, password, registrationDate, role, deleted) VALUES('admin', 'admin', '2020-01-14 10:30:45', 'ADMIN', false);
+INSERT INTO users(username, password, registrationDate, role, deleted) VALUES('b', 'b', '2020-02-15 10:30:45', 'USER', false);
+INSERT INTO users(username, password, registrationDate, role, deleted) VALUES('user', 'user', '2020-03-05 10:30:45', 'USER', false);
+
+--UPDATE USERS DA SREDIM FORMAT VREMENA NEKAKO
 
 CREATE TABLE projections(
     id INTEGER primary key,

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Cinema</title>
+
+	<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link href="css/projections.css" rel="stylesheet">
+    <script src="js/projections.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a id="logoLink" class="navbar-brand" href="#">   Cinemax</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <ul id="navBtn" class="navbar-nav mr-auto">
+        	<li class="margina"><a class="nav-link" href="#">MOVIES</a></li>
+            <li id="btnLogin" class="nav-item dropdown margina">
+                <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                LOGIN
+                </a>
+                <form class="dropdown-menu dropdown-menu-right p-4" style="min-width: 250px;">
+                    <div class="form-group">
+                        <label for="exampleDropdownFormEmail2">Username:</label>
+                        <input type="text" class="form-control" id="userNameInput" placeholder="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleDropdownFormPassword2">Password:</label>
+                        <input type="password" class="form-control" id="passwordInput" placeholder="password">
+                    </div>
+                    <button type="submit" id="loginSubmit" class="btn btn-primary">Log in</button>
+                </form>
+            </li>
+            <li id="btnRegister" class="nav-item dropdown margina">
+                <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                REGISTER
+                </a>
+                <form class="dropdown-menu dropdown-menu-right p-4" style="min-width: 250px;">
+                    <div class="form-group">
+                        <label for="exampleDropdownFormEmail2">Username:</label>
+                        <input type="text" class="form-control" id="registrationInputUsername" placeholder="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleDropdownFormPassword2">Password:</label>
+                        <input type="password" class="form-control" id="registrationInputPassword" placeholder="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleDropdownFormPassword2">Repeat password:</label>
+                        <input type="password" class="form-control" id="registrationInputRepeatPassword" placeholder="password">
+                    </div>
+                    <button type="submit" id="registrationSubmit" class="btn btn-primary">Register</button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>

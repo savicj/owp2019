@@ -22,17 +22,20 @@ public class LoginServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = request.getParameter("username");
+		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
 		
+		
+		User user = UserDAO.getUser(userName, password);
 		try {
-			User user = UserDAO.getUser(username, password);
-			if(user==null) {
+			if(user==null || user.isDeleted() == true) {
+				System.out.println(userName + " " + password + "  korisnik nije pronadjen");
 				request.getRequestDispatcher("./FailureServlet").forward(request, response);
 				return;
 			}
-			request.getSession().setAttribute("loggedInUser", user.getUsername());
+			request.getSession().setAttribute("loggedInUserName", user.getUsername());
 			request.getRequestDispatcher("./SuccessServlet").forward(request, response);
+			System.out.println(userName + " " + password);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

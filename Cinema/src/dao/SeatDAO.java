@@ -22,8 +22,11 @@ public class SeatDAO {
 	 
 	 rs = pstmt.executeQuery();
 	 
-	 if(rs.next()) { int index = 1; String no = rs.getString(index++); Hall h =
-	 HallDAO.get(rs.getInt(index++)); boolean available = rs.getBoolean(index);
+	 if(rs.next()) { 
+		 int index = 1; 
+		 String no = rs.getString(index++); 
+		 Hall h = HallDAO.get(rs.getInt(index++)); 
+		 boolean available = rs.getBoolean(index);
 	 
 	 return new Seat(no, h, available);
 	 
@@ -49,7 +52,8 @@ public class SeatDAO {
 		}
 	 
 	 
-	 return null; }
+	 return null; 
+	 }
 	 
 
 	public static List<Seat> getSeatsFromHall(Hall hall) {

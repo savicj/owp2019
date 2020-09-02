@@ -15,6 +15,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class SuccessServlet extends HttpServlet {
 	
+	public SuccessServlet() {
+		super();
+	}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		Map<String, Object> data = (Map<String, Object>) request.getAttribute("data");

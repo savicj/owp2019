@@ -2,13 +2,21 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>Cinema</display-name>
   <welcome-file-list>
-    <welcome-file>Login.html</welcome-file>
+    <welcome-file>projections.html</welcome-file>
+    <welcome-file>projections.htm</welcome-file>
+    <welcome-file>projections.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <listener>
+    <listener-class>main.InitListener</listener-class>
+  </listener>
   <servlet>
     <description></description>
     <display-name>LoginServlet</display-name>
     <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>LoginServlet</servlet-class>
+    <servlet-class>main.LoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
@@ -18,7 +26,7 @@
     <description></description>
     <display-name>SuccessServlet</display-name>
     <servlet-name>SuccessServlet</servlet-name>
-    <servlet-class>SuccessServlet</servlet-class>
+    <servlet-class>status.SuccessServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>SuccessServlet</servlet-name>
@@ -63,5 +71,15 @@
   <servlet-mapping>
     <servlet-name>ProjectionsServlet</servlet-name>
     <url-pattern>/ProjectionsServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserServlet</display-name>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>main.UserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/UserServlet</url-pattern>
   </servlet-mapping>
 </web-app>

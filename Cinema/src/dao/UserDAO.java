@@ -4,8 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import model.ERole;
@@ -13,15 +14,17 @@ import model.User;
 
 public class UserDAO {
 
+	private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	public static User getUser(String username, String password) {
 		Connection conn = ConnectionManager.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
+		
 		try {
 			
-			String query = "SELECT * FROM users WHERE username like ? AND password like ?";
+			String query = "SELECT * FROM users WHERE username = ? AND password = ?";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, username);
 			pstmt.setString(2, password);
@@ -29,14 +32,16 @@ public class UserDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				int index = 0;
+				int index = 1;
+				Integer id = rs.getInt(index++);
 				String uName = rs.getString(index++);
 				String pword = rs.getString(index++);
-				Date regDate = rs.getDate(index++);
+				Date regDate = (Date) dateFormat.parse(rs.getString(index++));
 				String role = rs.getString(index++);
 				ERole erole = ERole.valueOf(role);
+				boolean deleted = rs.getBoolean(index++);
 				
-				return new User(uName, pword, regDate, erole);
+				return new User(id, uName, pword, regDate, erole, deleted);
 			}
 			
 		} catch (Exception e) {e.printStackTrace();
@@ -56,21 +61,23 @@ public class UserDAO {
 		
 		try {
 			
-			String query = "SELECT * FROM users WHERE username like ?";
+			String query = "SELECT * FROM users WHERE username = ?";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, username);
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				int index = 0;
+				int index = 1;
+				Integer id = rs.getInt(index++);
 				String uName = rs.getString(index++);
-				String password = rs.getString(index++);
-				Date regDate = rs.getDate(index++);
+				String pword = rs.getString(index++);
+				Date regDate = (Date) dateFormat.parse(rs.getString(index++));
 				String role = rs.getString(index++);
 				ERole erole = ERole.valueOf(role);
+				boolean deleted = rs.getBoolean(index++);
 				
-				return new User(uName, password, regDate, erole);
+				return new User(id, uName, pword, regDate, erole, deleted);
 			}
 			
 		} catch (Exception e) {e.printStackTrace();
@@ -99,14 +106,16 @@ public class UserDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				int index = 0;
+				int index = 1;
+				Integer id = rs.getInt(index++);
 				String uName = rs.getString(index++);
-				String password = rs.getString(index++);
-				Date regDate = rs.getDate(index++);
+				String pword = rs.getString(index++);
+				Date regDate = (Date) dateFormat.parse(rs.getString(index++));
 				String role = rs.getString(index++);
 				ERole erole = ERole.valueOf(role);
+				boolean deleted = rs.getBoolean(index++);
 				
-				User user = new User(uName, password, regDate, erole);
+				User user = new User(id, uName, pword, regDate, erole, deleted);
 				users.add(user);
 				return users;
 			}
@@ -181,10 +190,9 @@ public class UserDAO {
 		
 		try {
 			
-			String query = "DELETE FROM users WHERE username = ?";
+			String query = "UPDATE  users SET deleted = 'true' WHERE username = ?";
 			pstmt = conn.prepareStatement(query);
-			int i = 1;
-			pstmt.setString(i++, username);
+			pstmt.setString(1, username);
 			System.out.println(pstmt);
 			
 			return pstmt.executeUpdate() == 1;

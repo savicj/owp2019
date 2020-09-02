@@ -101,7 +101,7 @@ public class HallDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				int index = 0;
+				int index = 1;
 				int id = rs.getInt(index++);
 				String name = rs.getString(index++);
 				String projTypes = rs.getString(index);

@@ -12,11 +12,10 @@ public class InitListener implements ServletContextListener {
     }
 
     public void contextInitialized(ServletContextEvent event)  {
-    	System.out.println("inicijalizacija...");
 
     	ConnectionManager.open();
+    	System.out.println("done");
 
-		System.out.println("zavrseno!");
     }
 
 }

@@ -76,7 +76,7 @@ public class MovieDAO {
 			rset = pstmt.executeQuery();
 
 			if (rset.next()) {
-				int index = 0;
+				int index = 1;
 				int id = rset.getInt(index++);
 				String n = rset.getString(index++);
 				String dir = rset.getString(index++);
@@ -127,7 +127,7 @@ public class MovieDAO {
 			rset = pstmt.executeQuery();
 
 			if (rset.next()) {
-				int index = 0;
+				int index = 1;
 				int id = rset.getInt(index++);
 				String name = rset.getString(index++);
 				String dir = rset.getString(index++);
@@ -178,7 +178,7 @@ public class MovieDAO {
 		
 			int index = 1;
 			pstmt.setString(index++, movie.getName());
-			ArrayList<String> dir = movie.getDirectors();
+			//ArrayList<String> dir = movie.getDirectors();
 			String directors = "";
 			for (String s : movie.getDirectors())
 				directors += s + ",";
@@ -223,7 +223,7 @@ public class MovieDAO {
 		
 			int index = 1;
 			pstmt.setString(index++, movie.getName());
-			ArrayList<String> dir = movie.getDirectors();
+			//ArrayList<String> dir = movie.getDirectors();
 			String directors = "";
 			for (String s : movie.getDirectors())
 				directors += s + ",";
@@ -233,7 +233,7 @@ public class MovieDAO {
 			    act += s + ",";
 			pstmt.setString(index++, act);
 			String genre = "";
-			for (String s : movie.getActors())
+			for (String s : movie.getGenre())
 			    genre += s + ",";
 			pstmt.setString(index++, genre);
 			pstmt.setInt(index++, movie.getDuration());

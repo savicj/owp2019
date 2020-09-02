@@ -34,7 +34,7 @@ public class TicketDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				int index = 0;
+				int index = 1;
 				int id = rs.getInt(index++);
 				Projection p = ProjectionDAO.get(rs.getInt(index++));
 				String seatmark = rs.getString(index++);
@@ -73,7 +73,7 @@ public class TicketDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				int index = 0;
+				int index = 1;
 				int id = rs.getInt(index++);
 				Projection projection = ProjectionDAO.get(rs.getInt(index++));
 				String seatmark = rs.getString(index++);
@@ -117,7 +117,7 @@ public class TicketDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				int index = 0;
+				int index = 1;
 				int id = rs.getInt(index++);
 				Projection projection = ProjectionDAO.get(rs.getInt(index++));
 				String seatmark = rs.getString(index++);
@@ -154,7 +154,7 @@ public class TicketDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				int index = 0;
+				int index = 1;
 				int id = rs.getInt(index++);
 				Projection p = ProjectionDAO.get(rs.getInt(index++));
 				String seatmark = rs.getString(index++);
