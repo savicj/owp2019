@@ -8,12 +8,45 @@ $(document).ready(function() {
 	var btnUsers;
 	var btnTickets;
 	var btnMovies;
-	
-	
-	
 
+	var tblProj = $('#tblProj');
+
+	makeButtons();
+	changeInterface();
+	getProjections();
+	
+	//tbl
 	
 	
+	function getProjections(){
+		var params = {
+			
+		};
+		$.get('ProjectionsServlet', function(data){
+				var projections = data.projections;
+			if (data.status == 'success') {
+				console.log(projections);
+				tblProj.find('tbody').remove(); 
+				for(p in projections){
+					tblProj.append(
+						'<tbody>' +
+						'<tr>' +
+							'<td><a href="movie.html?id=' + projections[p].getMovie().getId() + '"></a></td>' +
+							'<td><a href="projection.html?id=' + projections[p].getId() + '"></a></td>' +
+							'<td>' + projections[p].getProjectionType().getName() + '</td>' +
+							'<td>' + projections[p].getHall().getName() + '</td>' +
+							'<td>' + projections[p].getPrice() + '</td>' +
+						'</tr>' +
+						'<tbody>'
+					);
+				}
+			}else {
+				console.log(projections);
+			}
+
+			
+		});
+	}
 	
 	function changeInterface(){
 		$.get('UserServlet', {'action' : 'loggedInUserRole'}, function(data) {
@@ -62,7 +95,7 @@ $(document).ready(function() {
 		});
 		
 		
-		btnAccount = $('<li id="btnLogout"><a class="nav-link" href="">LOGOUT</a></li>').on('click', function(){
+		btnAccount = $('<li id="btnAccount"><a class="nav-link" href="">ACCOUNT</a></li>').on('click', function(){
 			let param = { 'action' : "loggedInUserId"};
 			$.get('UserServlet', param, function(data){
 				if(data == 'success') {
@@ -95,7 +128,7 @@ $(document).ready(function() {
 			if (data.status == 'failure') {
 				userNameInput.val('');
 				passwordInput.val('');
-
+				alert("Username or password are incorrect.");
 				return;
 			}
 			if (data.status == 'success') {
@@ -106,6 +139,61 @@ $(document).ready(function() {
 		event.preventDefault();
 		return false;
 	});
+	
+	
+	
+	$('#registrationSubmit').on('click', function(event) {
+		var userName = $('#registrationInputUsername');
+		var password = $('#registrationInputPassword');
+		var repeatPassword = $('#registrationInputRepeatPassword');
+		
+		if(userName.val() == "" || password.val() == "" || repeatPassword.val() == ""){
+			alert("All fields must be filled out.");
+			return;
+		}
+		
+		if(password.val() != repeatPassword.val()){
+			alert("Passwords do not match.");
+			return;
+		}
+		
+		$.ajaxSetup({async: false});
+		
+		var params = {
+			'userName': userName.val(), 
+			'password': password.val(),
+			'repeatPassword' : repeatPassword.val()
+		}
+		
+		$.post('RegistrationServlet', params, function(data) {
+			console.log(data);
+			
+			if(data.status == 'success'){
+				alert('Registration successfull.');
+				window.location.replace('projections.html');
+			}else{
+				alert(data.message);
+			}
+		});
+		
+	});
+	
+	
+	
+	
+	
+	
+	//tbl projections
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 });

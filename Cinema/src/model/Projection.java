@@ -11,7 +11,14 @@ public class Projection {
 	private Date datetime;//ne sme biti u proslosti
 	private double price;
 	private User admin;//povezuje app
+	private boolean deleted;
 	
+	public boolean isDeleted() {
+		return deleted;
+	}
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
 	public int getId() {
 		return id;
 	}
@@ -27,7 +34,7 @@ public class Projection {
 	public EProjectionType getProjectionType() {
 		return projectionType;
 	}
-	public void setProjectionType(ProjectionType projprojectionTypeType) {
+	public void setProjectionType(EProjectionType projprojectionTypeType) {
 		this.projectionType = projectionType;
 	}
 	public Hall getHall() {
@@ -55,7 +62,7 @@ public class Projection {
 		this.admin = admin;
 	}
 	public Projection(int id, Movie movie, EProjectionType projectionType, Hall hall, Date datetime, double price,
-			User admin) {
+			User admin, boolean deleted) {
 		super();
 		this.id = id;
 		this.movie = movie;
@@ -64,11 +71,12 @@ public class Projection {
 		this.datetime = datetime;
 		this.price = price;
 		this.admin = admin;
+		this.deleted = deleted;
 	}
 	@Override
 	public String toString() {
 		return "Projection [id=" + id + ", movie=" + movie + ", projectionType=" + projectionType + ", hall=" + hall + ", datetime="
-				+ datetime + ", price=" + price + ", admin=" + admin + "]";
+				+ datetime + ", price=" + price + ", admin=" + admin + ", deleted=" + deleted + "]";
 	}
 	
 	

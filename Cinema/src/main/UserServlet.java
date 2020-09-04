@@ -30,28 +30,7 @@ public class UserServlet extends HttpServlet {
 			}
 			
 	
-			String action = request.getParameter("action");
-			
-//			if(action != null && action != "") {
-//				Map<String, Object> data = new LinkedHashMap<>();
-//				switch (action) {
-//				case "loggedInUserRole": {
-//					data.put("loggedInUserRole", loggedInUser.getRole());
-//					System.out.println(loggedInUser.getRole());
-//					break;
-//				}case  "loggedInUserId" : {
-//					data.put("loggedInUserId", loggedInUser.getId());
-//					break;
-//				}
-//				
-//				}				
-//				request.setAttribute("data", data);
-//				request.getRequestDispatcher("./SuccessServlet").forward(request, response);
-//			}else {
-//				System.out.println("action == null");
-//			}
-	
-			
+			String action = request.getParameter("action");			
 			if(action != null && action != "") {
 				
 				Map<String, Object> data = new LinkedHashMap<>();

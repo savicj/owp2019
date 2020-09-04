@@ -17,8 +17,7 @@ public class MovieDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		try {
-			String query = "SELECT name, directors, actors, genre, duration, distributor, "+
-								"originCountry, year, overview FROM movies WHERE id = ?";
+			String query = "SELECT * FROM movies WHERE id = ?";
 			
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, id);
@@ -66,8 +65,7 @@ public class MovieDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		try {
-			String query = "SELECT name, directors, actors, genre, duration, distributor, "+
-								"originCountry, year, overview FROM movies WHERE name = ?";
+			String query = "SELECT * FROM movies WHERE name = ?";
 			
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, name);
@@ -118,8 +116,7 @@ public class MovieDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		try {
-			String query = "SELECT name, directors, actors, genre, duration, distributor, "+
-								"originCountry, year, overview FROM movies";
+			String query = "SELECT * FROM movies";
 			
 			pstmt = conn.prepareStatement(query);
 			System.out.println(pstmt);

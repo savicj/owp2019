@@ -37,8 +37,8 @@ public class ProjectionDAO {
 				String movieName = rs.getString(index++);
 				Movie movie = MovieDAO.findByName(movieName);
 				
-				String pt = rs.getString(index++);
-				EProjectionType projT = EProjectionType.valueOf(pt);
+				String projT = rs.getString(index++);
+				EProjectionType pt = EProjectionType.valueOf(projT);
 				
 				String hallName = rs.getString(index++);
 				Hall hall = HallDAO.findByName(hallName);
@@ -50,7 +50,9 @@ public class ProjectionDAO {
 				String user = rs.getString(index++);
 				User admin = UserDAO.findByUsername(user);
 				
-				return new Projection(id, movie, projT, hall, date, price, admin);
+				boolean deleted = rs.getBoolean(index++); 
+				
+				return new Projection(id, movie, pt, hall, date, price, admin, deleted);
 				
 			}			
 		} catch (Exception ex) {
@@ -82,24 +84,73 @@ public class ProjectionDAO {
 				String movieName = rs.getString(index++);
 				Movie movie = MovieDAO.findByName(movieName);
 				
-				String pt = rs.getString(index++);
-				EProjectionType projT = EProjectionType.valueOf(pt);
+				String projT = rs.getString(index++);
+				EProjectionType pt = EProjectionType.valueOf(projT);
 				
 				String hallName = rs.getString(index++);
 				Hall hall = HallDAO.findByName(hallName);
 				
-				Date date = rs.getDate(index++);
+				Date date = rs.getTimestamp(index++);
 				
 				Double price = rs.getDouble(index++);
 				
 				String user = rs.getString(index++);
 				User admin = UserDAO.findByUsername(user);
 				
-				return new Projection(id, movie, projT, hall, date, price, admin);
+				boolean deleted = rs.getBoolean(index++); 
+				
+				return new Projection(id, movie, pt, hall, date, price, admin, deleted);
 				
 			}			
 		} catch (Exception ex) {
 			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {rs.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+		
+		return null;
+	}
+	
+	public static List<Projection> getAll(){
+		List<Projection> p = new ArrayList<>();
+		Connection conn = ConnectionManager.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String query = "SELECT * FROM projections WHERE deleted = 0;";
+			pstmt = conn.prepareStatement(query);
+						
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				int index = 1;
+				int id = rs.getInt(index++);
+				Integer movie = rs.getInt(index++);
+				Movie m = MovieDAO.get(movie);
+				
+				String projT = rs.getString(index++);
+				EProjectionType pt = EProjectionType.valueOf(projT);
+				String hallName = rs.getString(index++);
+				Hall hall = HallDAO.findByName(hallName);
+				
+				Date date = rs.getTimestamp(index++);
+				
+				Double price = rs.getDouble(index++);
+				
+				String user = rs.getString(index++);
+				User admin = UserDAO.findByUsername(user);				
+		
+				boolean deleted = rs.getBoolean(index++);
+				
+				Projection projection = new Projection(id, m, pt, hall, date, price, admin, deleted);
+				p.add(projection);
+				return p;
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
 			try {rs.close();} catch (Exception ex1) {ex1.printStackTrace();}
@@ -132,22 +183,25 @@ public class ProjectionDAO {
 				int index = 1;
 				int id = rs.getInt(index++);
 				String movieName = rs.getString(index++);
-				//Movie m = MovieDAO.findByName(movieName);
+				Movie m = MovieDAO.findByName(movieName);
 				
-				String pt = rs.getString(index++);
-				EProjectionType projT = EProjectionType.valueOf(pt);;
+				String projT = rs.getString(index++);
+				EProjectionType pt = EProjectionType.valueOf(projT);
 				
 				String hallName = rs.getString(index++);
 				Hall hall = HallDAO.findByName(hallName);
 				
-				Date date = rs.getDate(index++);
+				Date date = rs.getTimestamp(index++);
 				
 				Double price = rs.getDouble(index++);
 				
 				String user = rs.getString(index++);
 				User admin = UserDAO.findByUsername(user);				
 				
-				Projection projection = new Projection(id, movie, projT, hall, date, price, admin);
+				boolean deleted = rs.getBoolean(index++); 
+				
+	
+				Projection projection = new Projection(id, m, pt, hall, date, price, admin, deleted);
 				p.add(projection);
 				return p;
 			}			
@@ -183,20 +237,23 @@ public class ProjectionDAO {
 				String movieName = rs.getString(index++);
 				Movie m = MovieDAO.findByName(movieName);
 				
-				String pt = rs.getString(index++);
-				EProjectionType projT = EProjectionType.valueOf(pt);;
+				String projT = rs.getString(index++);
+				EProjectionType pt = EProjectionType.valueOf(projT);
 				
 				String hallName = rs.getString(index++);
 				Hall hall = HallDAO.findByName(hallName);
 				
-				Date date = rs.getDate(index++);
+				Date date = rs.getTimestamp(index++);
 				
 				Double price = rs.getDouble(index++);
 				
 				String user = rs.getString(index++);
 				User admin = UserDAO.findByUsername(user);				
 				
-				Projection projection = new Projection(id, m, projT, hall, date, price, admin);
+				boolean deleted = rs.getBoolean(index++); 
+				
+				
+				Projection projection = new Projection(id, m, pt, hall, date, price, admin, deleted);
 				p.add(projection);
 				return p;
 			}			

@@ -36,7 +36,7 @@ public class UserDAO {
 				Integer id = rs.getInt(index++);
 				String uName = rs.getString(index++);
 				String pword = rs.getString(index++);
-				Date regDate = (Date) dateFormat.parse(rs.getString(index++));
+				Date regDate = rs.getTimestamp(index++);
 				String role = rs.getString(index++);
 				ERole erole = ERole.valueOf(role);
 				boolean deleted = rs.getBoolean(index++);
@@ -72,7 +72,7 @@ public class UserDAO {
 				Integer id = rs.getInt(index++);
 				String uName = rs.getString(index++);
 				String pword = rs.getString(index++);
-				Date regDate = (Date) dateFormat.parse(rs.getString(index++));
+				Date regDate = rs.getTimestamp(index++);
 				String role = rs.getString(index++);
 				ERole erole = ERole.valueOf(role);
 				boolean deleted = rs.getBoolean(index++);
@@ -100,7 +100,7 @@ public class UserDAO {
 		
 		try {
 			
-			String query = "SELECT * FROM users";
+			String query = "SELECT * FROM users WHERE deleted = 'false'";
 			pstmt = conn.prepareStatement(query);
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
@@ -110,7 +110,7 @@ public class UserDAO {
 				Integer id = rs.getInt(index++);
 				String uName = rs.getString(index++);
 				String pword = rs.getString(index++);
-				Date regDate = (Date) dateFormat.parse(rs.getString(index++));
+				Date regDate = rs.getTimestamp(index++);
 				String role = rs.getString(index++);
 				ERole erole = ERole.valueOf(role);
 				boolean deleted = rs.getBoolean(index++);
@@ -137,13 +137,14 @@ public class UserDAO {
 		
 		try {
 			
-			String query = "INSERT INTO users(username, password, registrationDate, role) VALUES(?, ?, ?, ?)";
+			String query = "INSERT INTO users(username, password, registrationDate, role, deleted) VALUES(?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(query);
 			int i = 1;
 			pstmt.setString(i++, user.getUsername());
 			pstmt.setString(i++, user.getPassword());
 			pstmt.setTimestamp(i++, new Timestamp(user.getRegistrationDate().getTime()));
 			pstmt.setString(i++, user.getRole().toString());
+			pstmt.setBoolean(i++, user.isDeleted());
 			System.out.println(pstmt);
 			
 			return pstmt.executeUpdate() == 1;
@@ -169,6 +170,7 @@ public class UserDAO {
 			int i = 1;
 			pstmt.setString(i++, user.getPassword());
 			pstmt.setTimestamp(i++, new Timestamp(user.getRegistrationDate().getTime()));
+	
 			pstmt.setString(i++, user.getRole().toString());
 			System.out.println(pstmt);
 			

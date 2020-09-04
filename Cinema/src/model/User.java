@@ -22,6 +22,8 @@ public class User {
 		this.deleted = deleted;
 	}
 	
+	public User() {}
+	
 	public Integer getId() {
 		return id;
 	}
