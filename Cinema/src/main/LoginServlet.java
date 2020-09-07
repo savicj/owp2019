@@ -26,7 +26,6 @@ public class LoginServlet extends HttpServlet {
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
 		
-		
 		User user = UserDAO.getUser(userName, password);
 		try {
 			if(user==null || user.isDeleted() == true) {

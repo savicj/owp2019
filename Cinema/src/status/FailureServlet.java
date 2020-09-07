@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class FailureServlet extends HttpServlet {
-	
+	private static final long serialVersionUID = 1L;
+
+	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, Object> data = (Map<String, Object>) request.getAttribute("data");
 		if (data == null)

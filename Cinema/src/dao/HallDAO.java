@@ -58,18 +58,30 @@ public class HallDAO {
 		
 		try {
 			
-			String query = "SELECT naziv, projectionTypes FROM halls WHERE id = ?";
+			String query = "SELECT name, projectionTypes FROM halls WHERE id = ?";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, id);
 			System.out.println(pstmt);
 			
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				int index = 1;
 				String name = rs.getString(index++);
+				
 				String projTypes = rs.getString(index);
-				ArrayList<EProjectionType> projectionTypes = ProjectionTypeDAO.getProjectionTypesFromString(projTypes);
+				
+				ArrayList<EProjectionType> projectionTypes = new ArrayList<EProjectionType>();
+				for(String s : projTypes.split(",")) {
+					try {
+//						System.out.println(s);
+						EProjectionType type = EProjectionType.valueOf(s);
+						projectionTypes.add(type);
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				
 				return new Hall(id, name, projectionTypes);
 			}
 			

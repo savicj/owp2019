@@ -9,44 +9,22 @@ $(document).ready(function() {
 	var btnTickets;
 	var btnMovies;
 
+	//tbl
 	var tblProj = $('#tblProj');
+	var movieInput = $('#movieInput');
+	var dateFromInput = $('#dateFromInput');
+	var timeFromInput = $('#timeFromInput');
+	var dateToInput = $('#dateToInput');
+	var timeToInput = $('#timeToInput');
+	var hallInput = $('#hallInput');
+	var minPriceInput = $('#minPriceInput');
+	var maxPriceInput = $('#maxPriceInput');
+	var projType = $('#projType');
 
 	makeButtons();
 	changeInterface();
 	getProjections();
 	
-	//tbl
-	
-	
-	function getProjections(){
-		var params = {
-			
-		};
-		$.get('ProjectionsServlet', function(data){
-				var projections = data.projections;
-			if (data.status == 'success') {
-				console.log(projections);
-				tblProj.find('tbody').remove(); 
-				for(p in projections){
-					tblProj.append(
-						'<tbody>' +
-						'<tr>' +
-							'<td><a href="movie.html?id=' + projections[p].getMovie().getId() + '"></a></td>' +
-							'<td><a href="projection.html?id=' + projections[p].getId() + '"></a></td>' +
-							'<td>' + projections[p].getProjectionType().getName() + '</td>' +
-							'<td>' + projections[p].getHall().getName() + '</td>' +
-							'<td>' + projections[p].getPrice() + '</td>' +
-						'</tr>' +
-						'<tbody>'
-					);
-				}
-			}else {
-				console.log(projections);
-			}
-
-			
-		});
-	}
 	
 	function changeInterface(){
 		$.get('UserServlet', {'action' : 'loggedInUserRole'}, function(data) {
@@ -180,13 +158,156 @@ $(document).ready(function() {
 	
 	
 	
+	function getProjections(){
+		var movieFilter = movieInput.val();
+		var today = new Date();
+		var dd = String(today.getDate()).padStart(2, '0');
+    	var mm = String(today.getMonth() + 1).padStart(2, '0');
+    	var yyyy = today.getFullYear();
+    	today = yyyy + '-' + mm + '-' + dd;
+		
+		if(dateFromInput.val() == "" || timeFromInput.val() == ""){
+			var dateFromFilter = today + " 00:00:00.000";
+			var dateFrom = new Date(dateFromFilter);
+			var timeFrom = dateFrom.getTime();
+		}else{
+			var dateFromFilter = dateFromInput.val() + " " + timeFromInput.val() + ".000";
+			var dateFrom = new Date(dateFromFilter);
+			var timeFrom = dateFrom.getTime();
+		}
+		
+		if(dateToInput.val() == "" || timeToInput.val() == ""){
+			var dateToFilter = today + " 23:59:59.000";
+			var dateTo = new Date(dateToFilter);
+			var timeTo = dateTo.getTime();
+		}else{
+			var dateToFilter = dateToInput.val() + " " + timeToInput.val() + ".000";
+			var dateTo = new Date(dateToFilter);
+			var timeTo = dateTo.getTime();
+		}
+		
+		var minPriceFilter = minPriceInput.val();
+		var maxPriceFilter = maxPriceInput.val();
+		var hallFilter = hallInput.val();
+		var projTypeFilter = projType.val();
+		
+		
+		var params = {
+			'movieFilter' : movieFilter,
+			'dateFromFilter' : dateFromFilter,
+			'dateToFilter' : dateToFilter,
+			'minPriceFilter' : minPriceFilter,
+			'maxPriceFilter' : maxPriceFilter,
+			'hallFilter' : hallFilter,
+			'projTypeFilter' : projTypeFilter			
+		};
+		
+	
+		console.log(params);
+		$.get('ProjectionsServlet', params, function(data){
+			var projections = data.projections;
+			console.log(projections);
+			if (data.status == 'success') {
+				tblProj.find('tbody').remove(); 
+				for(p in projections){
+				
+					/*switch(projections[p].projectionType){
+					case "twodim":
+						projections[p].projectionType = "2D";
+					case "threedim":
+						projections[p].projectionType = "3D";
+					case "fourdim":
+						projections[p].projectionType = "4D";
+					}*/
+				
+					tblProj.append(
+						'<tbody>' +
+						'<tr>' +
+							'<td><a href="movie.html?id=' + projections[p].movie.id + '">'+ projections[p].movie.name +'</a></td>' +
+							'<td><a href="projection.html?id=' + projections[p].id + '">'+ dateFormat(new Date(projections[p].datetime)) + '</a></td>' +
+							'<td>' + projections[p].projectionType + '</td>' +
+							'<td>' + projections[p].hall.name + '</td>' +
+							'<td>' + projections[p].price + '</td>' +
+						'</tr>' +
+						'<tbody>'
+					);
+				}
+			}else {
+				for(p in projections){
+					console.log(projections);
+					console.log('nesto ne valja');
+				}
+			}
+		});
+	}
 	
 	
 	
-	//tbl projections
+	/*movieInput.on('keyup', function(event){
+		getProjections();
+		event.preventDefault();
+		return false;
+	});
 	
+	dateFromInput.on('keyup', function(event){
+		getProjections();
+		event.preventDefault();
+		return false;
+	});
 	
+	timeFromInput.on('keyup', function(event){
+		getProjections();
+		event.preventDefault();
+		return false;
+	});
 	
+	dateToInput.on('keyup', function(event){
+		getProjections();
+		event.preventDefault();
+		return false;
+	});
+	
+	timeToInput.on('keyup', function(event){
+		getProjections();
+		event.preventDefault();
+		return false;
+	});
+	
+	hallInput.on('change', function(event){
+		getProjections();
+		event.preventDefault();
+		return false;
+	});
+	
+	projType.on('change', function(event){
+		getProjections();
+		event.preventDefault();
+		return false;
+	});
+	
+	minPriceInput.on('keyup', function(event){
+		getProjections();
+		event.preventDefault();
+		return false;
+	});
+	
+	maxPriceInput.on('keyup', function(event){
+		getProjections();
+		event.preventDefault();
+		return false;
+	});*/
+	
+	$("#searchBtn").click(function (e){
+    	getProjections();
+        event.preventDefault();
+        return false;
+    });
+    
+    function dateFormat(date){
+        let dateString = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2) + " " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2)
+     
+        return dateString;
+    }
 	
 	
 	

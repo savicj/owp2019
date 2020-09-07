@@ -12,18 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class LogoutServlet extends HttpServlet {
-	
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.getSession().invalidate();
-		Map<String, Object> data = (Map<String, Object>) request.getAttribute("data");
-		if (data == null)
-			 data = new LinkedHashMap<>();
 
+		Map<String, Object> data = new LinkedHashMap<>();
 		data.put("status", "unauthenticated");
-		
+
 		ObjectMapper objectMapper = new ObjectMapper();
 		String jsonData = objectMapper.writeValueAsString(data);
 		System.out.println(jsonData);

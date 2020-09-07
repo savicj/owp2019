@@ -64,7 +64,30 @@
         </ul>
     </nav>
     <section id="mySection">
-    	<h3 align="center">Available projections</h3>
+    	<h1 align="center">Available projections</h1>
+    	<span id="search" class="form-inline bg-dark">
+            <input id="movieInput" class="form-control" type="text" placeholder="movie">
+            <input id="dateFromInput" class="form-control" type="text" placeholder="from"  onfocus="(this.type='date')" onblur="(this.type='text')">
+            <input id="timeFromInput" class="form-control" type="time" placeholder="from">
+            <input id="dateToInput" class="form-control" type="text" placeholder="to"  onfocus="(this.type='date')" onblur="(this.type='text')">
+            <input id="timeToInput" class="form-control" type="time" placeholder="to">
+            <select id="hallInput" class="form-control">
+            	<option value="" selected>Hall</option>
+            	<option value="hall 1">Hall 1</option>
+            	<option value="hall 2">Hall 2</option>
+            	<option value="hall 3">Hall 3</option>
+                <option value="hall 4">Hall 4</option>
+            </select>
+            <input id="minPriceInput" class="form-control" type="number" min="200" max="1500" placeholder="min price">
+            <input id="maxPriceInput" class="form-control" type="number" min="200" max="1500" placeholder="max price">
+            <select id="projType" class="form-control">
+            	<option value="" selected>Projection type</option>
+            	<option value="twodim">2D</option>
+            	<option value="threedim">3D</option>
+            	<option value="fourdim">4D</option>
+            </select>
+            <button id="searchBtn"><i class="fas fa-search"></i> </button>
+        </span>
     	<table class="table table-striped table-dark table-hover" id="tblProj">
 	    	<thead>
 	    	<tr>

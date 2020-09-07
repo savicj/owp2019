@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.ERole;
 import model.User;
 import dao.UserDAO;
 
@@ -30,7 +31,7 @@ public class UserServlet extends HttpServlet {
 			}
 			
 	
-			String action = request.getParameter("action");			
+			String action = request.getParameter("action");	
 			if(action != null && action != "") {
 				
 				Map<String, Object> data = new LinkedHashMap<>();
@@ -42,6 +43,14 @@ public class UserServlet extends HttpServlet {
 					}case  "loggedInUserId" : {
 						data.put("loggedInUserId", loggedInUser.getId());
 						break;
+					}case "allUsers" : {
+						if (loggedInUser.getRole() == ERole.ADMIN) {
+							data.put("allUsers", UserDAO.getAll());
+							break;
+						}else {
+							request.getRequestDispatcher("./LogoutServlet").forward(request, response);
+							break;
+						}
 					}
 				}
 
@@ -62,7 +71,6 @@ public class UserServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

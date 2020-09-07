@@ -27,6 +27,7 @@ public class MovieDAO {
 
 			if (rset.next()) {
 				int index = 1;
+				int ID = rset.getInt(index++);
 				String name = rset.getString(index++);
 				String dir = rset.getString(index++);
 				ArrayList<String> directors = new ArrayList<String>();
@@ -46,7 +47,7 @@ public class MovieDAO {
 				int year = rset.getInt(index++);
 				String overview = rset.getString(index++);
 
-				return new Movie(id, name, directors, actors, genre, duration, distributor, originCountry, year, overview);
+				return new Movie(ID, name, directors, actors, genre, duration, distributor, originCountry, year, overview);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -65,7 +66,7 @@ public class MovieDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		try {
-			String query = "SELECT * FROM movies WHERE name = ?";
+			String query = "SELECT * FROM movies WHERE name LIKE ?";
 			
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, name);
