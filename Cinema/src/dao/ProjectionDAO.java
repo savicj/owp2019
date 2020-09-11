@@ -12,7 +12,6 @@ import model.EProjectionType;
 import model.Hall;
 import model.Movie;
 import model.Projection;
-import model.ProjectionType;
 import model.User;
 
 public class ProjectionDAO {
@@ -28,7 +27,6 @@ public class ProjectionDAO {
 			pstmt = conn.prepareStatement(query);
 			
 			pstmt.setInt(1, m.getId());
-//			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -76,7 +74,6 @@ public class ProjectionDAO {
 			pstmt = conn.prepareStatement(query);
 			
 			pstmt.setInt(1, id);
-			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -155,7 +152,6 @@ public class ProjectionDAO {
 				int id = rs.getInt(i++);
 				Integer mov = rs.getInt(i++);
 				Movie m = MovieDAO.get(mov);
-				
 				String projT = rs.getString(i++);
 				EProjectionType pt = EProjectionType.valueOf(projT);
 				Integer hallName = rs.getInt(i++);
@@ -294,18 +290,19 @@ public class ProjectionDAO {
 		
 		try {
 			
-			String query = "INSERT INTO projections(movie, projT, hall, date, price, admin) VALUES (?, ?, ?, ?, ?, ?)";
+			String query = "INSERT INTO projections(movie, projT, hall, date, price, admin, deleted) VALUES (?, ?, ?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(query);
 			
 			int i = 1;
-			pstmt.setString(i++, p.getMovie().getName());
+			pstmt.setInt(i++, p.getMovie().getId());
 			pstmt.setString(i++, p.getProjectionType().toString());
 			pstmt.setInt(i++, p.getHall().getId());
 			pstmt.setTimestamp(i++, new Timestamp(p.getDatetime().getTime()));
 			pstmt.setDouble(i++, p.getPrice());
 			String user = p.getAdmin().getUsername();
 			pstmt.setString(i++, user);
-			System.out.println(pstmt);
+			pstmt.setBoolean(i++, false);
+			//System.out.println(pstmt);
 			
 			return pstmt.executeUpdate() == 1;
 			
@@ -331,15 +328,14 @@ public class ProjectionDAO {
 			pstmt = conn.prepareStatement(query);
 			
 			int i = 1;
-			pstmt.setString(i++, p.getMovie().getName());
+			pstmt.setInt(i++, p.getMovie().getId());
 			pstmt.setString(i++, p.getProjectionType().toString());
 			pstmt.setInt(i++, p.getHall().getId());
 			pstmt.setTimestamp(i++, new Timestamp(p.getDatetime().getTime()));
 			pstmt.setDouble(i++, p.getPrice());
-			String user = p.getAdmin().getUsername();
-			pstmt.setString(i++, user);
+			pstmt.setString(i++, p.getAdmin().getUsername());
 			pstmt.setInt(i++, p.getId());
-			System.out.println(pstmt);
+			//System.out.println(pstmt);
 			
 			return pstmt.executeUpdate() == 1;
 			
@@ -362,11 +358,10 @@ public class ProjectionDAO {
 		
 		try {
 			
-			String query = "DELETE FROM projections(movie, projT, hall, date, price, admin) WHERE id = ?";
+			String query = "UPDATE projections SET deleted = true WHERE id = ?";
 			pstmt = conn.prepareStatement(query);
 			
 			pstmt.setInt(1, p.getId());
-			System.out.println(pstmt);
 			
 			return pstmt.executeUpdate() == 1;
 			

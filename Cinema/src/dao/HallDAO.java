@@ -23,7 +23,7 @@ public class HallDAO {
 			String query = "SELECT * FROM halls WHERE name like ?";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, name);
-			System.out.println(pstmt);
+			//System.out.println(pstmt);
 			
 			rs = pstmt.executeQuery();
 			
@@ -61,7 +61,7 @@ public class HallDAO {
 			String query = "SELECT name, projectionTypes FROM halls WHERE id = ?";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, id);
-			System.out.println(pstmt);
+			//System.out.println(pstmt);
 			
 			rs = pstmt.executeQuery();
 			
@@ -107,9 +107,56 @@ public class HallDAO {
 			List<Hall> halls = new ArrayList<>();
 			
 			
-			String query = "SELECT naziv, projectionType FROM halls";
+			String query = "SELECT * FROM halls";
 			pstmt = conn.prepareStatement(query);
-			System.out.println(pstmt);
+//			System.out.println(pstmt);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				int index = 1;
+				int id = rs.getInt(index++);
+				String name = rs.getString(index++);
+				String projTypes = rs.getString(index);
+				ArrayList<EProjectionType> projectionTypes = new ArrayList<>();
+				for(String s : projTypes.split(",")) {
+					try {
+						EProjectionType type = EProjectionType.valueOf(s);
+						projectionTypes.add(type);
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				
+				Hall hall = new Hall(id, name, projectionTypes);
+				halls.add(hall);
+				return halls;
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {rs.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+		
+		return null;
+	}
+	
+	public static List<Hall> getAll(String pt){
+		Connection conn = ConnectionManager.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			List<Hall> halls = new ArrayList<>();
+			
+			
+			String query = "SELECT * FROM halls where projectionTypes LIKE ?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, pt);
+//			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {

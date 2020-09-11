@@ -86,92 +86,92 @@ CREATE TABLE projections(
     FOREIGN KEY(admin) REFERENCES users(username) ON DELETE RESTRICT
 );
 
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(1, 'twodim', 1, '2020-09-04 16:00:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(1, 'twodim', 2, '2020-09-04 15:50:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(3, 'threedim', 1, '2020-09-04 18:20:00.000', 410, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(4, 'fourdim', 2, '2020-09-04 18:00:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(5, 'threedim', 3, '2020-09-04 19:25:00.000', 410, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(8, 'threedim', 3, '2020-09-04 21:45:00.000', 410, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(7, 'fourdim', 3, '2020-09-04 16:00:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(3, 'fourdim', 2, '2020-09-04 22:45:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(5, 'fourdim', 2, '2020-09-04 20:25:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(10, 'twodim', 1, '2020-09-04 20:00:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(8, 'threedim', 4, '2020-09-04 19:45:00.000', 410, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(7, 'fourdim', 5, '2020-09-04 16:00:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(3, 'fourdim', 4, '2020-09-04 22:00:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(5, 'fourdim', 5, '2020-09-04 18:25:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(9, 'twodim', 1, '2020-09-04 22:30:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(1, 'twodim', 1, '2020-09-13 16:00:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(1, 'twodim', 2, '2020-09-13 15:50:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(3, 'threedim', 1, '2020-09-13 18:20:00.000', 410, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(4, 'fourdim', 2, '2020-09-13 18:00:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(5, 'threedim', 3, '2020-09-13 19:25:00.000', 410, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(8, 'threedim', 3, '2020-09-13 21:45:00.000', 410, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(7, 'fourdim', 3, '2020-09-13 16:00:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(3, 'fourdim', 2, '2020-09-13 22:45:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(5, 'fourdim', 2, '2020-09-13 20:25:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(10, 'twodim', 1, '2020-09-13 20:00:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(8, 'threedim', 4, '2020-09-13 19:45:00.000', 410, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(7, 'fourdim', 5, '2020-09-13 16:00:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(3, 'fourdim', 4, '2020-09-13 22:00:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(5, 'fourdim', 5, '2020-09-13 18:25:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(9, 'twodim', 1, '2020-09-13 22:30:00.000', 390, 'a', false);
 	
 
 
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(2, 'twodim', 1, '2020-09-05 15:40:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(6, 'twodim', 1, '2020-09-05 18:30:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(4, 'threedim', 1, '2020-09-05 20:25:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(4, 'fourdim', 2, '2020-09-05 17:00:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(7, 'twodim', 2, '2020-09-05 19:25:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(8, 'twodim', 2, '2020-09-05 21:30:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(9, 'fourdim', 3, '2020-09-05 16:30:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(10, 'fourdim', 3, '2020-09-05 19:25:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(7, 'threedim', 3, '2020-09-05 21:35:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(10, 'threedim', 3, '2020-09-05 23:15:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(8, 'threedim', 4, '2020-09-05 19:45:00.000', 410, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(3, 'fourdim', 4, '2020-09-05 22:00:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(7, 'fourdim', 5, '2020-09-05 16:00:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(5, 'fourdim', 5, '2020-09-05 18:25:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(9, 'twodim', 1, '2020-09-05 22:30:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(2, 'twodim', 1, '2020-09-14 15:40:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(6, 'twodim', 1, '2020-09-14 18:30:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(4, 'threedim', 1, '2020-09-14 20:25:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(4, 'fourdim', 2, '2020-09-14 17:00:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(7, 'twodim', 2, '2020-09-14 19:25:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(8, 'twodim', 2, '2020-09-14 21:30:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(9, 'fourdim', 3, '2020-09-14 16:30:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(10, 'fourdim', 3, '2020-09-14 19:25:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(7, 'threedim', 3, '2020-09-14 21:35:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(10, 'threedim', 3, '2020-09-14 23:15:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(8, 'threedim', 4, '2020-09-14 19:45:00.000', 410, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(3, 'fourdim', 4, '2020-09-14 22:00:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(7, 'fourdim', 5, '2020-09-14 16:00:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(5, 'fourdim', 5, '2020-09-14 18:25:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(9, 'twodim', 1, '2020-09-14 22:30:00.000', 390, 'a', false);
 	
 
 	
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(1, 'twodim', 1, '2020-09-06 15:40:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(3, 'twodim', 1, '2020-09-06 18:00:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(3, 'threedim', 1, '2020-09-06 20:05:00.000', 410, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(9, 'twodim', 1, '2020-09-06 21:45:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(1, 'twodim', 2, '2020-09-06 17:25:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(2, 'twodim', 2, '2020-09-06 19:50:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(4, 'fourdim', 2, '2020-09-06 22:35:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(8, 'fourdim', 3, '2020-09-06 18:20:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(5, 'threedim', 3, '2020-09-06 20:35:00.000', 410, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(10, 'threedim', 3, '2020-09-06 22:50:00.000', 410, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(8, 'threedim', 4, '2020-09-06 18:25:00.000', 410, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(3, 'fourdim', 4, '2020-09-06 20:30:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(9, 'threedim', 4, '2020-09-06 22:20:00.000', 410, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(7, 'fourdim', 5, '2020-09-06 19:45:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(5, 'fourdim', 5, '2020-09-06 21:30:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(1, 'twodim', 1, '2020-09-15 15:40:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(3, 'twodim', 1, '2020-09-15 18:00:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(3, 'threedim', 1, '2020-09-15 20:05:00.000', 410, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(9, 'twodim', 1, '2020-09-15 21:45:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(1, 'twodim', 2, '2020-09-15 17:25:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(2, 'twodim', 2, '2020-09-15 19:50:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(4, 'fourdim', 2, '2020-09-15 22:35:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(8, 'fourdim', 3, '2020-09-15 18:20:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(5, 'threedim', 3, '2020-09-15 20:35:00.000', 410, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(10, 'threedim', 3, '2020-09-15 22:50:00.000', 410, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(8, 'threedim', 4, '2020-09-15 18:25:00.000', 410, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(3, 'fourdim', 4, '2020-09-15 20:30:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(9, 'threedim', 4, '2020-09-15 22:20:00.000', 410, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(7, 'fourdim', 5, '2020-09-15 19:45:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(5, 'fourdim', 5, '2020-09-15 21:30:00.000', 450, 'a', false);
 
 
 
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(1, 'twodim', 1, '2020-09-07 15:40:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(3, 'twodim', 1, '2020-09-07 18:00:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(3, 'threedim', 1, '2020-09-07 20:05:00.000', 410, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(9, 'twodim', 1, '2020-09-07 21:45:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(1, 'twodim', 2, '2020-09-07 17:25:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(2, 'twodim', 2, '2020-09-07 19:50:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(4, 'fourdim', 2, '2020-09-07 22:35:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(8, 'fourdim', 3, '2020-09-07 18:20:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(5, 'threedim', 3, '2020-09-07 20:35:00.000', 410, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(10, 'threedim', 3, '2020-09-07 22:50:00.000', 410, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(6, 'threedim', 4, '2020-09-07 18:15:00.000', 410, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(3, 'fourdim', 4, '2020-09-07 20:30:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(9, 'threedim', 4, '2020-09-07 22:20:00.000', 410, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(7, 'fourdim', 5, '2020-09-07 19:45:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(5, 'fourdim', 5, '2020-09-07 21:30:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(1, 'twodim', 1, '2020-09-16 15:40:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(3, 'twodim', 1, '2020-09-16 18:00:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(3, 'threedim', 1, '2020-09-16 20:05:00.000', 410, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(9, 'twodim', 1, '2020-09-16 21:45:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(1, 'twodim', 2, '2020-09-16 17:25:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(2, 'twodim', 2, '2020-09-16 19:50:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(4, 'fourdim', 2, '2020-09-16 22:35:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(8, 'fourdim', 3, '2020-09-16 18:20:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(5, 'threedim', 3, '2020-09-16 20:35:00.000', 410, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(10, 'threedim', 3, '2020-09-16 22:50:00.000', 410, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(6, 'threedim', 4, '2020-09-16 18:15:00.000', 410, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(3, 'fourdim', 4, '2020-09-16 20:30:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(9, 'threedim', 4, '2020-09-16 22:20:00.000', 410, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(7, 'fourdim', 5, '2020-09-16 19:45:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(5, 'fourdim', 5, '2020-09-16 21:30:00.000', 450, 'a', false);
 
 
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(2, 'twodim', 1, '2020-09-08 15:30:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(4, 'twodim', 1, '2020-09-08 18:20:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(6, 'threedim', 1, '2020-09-08 20:25:00.000', 410, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(9, 'twodim', 1, '2020-09-08 22:40:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(6, 'twodim', 2, '2020-09-08 17:25:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(2, 'twodim', 2, '2020-09-08 19:40:00.000', 390, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(4, 'fourdim', 2, '2020-09-08 22:35:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(8, 'fourdim', 3, '2020-09-08 18:20:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(5, 'threedim', 3, '2020-09-08 20:30:00.000', 410, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(10, 'threedim', 3, '2020-09-08 22:30:00.000', 410, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(8, 'threedim', 4, '2020-09-08 18:25:00.000', 410, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(7, 'fourdim', 4, '2020-09-08 20:30:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(9, 'threedim', 4, '2020-09-08 22:20:00.000', 410, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(2, 'fourdim', 5, '2020-09-08 19:25:00.000', 450, 'a', false);
-INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(5, 'fourdim', 5, '2020-09-08 22:15:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(2, 'twodim', 1, '2020-09-17 15:30:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(4, 'twodim', 1, '2020-09-17 18:20:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(6, 'threedim', 1, '2020-09-17 20:25:00.000', 410, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(9, 'twodim', 1, '2020-09-17 22:40:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(6, 'twodim', 2, '2020-09-17 17:25:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(2, 'twodim', 2, '2020-09-17 19:40:00.000', 390, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(4, 'fourdim', 2, '2020-09-17 22:35:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(8, 'fourdim', 3, '2020-09-17 18:20:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(5, 'threedim', 3, '2020-09-17 20:30:00.000', 410, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(10, 'threedim', 3, '2020-09-17 22:30:00.000', 410, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(8, 'threedim', 4, '2020-09-17 18:25:00.000', 410, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(7, 'fourdim', 4, '2020-09-17 20:30:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(9, 'threedim', 4, '2020-09-17 22:20:00.000', 410, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(2, 'fourdim', 5, '2020-09-17 19:25:00.000', 450, 'a', false);
+INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES(5, 'fourdim', 5, '2020-09-17 22:15:00.000', 450, 'a', false);
 
 
 

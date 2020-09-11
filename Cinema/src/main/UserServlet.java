@@ -57,13 +57,6 @@ public class UserServlet extends HttpServlet {
 				request.setAttribute("data", data);
 				request.getRequestDispatcher("./SuccessServlet").forward(request, response);
 			}
-//			else if(user != null && korisnikID != "") {
-//				Map<String, Object> data = new LinkedHashMap<>();
-//				data.put("trazeniKorisnik", KorisniciDAO.getById(korisnikID));
-//
-//				request.setAttribute("data", data);
-//				request.getRequestDispatcher("./SuccessServlet").forward(request, response);
-//			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

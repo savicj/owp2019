@@ -21,7 +21,7 @@ public class MovieDAO {
 			
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, id);
-			System.out.println(pstmt);
+			//System.out.println(pstmt);
 
 			rset = pstmt.executeQuery();
 
@@ -70,7 +70,7 @@ public class MovieDAO {
 			
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, name);
-			System.out.println(pstmt);
+			//System.out.println(pstmt);
 
 			rset = pstmt.executeQuery();
 
@@ -109,23 +109,31 @@ public class MovieDAO {
 		return null;
 	}
 	
-	public static List<Movie> getAll(){
+	public static List<Movie> getAll(String mname, String mgenre, int durationFrom, int durationTo, String mdistributor, String country, int yearFrom, int yearTo){
 		List<Movie> movies = new ArrayList<>();
-		
 		Connection conn = ConnectionManager.getConnection();
-
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		try {
-			String query = "SELECT * FROM movies";
+			String query = "SELECT * FROM movies " + 
+					"WHERE name LIKE ? AND genres LIKE ? AND duration >= ? AND duration <= ? AND distributor LIKE ? AND originCountry LIKE ? AND year >= ? AND year <= ?";
 			
 			pstmt = conn.prepareStatement(query);
-			System.out.println(pstmt);
+			int index = 1;
+		
+			pstmt.setString(index++, mname);
+			pstmt.setString(index++,"%"+ mgenre +"%");
+			pstmt.setInt(index++, durationFrom);
+			pstmt.setInt(index++, durationTo);
+			pstmt.setString(index++, "%" +mdistributor +"%");
+			pstmt.setString(index++, country);
+			pstmt.setInt(index++, yearFrom);
+			pstmt.setInt(index++, yearTo); 	
 
 			rset = pstmt.executeQuery();
 
-			if (rset.next()) {
-				int index = 1;
+			while (rset.next()) {
+				index = 1;
 				int id = rset.getInt(index++);
 				String name = rset.getString(index++);
 				String dir = rset.getString(index++);
@@ -148,7 +156,7 @@ public class MovieDAO {
 
 				Movie movie = new Movie(id, name, directors, actors, genre, duration, distributor, originCountry, year, overview);
 				movies.add(movie);
-				return movies;
+
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -158,7 +166,7 @@ public class MovieDAO {
 			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
 		}
 		
-		return null;
+		return movies;
 	}
 	
 	
@@ -172,7 +180,7 @@ public class MovieDAO {
 								"originCountry, year, overview) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			
 			pstmt = conn.prepareStatement(query);
-			System.out.println(pstmt);
+			//System.out.println(pstmt);
 		
 			int index = 1;
 			pstmt.setString(index++, movie.getName());
@@ -217,7 +225,7 @@ public class MovieDAO {
 								"originCountry = ?, year = ?, overview = ? WHERE id = ?";
 			
 			pstmt = conn.prepareStatement(query);
-			System.out.println(pstmt);
+			//System.out.println(pstmt);
 		
 			int index = 1;
 			pstmt.setString(index++, movie.getName());
@@ -264,7 +272,7 @@ public class MovieDAO {
 			String query = "DELETE FROM movies where id = ?";
 			
 			pstmt = conn.prepareStatement(query);
-			System.out.println(pstmt);
+//			System.out.println(pstmt);
 			pstmt.setInt(1, id);
 
 			return pstmt.executeUpdate() == 1;

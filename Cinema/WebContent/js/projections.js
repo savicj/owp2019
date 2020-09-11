@@ -20,6 +20,9 @@ $(document).ready(function() {
 	var minPriceInput = $('#minPriceInput');
 	var maxPriceInput = $('#maxPriceInput');
 	var projType = $('#projType');
+	
+	var btnAdd;
+	
 
 	makeButtons();
 	changeInterface();
@@ -36,6 +39,7 @@ $(document).ready(function() {
 				$('#btnTickets').remove();
 				$('#btnLogin').show();
 				$('#btnRegister').show();
+				
 				return;
 			}
 			if (data.status == 'success') {
@@ -45,6 +49,8 @@ $(document).ready(function() {
 				
 				if (data.loggedInUserRole == 'ADMIN') {
 					navBtn.append(btnUsers);
+					$('#mySection').append(btnAdd);
+					
 				}
 				navBtn.append(btnAccount);
 				navBtn.append(btnTickets);
@@ -84,7 +90,10 @@ $(document).ready(function() {
 		});
 		btnUsers = $('<li id = "btnUsers" class="margina"><a class="nav-link" href="#">USERS</a></li>');
     	btnTickets = $('<li id = "btnTickets" class="margina"><a class="nav-link" href="#">TICKETS</a></li>');
-	
+		btnAdd = $('<button id = "btnAdd" type="button" class="btn btn-dark">ADD PROJECTION</li>').on('click', function(){
+			window.location.replace('addProjection.html');
+			return;
+		});
 	}
 	
 	

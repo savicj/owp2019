@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>ADD PROJECTION</title>
+	<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link href="css/projection.css" rel="stylesheet">
+    <script src="js/projection.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a id="logoLink" class="navbar-brand" href="projections.html">   Cinemax</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <ul id="navBtn" class="navbar-nav mr-auto">
+        	<li class="margina"><a class="nav-link" href="movies.html">MOVIES</a></li>
+        	<li id = "btnUsers" class="margina"><a class="nav-link" href="#">USERS</a></li>
+        	<li id="btnAccount"><a class="nav-link" href="">ACCOUNT</a></li>
+        	<li id = "btnTickets" class="margina"><a class="nav-link" href="#">TICKETS</a></li>
+        	<li id="btnLogout"><a class="nav-link" href="#">LOGOUT</a></li>
+       	</ul>
+    </nav>
+	<div id="formDiv">
+		<h2>PROJECTION</h2>
+		<div class="form-group">
+			<form>
+				<label>MOVIE</label>
+				<select id="movieSelect" class="form-control"></select>
+				<label>PROJECTION TYPE</label>
+				<select class="form-control">
+					<option>2D</option>
+					<option>3D</option>
+					<option>4D</option>
+				</select>
+				<label>HALL</label>
+				<select id="hallSelect" class="form-control"></select>
+				<label>DATE AND TIME</label>
+				<input id="dateInput" type="datetime-local" class="form-control margina">
+				<label>PRICE</label>
+				<input class="form-control" type="number" id="priceInput" min="150" max="1000">
+			</form>
+			<button class="btn btn-dark" id="addBtn">ADD</button>
+		</div>
+		
+	</div>
+</body>
+</html>

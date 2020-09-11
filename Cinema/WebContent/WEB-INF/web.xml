@@ -44,16 +44,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>UnauthorizedServlet</display-name>
-    <servlet-name>UnauthorizedServlet</servlet-name>
-    <servlet-class>status.UnauthorizedServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>UnauthorizedServlet</servlet-name>
-    <url-pattern>/UnauthorizedServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>LogoutServlet</display-name>
     <servlet-name>LogoutServlet</servlet-name>
     <servlet-class>status.LogoutServlet</servlet-class>
@@ -91,5 +81,25 @@
   <servlet-mapping>
     <servlet-name>RegistrationServlet</servlet-name>
     <url-pattern>/RegistrationServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>HallServlet</display-name>
+    <servlet-name>HallServlet</servlet-name>
+    <servlet-class>main.HallServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HallServlet</servlet-name>
+    <url-pattern>/HallServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MovieServlet</display-name>
+    <servlet-name>MovieServlet</servlet-name>
+    <servlet-class>main.MovieServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MovieServlet</servlet-name>
+    <url-pattern>/MovieServlet</url-pattern>
   </servlet-mapping>
 </web-app>

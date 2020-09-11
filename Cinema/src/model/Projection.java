@@ -73,6 +73,19 @@ public class Projection {
 		this.admin = admin;
 		this.deleted = deleted;
 	}
+	
+	public Projection(Movie movie, EProjectionType projectionType, Hall hall, Date datetime, double price,
+			User admin, boolean deleted) {
+		super();
+		this.movie = movie;
+		this.projectionType = projectionType;
+		this.hall = hall;
+		this.datetime = datetime;
+		this.price = price;
+		this.admin = admin;
+		this.deleted = deleted;
+	}
+	
 	@Override
 	public String toString() {
 		return "Projection [id=" + id + ", movie=" + movie + ", projectionType=" + projectionType + ", hall=" + hall + ", datetime="
