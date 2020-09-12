@@ -33,7 +33,7 @@ public class TicketDAO {
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				int index = 1;
 				int id = rs.getInt(index++);
 				Projection p = ProjectionDAO.get(rs.getInt(index++));
@@ -44,7 +44,6 @@ public class TicketDAO {
 				
 				Ticket t = new Ticket(id, p, seat, datetime, user);
 				tickets.add(t);
-				return tickets;				
 			}
 			
 		} catch (Exception e) {e.printStackTrace();
@@ -53,7 +52,7 @@ public class TicketDAO {
 			try {rs.close();} catch (Exception ex1) {ex1.printStackTrace();}
 			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
 		}
-		return null;
+		return tickets;				
 		
 	}
 	
@@ -72,7 +71,7 @@ public class TicketDAO {
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				int index = 1;
 				int id = rs.getInt(index++);
 				Projection projection = ProjectionDAO.get(rs.getInt(index++));
@@ -83,7 +82,6 @@ public class TicketDAO {
 				
 				Ticket t = new Ticket(id, p, seat, datetime, user);
 				tickets.add(t);
-				return tickets;				
 			}
 			
 		} catch (Exception e) {e.printStackTrace();
@@ -92,7 +90,7 @@ public class TicketDAO {
 			try {rs.close();} catch (Exception ex1) {ex1.printStackTrace();}
 			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
 		}
-		return null;
+		return tickets;				
 		
 	}
 	
@@ -116,7 +114,7 @@ public class TicketDAO {
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				int index = 1;
 				int id = rs.getInt(index++);
 				Projection projection = ProjectionDAO.get(rs.getInt(index++));
@@ -127,7 +125,6 @@ public class TicketDAO {
 				
 				Ticket t = new Ticket(id, projection, seat, datetime, user);
 				tickets.add(t);
-				return tickets;				
 			}
 			
 		} catch (Exception e) {e.printStackTrace();
@@ -136,7 +133,7 @@ public class TicketDAO {
 			try {rs.close();} catch (Exception ex1) {ex1.printStackTrace();}
 			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
 		}
-		return null;
+		return tickets;				
 		
 	}
 	
@@ -153,7 +150,7 @@ public class TicketDAO {
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				int index = 1;
 				int id = rs.getInt(index++);
 				Projection p = ProjectionDAO.get(rs.getInt(index++));
@@ -164,7 +161,6 @@ public class TicketDAO {
 				
 				Ticket t = new Ticket(id, p, seat, datetime, user);
 				tickets.add(t);
-				return tickets;				
 			}
 			
 		} catch (Exception e) {e.printStackTrace();
@@ -173,7 +169,7 @@ public class TicketDAO {
 			try {rs.close();} catch (Exception ex1) {ex1.printStackTrace();}
 			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
 		}
-		return null;
+		return tickets;				
 		
 	}
 	

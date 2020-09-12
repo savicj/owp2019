@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import model.EProjectionType;
@@ -28,7 +27,7 @@ public class ProjectionTypeDAO {
 				e.printStackTrace();
 			}
 		}
-		return null;
+		return projectionTypes;
 	}
 	
 	public static ProjectionType getPTypeByName(String name) {
@@ -106,7 +105,7 @@ public class ProjectionTypeDAO {
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				int index = 1;
 				int id = rs.getInt(index++);
 				String name = rs.getString(index);
@@ -124,6 +123,6 @@ public class ProjectionTypeDAO {
 			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
 		}
 		
-		return null;
+		return pt;
 		}
 }

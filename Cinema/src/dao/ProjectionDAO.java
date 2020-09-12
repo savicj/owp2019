@@ -78,8 +78,8 @@ public class ProjectionDAO {
 			
 			if(rs.next()) {
 				int index = 2;
-				String movieName = rs.getString(index++);
-				Movie movie = MovieDAO.findByName(movieName);
+				int movieid = rs.getInt(index++);
+				Movie movie = MovieDAO.get(movieid);
 				
 				String projT = rs.getString(index++);
 				EProjectionType pt = EProjectionType.valueOf(projT);
@@ -290,14 +290,14 @@ public class ProjectionDAO {
 		
 		try {
 			
-			String query = "INSERT INTO projections(movie, projT, hall, date, price, admin, deleted) VALUES (?, ?, ?, ?, ?, ?, ?)";
+			String query = "INSERT INTO projections(movie, projectionType, hall, datetime, price, admin, deleted) VALUES (?, ?, ?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(query);
 			
 			int i = 1;
 			pstmt.setInt(i++, p.getMovie().getId());
 			pstmt.setString(i++, p.getProjectionType().toString());
 			pstmt.setInt(i++, p.getHall().getId());
-			pstmt.setTimestamp(i++, new Timestamp(p.getDatetime().getTime()));
+			pstmt.setString(i++, p.getDatetime().toString());
 			pstmt.setDouble(i++, p.getPrice());
 			String user = p.getAdmin().getUsername();
 			pstmt.setString(i++, user);
@@ -324,7 +324,7 @@ public class ProjectionDAO {
 		
 		try {
 			
-			String query = "UPDATE projections SET movie = ?, projT = ?, hall = ?, date = ?, price = ?, admin = ? WHERE id = ?";
+			String query = "UPDATE projections SET movie = ?, projectionType = ?, hall = ?, date = ?, price = ?, admin = ? WHERE id = ?";
 			pstmt = conn.prepareStatement(query);
 			
 			int i = 1;

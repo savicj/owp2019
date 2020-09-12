@@ -176,7 +176,7 @@ public class MovieDAO {
 
 		PreparedStatement pstmt = null;
 		try {
-			String query = "INSERT INTO movies(name, directors, actors, genre, duration, distributor, "+
+			String query = "INSERT INTO movies(name, directors, actors, genres, duration, distributor, "+
 								"originCountry, year, overview) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			
 			pstmt = conn.prepareStatement(query);
@@ -194,7 +194,7 @@ public class MovieDAO {
 			    act += s + ",";
 			pstmt.setString(index++, act);
 			String genre = "";
-			for (String s : movie.getActors())
+			for (String s : movie.getGenre())
 			    genre += s + ",";
 			pstmt.setString(index++, genre);
 			pstmt.setInt(index++, movie.getDuration());
@@ -221,7 +221,7 @@ public class MovieDAO {
 
 		PreparedStatement pstmt = null;
 		try {
-			String query = "UPDATE movies SET name = ?, directors = ?, actors = ?, genre = ?, duration = ?, distributor = ?, "+
+			String query = "UPDATE movies SET name = ?, directors = ?, actors = ?, genres = ?, duration = ?, distributor = ?, "+
 								"originCountry = ?, year = ?, overview = ? WHERE id = ?";
 			
 			pstmt = conn.prepareStatement(query);

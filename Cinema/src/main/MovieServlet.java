@@ -1,6 +1,7 @@
 package main;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,22 +71,107 @@ public class MovieServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String loggedInUserName = (String) request.getSession().getAttribute("loggedInUserName");
-		if (loggedInUserName == null) {
-			request.getRequestDispatcher("./LogoutServlet").forward(request, response);
-			return;
+		
+		try {
+			
+			String loggedInUserName = (String) request.getSession().getAttribute("loggedInUserName");
+			if (loggedInUserName == null) {
+				request.getRequestDispatcher("./LogoutServlet").forward(request, response);
+				return;
+			}
+			
+			User loggedInUser = UserDAO.findByUsername(loggedInUserName);
+			if (loggedInUser == null) {
+				request.getRequestDispatcher("./LogoutServlet").forward(request, response);
+				return;
+			}
+			
+			if (loggedInUser.getRole() != ERole.ADMIN|| loggedInUser.isDeleted() == true) {
+				request.getRequestDispatcher("./LogoutServlet").forward(request, response);
+				return;
+			}
+			
+			String action = request.getParameter("action");
+			switch(action) {
+			case "add":
+				String name = request.getParameter("movie");
+				Movie movie = MovieDAO.findByName(name);
+				if(movie != null) {
+					throw new Exception ("Movie with this name already exist.");
+				}
+				
+				String director = request.getParameter("directors");
+				ArrayList<String> directors = new ArrayList<String>();
+				try {
+					for(String d : director.split(",")) {
+						directors.add(d);
+					}
+				}catch (Exception e){	
+					System.out.println("Directors parameter doesn't contain ','.");
+					directors.add(director);
+				}
+				String actor = request.getParameter("actors");
+				ArrayList<String> actors = new ArrayList<String>();
+				try {
+					for(String d : actor.split(",")) {
+						actors.add(d);
+					}
+				}catch (Exception e){	
+					System.out.println("Actors parameter doesn't contain ','.");	
+					actors.add(actor);
+				}
+				
+				String genre = request.getParameter("genres");
+				ArrayList<String> genres = new ArrayList<String>();
+				try {
+					for(String d : genre.split(",")) {
+						genres.add(d);
+					}
+				}catch (Exception e){	
+					System.out.println("Genres parameter doesn't contain ','.");	
+					genres.add(genre);
+				}
+				String dur = request.getParameter("duration");
+				int duration;
+				if(dur != null && dur != "") {
+					duration = Integer.parseInt(dur);
+					if(duration <= 0) {
+						duration = 30;
+						System.out.println("Duration can't be less than 30.");
+					}
+				}else{
+					duration = 30;
+					System.out.println("Duration is null or empty, default 30.");					
+				}
+				String distributor = request.getParameter("distributor");
+				String country = request.getParameter("country");
+				String y = request.getParameter("year");
+				int year;
+				if(y != null && y != "") {
+					year = Integer.parseInt(y);
+					if(year <= 1950) {
+						year = 2020;
+						System.out.println("Year can't be less then 1950.");
+					}
+				}else{
+					year = 2020;
+					System.out.println("Year is null or empty, default 2020.");					
+				}
+				String overview = request.getParameter("overview");
+				
+				
+				Movie newMovie = new Movie(name, directors, actors, genres, duration, distributor, country, year, overview);
+				MovieDAO.add(newMovie);
+				
+				
+				break;
+			}
+			request.getRequestDispatcher("./SuccessServlet").forward(request, response);
+		} catch (Exception e) {
+			request.getRequestDispatcher("./FailureServlet").forward(request, response);
 		}
 		
-		User loggedInUser = UserDAO.findByUsername(loggedInUserName);
-		if (loggedInUser == null) {
-			request.getRequestDispatcher("./LogoutServlet").forward(request, response);
-			return;
-		}
 		
-		if (loggedInUser.getRole() != ERole.ADMIN|| loggedInUser.isDeleted() == true) {
-			request.getRequestDispatcher("./LogoutServlet").forward(request, response);
-			return;
-		}
 	}
 
 }

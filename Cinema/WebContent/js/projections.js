@@ -25,6 +25,7 @@ $(document).ready(function() {
 	
 
 	makeButtons();
+	getHalls();
 	changeInterface();
 	getProjections();
 	
@@ -219,16 +220,6 @@ $(document).ready(function() {
 			if (data.status == 'success') {
 				tblProj.find('tbody').remove(); 
 				for(p in projections){
-				
-					/*switch(projections[p].projectionType){
-					case "twodim":
-						projections[p].projectionType = "2D";
-					case "threedim":
-						projections[p].projectionType = "3D";
-					case "fourdim":
-						projections[p].projectionType = "4D";
-					}*/
-				
 					tblProj.append(
 						'<tbody>' +
 						'<tr>' +
@@ -251,7 +242,22 @@ $(document).ready(function() {
 	}
 	
 	
-	
+	function getHalls(){
+		var params = {
+    		'projTypeFilter' : "",
+    	};
+    	
+    	$.get('HallServlet', params, function(data){
+    		if(data.status == 'success'){
+    			var halls = data.halls;
+    			console.log(halls);
+    			for(h in halls){
+    				var hall = halls[h].name;
+    				$('#hallInput').append(`<option value="${hall}">${hall}</option>`);
+    			}
+    		}
+    	});
+	}
 	/*movieInput.on('keyup', function(event){
 		getProjections();
 		event.preventDefault();

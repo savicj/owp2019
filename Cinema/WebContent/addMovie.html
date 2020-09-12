@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>ADD MOVIE</title>
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link href="css/projection.css" rel="stylesheet">
+    <script src="js/addMovie.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a id="logoLink" class="navbar-brand" href="projections.html">   Cinemax</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <ul id="navBtn" class="navbar-nav mr-auto">
+        	<li id="btnMovies" class="margina"><a class="nav-link" href="movies.html">MOVIES</a></li>
+        	<li id ="btnUsers" class="margina"><a class="nav-link" href="#">USERS</a></li>
+        	<!-- <li id="btnAccount"><a class="nav-link" href="">ACCOUNT</a></li> -->
+        	<li id ="btnTickets" class="margina"><a class="nav-link" href="#">TICKETS</a></li>
+       	</ul>
+    </nav>
+	<div id="formDiv">
+		<h2>MOVIE</h2>
+		<div class="form-group">
+			<form>
+				<label>NAME</label>
+				<input id="movieInput" class="form-control"></input>
+				<label>DIRECTORS</label>
+				<input id="directorsInput" class="form-control"></input>
+				<label>ACTORS</label>
+				<input id="actorsInput" class="form-control"></input>
+				<label>GENRE</label>
+				<input id="genresInput" class="form-control"></input>
+				
+				<br>
+				<!-- <div class="dropdown">
+				<form>
+				  <input class="checkbox checkbox-primary" type="checkbox" name="action" value="action">
+				  <label for="action">action</label><br>
+				  <input class="checkbox checkbox-primary" type="checkbox" name="adventure" value="adventure">
+				  <label for="adventure">adventure</label><br>
+				  <input class="checkbox checkbox-primary" type="checkbox" name="comedy" value="comedy" >
+				  <label for="comedy">comedy</label><br>
+				  <input class="checkbox checkbox-primary" type="checkbox" name="crime" value="crime">
+				  <label for="crime">crime</label><br>
+				  <input class="checkbox checkbox-primary" type="checkbox" name="drama" value="drama">
+				  <label for="drama">drama</label><br>
+				  <input class="checkbox checkbox-primary" type="checkbox" name="horror" value="horror">
+				  <label for="horror">horror</label><br>
+				  <input class="checkbox checkbox-primary" type="checkbox" name="sci-fi" value="sci-fi">
+				  <label for="sci-fi">sci-fi</label><br>
+				  <input class="checkbox checkbox-primary" type="checkbox" name="thriller" value="thriller">
+				  <label for="thriller">thriller</label><br>
+				  <input class="checkbox checkbox-primary" type="checkbox" name="fantasy" value="fantasy">
+				  <label for="fantasy">fantasy</label><br>
+				</form>
+				</div> 
+				
+				<select id="genresInput" class="form-control" multiple="multiple">
+					<option value="" selected>genre</option>            	
+	            	<option value="action">action</option>
+	            	<option value="adventure">adventure</option>
+	            	<option value="comedy">comedy</option>
+	            	<option value="crime">crime</option>
+	            	<option value="drama">drama</option>
+	            	<option value="horror">horror</option>
+	            	<option value="sci-fi">sci-fi</option>
+	            	<option value="thriller">thriller</option>
+	            	<option value="fantasy">fantasy</option>   
+				</select>-->
+				
+				
+				<label>DURATION</label>
+				<input id="durationInput" min="30" type="number"class="form-control"></input>
+				<label>DISTRIBUTOR</label>
+				<input id="distributorInput" class="form-control"></input>
+				<label>COUNTRY</label>
+				<input id="countryInput" class="form-control"></input>
+				<label>YEAR</label>
+				<input id="yearInput" min="1950" type="number" class="form-control"></input>
+				<label>OVERVIEW</label>
+				<input id="overviewInput" class="form-control"></input>
+			</form>
+			<button class="btn btn-dark" id="addBtn">ADD</button>
+		</div>
+		
+	</div>
+</body>
+</html>

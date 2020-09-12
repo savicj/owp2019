@@ -73,7 +73,7 @@ public class SeatDAO {
 
 			rs = pstmt.executeQuery();
 
-			if (rs.next()) {
+			while (rs.next()) {
 				int index = 1;
 				String no = rs.getString(index++);
 				Hall h = HallDAO.get(rs.getInt(index++));
@@ -81,7 +81,6 @@ public class SeatDAO {
 
 				Seat s = new Seat(no, h, available);
 				seats.add(s);
-				return seats;
 			}
 
 		} catch (Exception e) {
@@ -104,7 +103,7 @@ public class SeatDAO {
 			}
 		}
 
-		return null;
+		return seats;
 	}
 
 	public static List<Seat> getAvailableSeatsFromHall(Hall hall) {
@@ -124,7 +123,7 @@ public class SeatDAO {
 
 			rs = pstmt.executeQuery();
 
-			if (rs.next()) {
+			while (rs.next()) {
 				int index = 1;
 				String no = rs.getString(index++);
 				Hall h = HallDAO.get(rs.getInt(index++));
@@ -132,7 +131,6 @@ public class SeatDAO {
 
 				Seat s = new Seat(no, h, available);
 				seats.add(s);
-				return seats;
 			}
 
 		} catch (Exception e) {
@@ -155,6 +153,6 @@ public class SeatDAO {
 			}
 		}
 
-		return null;
+		return seats;
 	}
 }

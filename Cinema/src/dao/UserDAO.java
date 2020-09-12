@@ -67,7 +67,7 @@ public class UserDAO {
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				int index = 1;
 				Integer id = rs.getInt(index++);
 				String uName = rs.getString(index++);
@@ -105,7 +105,7 @@ public class UserDAO {
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				int index = 1;
 				Integer id = rs.getInt(index++);
 				String uName = rs.getString(index++);
@@ -117,7 +117,6 @@ public class UserDAO {
 				
 				User user = new User(id, uName, pword, regDate, erole, deleted);
 				users.add(user);
-				return users;
 			}
 			
 		} catch (Exception e) {e.printStackTrace();
@@ -126,7 +125,7 @@ public class UserDAO {
 			try {rs.close();} catch (Exception ex1) {ex1.printStackTrace();}
 			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
 		}
-		return null;
+		return users;
 	}
 	
 	

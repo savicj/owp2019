@@ -33,6 +33,7 @@ public class HallDAO {
 				String hallName = rs.getString(index++);
 				String projTypes = rs.getString(index);
 				ArrayList<EProjectionType> projectionTypes = ProjectionTypeDAO.getProjectionTypesFromString(projTypes);
+				
 				return new Hall(id, hallName, projectionTypes);
 			}
 			
@@ -65,7 +66,7 @@ public class HallDAO {
 			
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()) {
+			if(rs.next()) {
 				int index = 1;
 				String name = rs.getString(index++);
 				
@@ -103,8 +104,8 @@ public class HallDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
+		List<Hall> halls = new ArrayList<>();
 		try {
-			List<Hall> halls = new ArrayList<>();
 			
 			
 			String query = "SELECT * FROM halls";
@@ -112,7 +113,7 @@ public class HallDAO {
 //			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				int index = 1;
 				int id = rs.getInt(index++);
 				String name = rs.getString(index++);
@@ -141,7 +142,7 @@ public class HallDAO {
 			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
 		}
 		
-		return null;
+		return halls;
 	}
 	
 	public static List<Hall> getAll(String pt){
@@ -149,17 +150,20 @@ public class HallDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
+		List<Hall> halls = new ArrayList<>();
 		try {
-			List<Hall> halls = new ArrayList<>();
 			
 			
 			String query = "SELECT * FROM halls where projectionTypes LIKE ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, pt);
+			if(pt == "" || pt == null)
+				pstmt.setString(1, "%");
+			else
+				pstmt.setString(1, "%"+ pt+ "%");
 //			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				int index = 1;
 				int id = rs.getInt(index++);
 				String name = rs.getString(index++);
@@ -176,7 +180,6 @@ public class HallDAO {
 				
 				Hall hall = new Hall(id, name, projectionTypes);
 				halls.add(hall);
-				return halls;
 			}
 			
 			
@@ -188,7 +191,7 @@ public class HallDAO {
 			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
 		}
 		
-		return null;
+		return halls;
 	}
 	//NIJE POTREBNO.........................................
 	/*public static boolean add(Hall hall) {

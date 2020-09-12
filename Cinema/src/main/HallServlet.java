@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import model.Hall;
 import dao.HallDAO;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,17 +17,23 @@ import java.util.Map;
 public class HallServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-    public HallServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+   
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	String hall = request.getParameter("hallFilter");
+    	//String hall = request.getParameter("hallFilter");
     	String projectionType = request.getParameter("projTypeFilter");
-    	
+    	if(projectionType != null && projectionType != "") {
+			switch (projectionType) {
+			case "2D":
+				projectionType = "twodim";
+			case "3D":
+				projectionType = "threedim";
+			case "4D":
+				projectionType = "fourdim";
+			}
+		}
     	List<Hall> halls = HallDAO.getAll(projectionType);
-    	
+    	System.out.println(halls);
     	Map<String, Object> data = new LinkedHashMap<>();
 		data.put("halls", halls);
 		

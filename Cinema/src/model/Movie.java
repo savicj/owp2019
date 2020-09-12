@@ -95,6 +95,20 @@ public class Movie {
 		this.year = year;
 		this.overview = overview;
 	}
+	
+	public Movie( String name, ArrayList<String> directors, ArrayList<String> actors, ArrayList<String> genre,
+			int duration, String distributor, String originCountry, int year, String overview) {
+		super();
+		this.name = name;
+		this.directors = directors;
+		this.actors = actors;
+		this.genre = genre;
+		this.duration = duration;
+		this.distributor = distributor;
+		this.originCountry = originCountry;
+		this.year = year;
+		this.overview = overview;
+	}
 	@Override
 	public String toString() {
 		return "Movie [id=" + id + ", name=" + name + ", directors=" + directors + ", actors=" + actors + ", genre="

@@ -90,7 +90,7 @@ $(document).ready(function() {
 		btnUsers = $('<li id = "btnUsers" class="margina"><a class="nav-link" href="#">USERS</a></li>');
     	btnTickets = $('<li id = "btnTickets" class="margina"><a class="nav-link" href="#">TICKETS</a></li>');
 		btnAdd = $('<button id = "btnAdd" type="button" class="btn btn-dark">ADD MOVIE</li>').on('click', function(){
-			window.location.replace('addMovies.html');
+			window.location.replace('addMovie.html');
 			return;
 		});
 	}
