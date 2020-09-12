@@ -12,12 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 import dao.HallDAO;
 import dao.MovieDAO;
 import dao.ProjectionDAO;
+import dao.TicketDAO;
 import dao.UserDAO;
 import model.EProjectionType;
 import model.ERole;
 import model.Hall;
 import model.Movie;
 import model.Projection;
+import model.Ticket;
 import model.User;
 
 import java.util.Date;
@@ -35,13 +37,18 @@ public class ProjectionsServlet extends HttpServlet {
 		try {
 			int id;
 			String projectionId = request.getParameter("projectionId");
+			String movieName = request.getParameter("movieName");
 			if(projectionId != null && projectionId != "") {
 				id = Integer.parseInt(projectionId);
-				Map<String, Object> data = new LinkedHashMap<>();
 				Projection projection = ProjectionDAO.get(id);
-				System.out.println(projection);
 				
+				Movie movie = MovieDAO.get(projection.getMovie().getId());
+				int movieid = movie.getId();
+				System.out.println(projection + "\n" + movie + "\n" + movieid);
+				
+				Map<String, Object> data = new LinkedHashMap<>();
 				data.put("projection", projection);
+				data.put("movieID", movieid);
 				
 				request.setAttribute("data",data);
 				request.getRequestDispatcher("./SuccessServlet").forward(request, response);
@@ -180,6 +187,7 @@ public class ProjectionsServlet extends HttpServlet {
 					
 					Projection projection = new Projection(movie, pt, h, d, p, u, deleted);
 					ProjectionDAO.add(projection);
+					request.getRequestDispatcher("./SuccessServlet").forward(request, response);
 					break;
 				}
 				case "update": {
@@ -205,20 +213,38 @@ public class ProjectionsServlet extends HttpServlet {
 					
 					Projection projection = new Projection(id, movie, pt, h, d, p, u, deleted);
 					ProjectionDAO.add(projection);
+					request.getRequestDispatcher("./SuccessServlet").forward(request, response);
+
 					break;
 				}
+				
 				case "delete": {
-					int id = Integer.getInteger(request.getParameter("id"));
-					Projection p = ProjectionDAO.get(id);
-					if(p == null || p.isDeleted() == true) {
-						throw new Exception("No such projection");
+					int id;
+					String projectionId = request.getParameter("id");
+					if(projectionId != null && projectionId != "") {
+						id = Integer.parseInt(projectionId);
+						Projection p = ProjectionDAO.get(id);
+						if(p == null || p.isDeleted() == true) {
+							throw new Exception("No such projection");
+						}else {
+							List<Ticket> ticket = TicketDAO.findByProjection(p);
+							System.out.println(ticket);
+							if(ticket.isEmpty()) {
+								
+								ProjectionDAO.delete(p);
+							}
+
+							else
+								p.setDeleted(true);
+								ProjectionDAO.update(p);
+								System.out.println("trebalo bi da je apdejtovano al izgleda nije");
+						}
 					}
-					ProjectionDAO.delete(p);
+					request.getRequestDispatcher("./SuccessServlet").forward(request, response);
 					break;
 				}
 			}
 			
-			request.getRequestDispatcher("./SuccessServlet").forward(request, response);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			request.getRequestDispatcher("./FailureServlet").forward(request, response);

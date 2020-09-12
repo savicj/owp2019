@@ -2,9 +2,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>ADD PROJECTION</title>
+	<title>ADD USER</title>
 	<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
-    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
@@ -12,7 +11,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <link href="css/projection.css" rel="stylesheet">
-    <script src="js/addProjection.js"></script>
+    <script src="js/addUser.js"></script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
@@ -24,30 +23,24 @@
         </div>
         <ul id="navBtn" class="navbar-nav mr-auto">
         	<li id="btnMovies" class="margina"><a class="nav-link" href="movies.html">MOVIES</a></li>
-        	<li id ="btnUsers" class="margina"><a class="nav-link" href="users.html">USERS</a></li>
+        	<li id ="btnUsers" class="margina"><a class="nav-link" href="#">USERS</a></li>
         	<!-- <li id="btnAccount"><a class="nav-link" href="">ACCOUNT</a></li> -->
         	<li id ="btnTickets" class="margina"><a class="nav-link" href="#">TICKETS</a></li>
        	</ul>
     </nav>
-	<div id="formDiv">
-		<h2>PROJECTION</h2>
+    
+    <div id="formDiv">
+		<h2>USER</h2>
 		<div class="form-group">
 			<form>
-				<label>MOVIE</label>
-				<select id="movieSelect" class="form-control"></select>
-				<label>PROJECTION TYPE</label>
-				<select id="projTypeSelect" class="form-control">
-					<option values="">projection type</option>>
-					<option value="2D">2D</option>
-					<option value="3D">3D</option>
-					<option value="4D">4D</option>
-				</select>
-				<label>HALL</label>
-				<select id="hallSelect" class="form-control"></select>
-				<label>DATE AND TIME</label>
-				<input id="dateInput" type="datetime-local" class="form-control margina">
-				<label>PRICE</label>
-				<input class="form-control" type="number" id="priceInput" min="150" max="1000">
+				<label>USERNAME</label>
+				<input id="usernameInput" class="form-control" placeholder="username">
+				<label>PASSWORD</label>
+				<input class="form-control" type="password" id="passwordInput">
+				<label>REPEAT PASSWORD</label>
+				<input class="form-control" type="password" id="repeatPasswordInput">	
+				<label>ROLE</label>
+				<select id="roleSelect" class="form-control"></select>
 			</form>
 			<button class="btn btn-dark" id="addBtn">ADD</button>
 		</div>

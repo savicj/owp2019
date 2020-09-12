@@ -17,7 +17,7 @@ public class MovieDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		try {
-			String query = "SELECT * FROM movies WHERE id = ?";
+			String query = "SELECT * FROM movies WHERE id = ? AND deleted = false";
 			
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, id);
@@ -46,8 +46,9 @@ public class MovieDAO {
 				String originCountry = rset.getString(index++);
 				int year = rset.getInt(index++);
 				String overview = rset.getString(index++);
+				boolean deleted = rset.getBoolean(index++);
 
-				return new Movie(ID, name, directors, actors, genre, duration, distributor, originCountry, year, overview);
+				return new Movie(ID, name, directors, actors, genre, duration, distributor, originCountry, year, overview, deleted);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -95,8 +96,10 @@ public class MovieDAO {
 				String originCountry = rset.getString(index++);
 				int year = rset.getInt(index++);
 				String overview = rset.getString(index++);
+				boolean deleted = rset.getBoolean(index++);
 
-				return new Movie(id, n, directors, actors, genre, duration, distributor, originCountry, year, overview);
+
+				return new Movie(id, n, directors, actors, genre, duration, distributor, originCountry, year, overview, deleted);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -116,7 +119,7 @@ public class MovieDAO {
 		ResultSet rset = null;
 		try {
 			String query = "SELECT * FROM movies " + 
-					"WHERE name LIKE ? AND genres LIKE ? AND duration >= ? AND duration <= ? AND distributor LIKE ? AND originCountry LIKE ? AND year >= ? AND year <= ?";
+					"WHERE name LIKE ? AND genres LIKE ? AND duration >= ? AND duration <= ? AND distributor LIKE ? AND originCountry LIKE ? AND year >= ? AND year <= ? AND deleted = false";
 			
 			pstmt = conn.prepareStatement(query);
 			int index = 1;
@@ -153,8 +156,10 @@ public class MovieDAO {
 				String originCountry = rset.getString(index++);
 				int year = rset.getInt(index++);
 				String overview = rset.getString(index++);
+				boolean deleted = rset.getBoolean(index++);
 
-				Movie movie = new Movie(id, name, directors, actors, genre, duration, distributor, originCountry, year, overview);
+
+				Movie movie = new Movie(id, name, directors, actors, genre, duration, distributor, originCountry, year, overview, deleted);
 				movies.add(movie);
 
 			}
@@ -177,7 +182,7 @@ public class MovieDAO {
 		PreparedStatement pstmt = null;
 		try {
 			String query = "INSERT INTO movies(name, directors, actors, genres, duration, distributor, "+
-								"originCountry, year, overview) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+								"originCountry, year, overview, deleted) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, false)";
 			
 			pstmt = conn.prepareStatement(query);
 			//System.out.println(pstmt);
@@ -222,7 +227,7 @@ public class MovieDAO {
 		PreparedStatement pstmt = null;
 		try {
 			String query = "UPDATE movies SET name = ?, directors = ?, actors = ?, genres = ?, duration = ?, distributor = ?, "+
-								"originCountry = ?, year = ?, overview = ? WHERE id = ?";
+								"originCountry = ?, year = ?, overview = ?, deleted = ? WHERE id = ?";
 			
 			pstmt = conn.prepareStatement(query);
 			//System.out.println(pstmt);
@@ -248,6 +253,7 @@ public class MovieDAO {
 			pstmt.setInt(index++, movie.getYear());
 			pstmt.setString(index++, movie.getOverview());
 			pstmt.setInt(index++, movie.getId());
+			pstmt.setBoolean(index++, movie.isDeleted());
 			
 			return pstmt.executeUpdate() == 1;
 

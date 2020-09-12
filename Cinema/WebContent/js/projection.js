@@ -18,12 +18,12 @@ $(document).ready(function() {
 	var priceInput = $('#priceInput');
 	var projTypeInput = $('#projectionTypeInput');
 	
-	var btnAdd;
 	
 
 	makeButtons();
 	changeInterface();
 	getProjection();
+	
 	
 	
 	function changeInterface(){
@@ -34,6 +34,7 @@ $(document).ready(function() {
 				$('#btnAccount').remove();
 				$('#btnUsers').remove();
 				$('#btnTickets').remove();
+				$('#btnDelete').remove();
 				$('#btnLogin').show();
 				$('#btnRegister').show();
 				
@@ -45,9 +46,13 @@ $(document).ready(function() {
 				
 				if (data.loggedInUserRole == 'ADMIN') {
 					navBtn.append(btnUsers);
-					$('#mySection').append(btnAdd);
+					$('#btnDelete').append();
+					
 					
 				}
+				if (data.loggedInUserRole == 'USER')
+					$('#btnDelete').remove();
+					
 				navBtn.append(btnAccount);
 				navBtn.append(btnTickets);
 				navBtn.append(btnLogout);
@@ -84,10 +89,11 @@ $(document).ready(function() {
 				}
 			});
 		});
-		btnUsers = $('<li id = "btnUsers" class="margina"><a class="nav-link" href="#">USERS</a></li>');
-    	btnTickets = $('<li id = "btnTickets" class="margina"><a class="nav-link" href="#">TICKETS</a></li>');
-		
+		btnUsers = $('<li id = "btnUsers" class="margina"><a class="nav-link" href="users.html">USERS</a></li>');
+    	btnTickets = $('<li id = "btnTickets" class="margina"><a class="nav-link" href="tickets.html">TICKETS</a></li>');
 	}
+	
+	
 	
 	
 	$('#loginSubmit').on('click', function(event) { 
@@ -159,17 +165,16 @@ $(document).ready(function() {
 	});
 	
 	
-	
 	function getProjection(){
-		
-		var params = {	'projectionId' : id	};
+		var params = {	
+				'projectionId' : id,
+		};
 		console.log(params);
 		
 		$.get('ProjectionsServlet', params, function(data) {
 			if(data.status == 'success') {
 				projection = data.projection;
 				console.log(projection);
-				
 				switch (projection.projectionType){
 					case "twodim":
 						projTypeInput.val("2D").trigger("change");
@@ -186,11 +191,38 @@ $(document).ready(function() {
 				dateInput.val(dateFormat(new Date(projection.datetime))).trigger("change");
 				hallInput.val(projection.hall.name).trigger("change");
 				priceInput.val(projection.price).trigger("change");	
+				
 			}
+			/*var movieFilter = movieInput.val(projection.movie.name);
+			var params = {	'movieName' : movieFilter };
+			
+			$.get('MovieServlet', params, function(data) {
+				
+				if(data.status == 'success'){
+					var movie = data.movieID;
+					console.log(movie);
+					$('#movieHref').setAttribute("href", "movie.html?id="+movie);
+				}
+			
+			});		*/
+			
 		});
-		
 	
 	}
+	
+	$('#deleteSubmit').on('click', function(){
+		var params = {	'action' : "delete", 'id' : id	};
+		$.post('ProjectionsServlet', params, function(data){
+			if (data.status == 'success') {
+            	alert("Projection deleted");
+                window.location.replace("projections.html");
+            }else{
+            	alert("Error!");
+            }
+		
+		});
+	});
+	
 	
 	function dateFormat(date){
         let dateString = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2) + "T" + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);

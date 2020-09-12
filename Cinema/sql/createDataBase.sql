@@ -30,29 +30,30 @@ CREATE TABLE movies(
     distributor VARCHAR(30) NOT NULL,
     originCountry VARCHAR(40) NOT NULL,
     year INTEGER NOT NULL,
-    overview VARCHAR(500) NOT NULL
+    overview VARCHAR(500) NOT NULL,
+    deleted BOOLEAN
 );
 
-INSERT INTO movies(name, directors, actors, genres, duration, distributor, originCountry, year, overview) 
-	VALUES('Parasite', 'Bong Joon Ho', 'Kang-ho Song, Sun-kyun Lee, Yeo-jeong Jo', 'Comedy, Drama, Thriller', 132, 'CJ Entertainment', 'South Corea', 2019, 'A poor family, the Kims, con their way into becoming the servants of a rich family, the Parks. But their easy life gets complicated when their deception is threatened with exposure.');
-INSERT INTO movies(name, directors, actors, genres, duration, distributor, originCountry, year, overview) 
-	VALUES('Black Widow', 'Cate Shortland', 'Florence Pugh, Rachel Weisz, Scarlett Johansson', ' Action, Adventure, Sci-Fi', 160, 'Marvel Studios', 'USA', 2020, 'A film about Natasha Romanoff in her quests between the films Civil War and Infinity War.');
-INSERT INTO movies(name, directors, actors, genres, duration, distributor, originCountry, year, overview) 
-	VALUES('A Quiet Place Part II', 'John Krasinski', 'Emily Blunt, Millicent Simmonds, Cillian Murphy', 'Horror, Thriller', 97, 'Buffalo FilmWorks', 'USA', 2020, 'Following the events at home, the Abbott family now face the terrors of the outside world. Forced to venture into the unknown, they realize the creatures that hunt by sound are not the only threats lurking beyond the sand path.');
-INSERT INTO movies(name, directors, actors, genres, duration, distributor, originCountry, year, overview) 
-	VALUES('Mulan', 'Niki Caro', 'Yifei Liu, Donnie Yen, Jet Li', 'Action, Adventure, Drama', 115, 'Walt Disney Pictures', 'USA', 2020, 'A young Chinese maiden disguises herself as a male warrior in order to save her father. A live-action feature film based on Disneys Mulan.');
-INSERT INTO movies(name, directors, actors, genres, duration, distributor, originCountry, year, overview) 
-	VALUES('Bloodshot', 'Dave Wilson', 'Vin Diesel, Eiza González, Sam Heughan', 'Action, Drama, Sci-Fi', 109, 'Sony Pictures Entertainment (SPE)', 'USA', 2020, 'Ray Garrison, a slain soldier, is re-animated with superpowers.');
-INSERT INTO movies(name, directors, actors, genres, duration, distributor, originCountry, year, overview) 
-	VALUES('Bad Boys for Life', 'Adil El Arbi, Bilall Fallah', 'Will Smith, Martin Lawrence, Vanessa Hudgens', 'Action, Comedy, Crime', 124, 'Columbia Pictures', 'USA', 2020, 'The Bad Boys Mike Lowrey and Marcus Burnett are back together for one last ride in the highly anticipated Bad Boys for Life.');
-INSERT INTO movies(name, directors, actors, genres, duration, distributor, originCountry, year, overview) 
-	VALUES('Jungle Cruise', 'Jaume Collet-Serra', 'Emily Blunt, Dwayne Johnson, Jesse Plemons', 'Action, Adventure, Comedy', 90, 'Davis Entertainment', 'USA', 2020, 'Based on Disneylands theme park ride where a small riverboat takes a group of travelers through a jungle filled with dangerous animals and reptiles but with a supernatural element.');
-INSERT INTO movies(name, directors, actors, genres, duration, distributor, originCountry, year, overview) 
-	VALUES('The Kings Man', 'Matthew Vaughn', 'Gemma Arterton, Matthew Goode, Aaron Taylor-Johnson', 'Action, Adventure, Comedy', 117, '20th Century Fox Film Corporation', 'UK', 2020, 'As a collection of historys worst tyrants and criminal masterminds gather to plot a war to wipe out millions, one man must race against time to stop them.');
-INSERT INTO movies(name, directors, actors, genres, duration, distributor, originCountry, year, overview) 
-	VALUES('No Time to Die', 'Cary Joji Fukunaga', 'Ana de Armas, Daniel Craig, Léa Seydoux', 'Action, Adventure, Thriller', 163, 'Metro-Goldwyn-Mayer (MGM)', 'UK', 2020, 'James Bond has left active service. His peace is short-lived when Felix Leiter, an old friend from the CIA, turns up asking for help, leading Bond onto the trail of a mysterious villain armed with dangerous new technology.');
-INSERT INTO movies(name, directors, actors, genres, duration, distributor, originCountry, year, overview) 
-	VALUES('Wonder Woman 1984', 'Patty Jenkins', 'Pedro Pascal, Gal Gadot, Robin Wright', 'Action, Adventure, Fantasy', 138, 'DC Entartainment', 'USA', 2020, 'A sequel to the 2017 superhero film "Wonder Woman".');
+INSERT INTO movies(name, directors, actors, genres, duration, distributor, originCountry, year, overview, deleted) 
+	VALUES('Parasite', 'Bong Joon Ho', 'Kang-ho Song, Sun-kyun Lee, Yeo-jeong Jo', 'Comedy, Drama, Thriller', 132, 'CJ Entertainment', 'South Corea', 2019, 'A poor family, the Kims, con their way into becoming the servants of a rich family, the Parks. But their easy life gets complicated when their deception is threatened with exposure.', false);
+INSERT INTO movies(name, directors, actors, genres, duration, distributor, originCountry, year, overview, deleted) 
+	VALUES('Black Widow', 'Cate Shortland', 'Florence Pugh, Rachel Weisz, Scarlett Johansson', ' Action, Adventure, Sci-Fi', 160, 'Marvel Studios', 'USA', 2020, 'A film about Natasha Romanoff in her quests between the films Civil War and Infinity War.', false);
+INSERT INTO movies(name, directors, actors, genres, duration, distributor, originCountry, year, overview, deleted) 
+	VALUES('A Quiet Place Part II', 'John Krasinski', 'Emily Blunt, Millicent Simmonds, Cillian Murphy', 'Horror, Thriller', 97, 'Buffalo FilmWorks', 'USA', 2020, 'Following the events at home, the Abbott family now face the terrors of the outside world. Forced to venture into the unknown, they realize the creatures that hunt by sound are not the only threats lurking beyond the sand path.', false);
+INSERT INTO movies(name, directors, actors, genres, duration, distributor, originCountry, year, overview, deleted) 
+	VALUES('Mulan', 'Niki Caro', 'Yifei Liu, Donnie Yen, Jet Li', 'Action, Adventure, Drama', 115, 'Walt Disney Pictures', 'USA', 2020, 'A young Chinese maiden disguises herself as a male warrior in order to save her father. A live-action feature film based on Disneys Mulan.', false);
+INSERT INTO movies(name, directors, actors, genres, duration, distributor, originCountry, year, overview, deleted) 
+	VALUES('Bloodshot', 'Dave Wilson', 'Vin Diesel, Eiza González, Sam Heughan', 'Action, Drama, Sci-Fi', 109, 'Sony Pictures Entertainment (SPE)', 'USA', 2020, 'Ray Garrison, a slain soldier, is re-animated with superpowers.', false);
+INSERT INTO movies(name, directors, actors, genres, duration, distributor, originCountry, year, overview, deleted) 
+	VALUES('Bad Boys for Life', 'Adil El Arbi, Bilall Fallah', 'Will Smith, Martin Lawrence, Vanessa Hudgens', 'Action, Comedy, Crime', 124, 'Columbia Pictures', 'USA', 2020, 'The Bad Boys Mike Lowrey and Marcus Burnett are back together for one last ride in the highly anticipated Bad Boys for Life.', false);
+INSERT INTO movies(name, directors, actors, genres, duration, distributor, originCountry, year, overview, deleted) 
+	VALUES('Jungle Cruise', 'Jaume Collet-Serra', 'Emily Blunt, Dwayne Johnson, Jesse Plemons', 'Action, Adventure, Comedy', 90, 'Davis Entertainment', 'USA', 2020, 'Based on Disneylands theme park ride where a small riverboat takes a group of travelers through a jungle filled with dangerous animals and reptiles but with a supernatural element.', false);
+INSERT INTO movies(name, directors, actors, genres, duration, distributor, originCountry, year, overview, deleted) 
+	VALUES('The Kings Man', 'Matthew Vaughn', 'Gemma Arterton, Matthew Goode, Aaron Taylor-Johnson', 'Action, Adventure, Comedy', 117, '20th Century Fox Film Corporation', 'UK', 2020, 'As a collection of historys worst tyrants and criminal masterminds gather to plot a war to wipe out millions, one man must race against time to stop them.', false);
+INSERT INTO movies(name, directors, actors, genres, duration, distributor, originCountry, year, overview, deleted) 
+	VALUES('No Time to Die', 'Cary Joji Fukunaga', 'Ana de Armas, Daniel Craig, Léa Seydoux', 'Action, Adventure, Thriller', 163, 'Metro-Goldwyn-Mayer (MGM)', 'UK', 2020, 'James Bond has left active service. His peace is short-lived when Felix Leiter, an old friend from the CIA, turns up asking for help, leading Bond onto the trail of a mysterious villain armed with dangerous new technology.', false);
+INSERT INTO movies(name, directors, actors, genres, duration, distributor, originCountry, year, overview, deleted) 
+	VALUES('Wonder Woman 1984', 'Patty Jenkins', 'Pedro Pascal, Gal Gadot, Robin Wright', 'Action, Adventure, Fantasy', 138, 'DC Entartainment', 'USA', 2020, 'A sequel to the 2017 superhero film "Wonder Woman".', false);
 
 
 
@@ -80,7 +81,7 @@ CREATE TABLE projections(
     datetime DATETIME NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     admin VARCHAR(30) NOT NULL,
-    deleted BOOLEAN DEFAULT false,
+    deleted BOOLEAN,
     FOREIGN KEY(movie) REFERENCES movies(id) ON DELETE RESTRICT,
     FOREIGN KEY(hall) REFERENCES halls(id) ON DELETE RESTRICT,
     FOREIGN KEY(admin) REFERENCES users(username) ON DELETE RESTRICT

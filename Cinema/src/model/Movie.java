@@ -14,7 +14,14 @@ public class Movie {
 	private String originCountry;
 	private int year;//veci od 0
 	private String overview;//opciono
+	private boolean deleted;
 	
+	public boolean isDeleted() {
+		return deleted;
+	}
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
 	public int getId() {
 		return id;
 	}
@@ -94,8 +101,24 @@ public class Movie {
 		this.originCountry = originCountry;
 		this.year = year;
 		this.overview = overview;
+		this.deleted = false;
 	}
 	
+	public Movie(int id, String name, ArrayList<String> directors, ArrayList<String> actors, ArrayList<String> genre,
+			int duration, String distributor, String originCountry, int year, String overview, boolean deleted) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.directors = directors;
+		this.actors = actors;
+		this.genre = genre;
+		this.duration = duration;
+		this.distributor = distributor;
+		this.originCountry = originCountry;
+		this.year = year;
+		this.overview = overview;
+		this.deleted = deleted;
+	}
 	public Movie( String name, ArrayList<String> directors, ArrayList<String> actors, ArrayList<String> genre,
 			int duration, String distributor, String originCountry, int year, String overview) {
 		super();
@@ -108,7 +131,23 @@ public class Movie {
 		this.originCountry = originCountry;
 		this.year = year;
 		this.overview = overview;
-	}
+		this.deleted = false;
+}
+	
+	public Movie( String name, ArrayList<String> directors, ArrayList<String> actors, ArrayList<String> genre,
+			int duration, String distributor, String originCountry, int year, String overview, boolean deleted) {
+		super();
+		this.name = name;
+		this.directors = directors;
+		this.actors = actors;
+		this.genre = genre;
+		this.duration = duration;
+		this.distributor = distributor;
+		this.originCountry = originCountry;
+		this.year = year;
+		this.overview = overview;
+		this.deleted = deleted;
+}
 	@Override
 	public String toString() {
 		return "Movie [id=" + id + ", name=" + name + ", directors=" + directors + ", actors=" + actors + ", genre="

@@ -99,43 +99,34 @@ public class TicketDAO {
 	
 	
 	
-	public static List<Ticket> findByMovie(Movie movie) {
-		List<Ticket> tickets = new ArrayList<Ticket>();
-		Connection conn = ConnectionManager.getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			
-			String query = "SELECT * FROM tickets where projection = ?";
-			pstmt = conn.prepareStatement(query);
-			Projection p = ProjectionDAO.findByMovie(movie);
-			pstmt.setInt(1, p.getId());
-			System.out.println(pstmt);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				int index = 1;
-				int id = rs.getInt(index++);
-				Projection projection = ProjectionDAO.get(rs.getInt(index++));
-				String seatmark = rs.getString(index++);
-				Seat seat = SeatDAO.get(seatmark, projection.getHall());
-				Date datetime = rs.getDate(index++);
-				User user = UserDAO.findByUsername(rs.getString(index++));
-				
-				Ticket t = new Ticket(id, projection, seat, datetime, user);
-				tickets.add(t);
-			}
-			
-		} catch (Exception e) {e.printStackTrace();
-		} finally {
-			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
-			try {rs.close();} catch (Exception ex1) {ex1.printStackTrace();}
-			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
-		}
-		return tickets;				
-		
-	}
+	/*
+	 * public static List<Ticket> findByMovie(Movie movie) { List<Ticket> tickets =
+	 * new ArrayList<Ticket>(); Connection conn = ConnectionManager.getConnection();
+	 * PreparedStatement pstmt = null; ResultSet rs = null;
+	 * 
+	 * try {
+	 * 
+	 * String query = "SELECT * FROM tickets where projection = ?"; pstmt =
+	 * conn.prepareStatement(query); Projection p =
+	 * ProjectionDAO.findByMovie(movie); pstmt.setInt(1, p.getId());
+	 * System.out.println(pstmt); rs = pstmt.executeQuery();
+	 * 
+	 * while(rs.next()) { int index = 1; int id = rs.getInt(index++); Projection
+	 * projection = ProjectionDAO.get(rs.getInt(index++)); String seatmark =
+	 * rs.getString(index++); Seat seat = SeatDAO.get(seatmark,
+	 * projection.getHall()); Date datetime = rs.getDate(index++); User user =
+	 * UserDAO.findByUsername(rs.getString(index++));
+	 * 
+	 * Ticket t = new Ticket(id, projection, seat, datetime, user); tickets.add(t);
+	 * }
+	 * 
+	 * } catch (Exception e) {e.printStackTrace(); } finally { try {pstmt.close();}
+	 * catch (Exception ex1) {ex1.printStackTrace();} try {rs.close();} catch
+	 * (Exception ex1) {ex1.printStackTrace();} try {conn.close();} catch (Exception
+	 * ex1) {ex1.printStackTrace();} } return tickets;
+	 * 
+	 * }
+	 */
 	
 	public static List<Ticket> getAll() {
 		List<Ticket> tickets = new ArrayList<Ticket>();

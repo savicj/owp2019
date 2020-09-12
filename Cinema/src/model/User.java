@@ -21,6 +21,14 @@ public class User {
 		this.role = role;
 		this.deleted = deleted;
 	}
+	public User(String username, String password, Date registrationDate, ERole role, boolean deleted) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.registrationDate = registrationDate;
+		this.role = role;
+		this.deleted = deleted;
+	}
 	
 	public User() {}
 	

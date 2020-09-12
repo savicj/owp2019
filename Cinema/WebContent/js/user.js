@@ -1,6 +1,8 @@
 $(document).ready(function() { 
 	
-	
+	var id = window.location.search.slice(1).split('?')[0].split('=')[1];
+	console.log(id);
+	var user;
 	//nav
 	var navBtn = $('#navBtn');
 	var btnLogout;
@@ -10,22 +12,17 @@ $(document).ready(function() {
 	var btnMovies;
 
 	//tbl
-	var tblMovies = $('#tblMovies');
-	var movieInput = $('#movieInput');
-	var genreInput = $('#genreInput');
-	var minDurationInput = $('#minDurationInput');
-	var maxDurationInput = $('#maxDurationInput');
-	var distributorInput = $('#distributorInput');
-	var countryInput = $('#countryInput');
-	var fromYearInput = $('#fromYearInput');
-	var toYearInput = $('#toYearInput');
+	var usernameInput = $('#usernameInput');
+	var passwordInput = $('#passwordInput');
+	var roleSelect = $('#roleSelect');
+	var dateInput = $('#dateInput');
 	
-	var btnAdd;
 	
 
-	changeInterface();
 	makeButtons();
-	getMovies();
+	changeInterface();
+	getUser();
+	
 	
 	
 	function changeInterface(){
@@ -36,10 +33,10 @@ $(document).ready(function() {
 				$('#btnAccount').remove();
 				$('#btnUsers').remove();
 				$('#btnTickets').remove();
+				$('#btnDelete').remove();
 				$('#btnLogin').show();
 				$('#btnRegister').show();
 				
-				return;
 			}
 			if (data.status == 'success') {
 				$('#btnRegister').hide();
@@ -48,9 +45,13 @@ $(document).ready(function() {
 				
 				if (data.loggedInUserRole == 'ADMIN') {
 					navBtn.append(btnUsers);
-					$('#mySection').append(btnAdd);
+					$('#btnDelete').append();
+					
 					
 				}
+				if (data.loggedInUserRole == 'USER')
+					$('#btnDelete').remove();
+					
 				navBtn.append(btnAccount);
 				navBtn.append(btnTickets);
 				navBtn.append(btnLogout);
@@ -88,12 +89,9 @@ $(document).ready(function() {
 			});
 		});
 		btnUsers = $('<li id = "btnUsers" class="margina"><a class="nav-link" href="users.html">USERS</a></li>');
-    	btnTickets = $('<li id = "btnTickets" class="margina"><a class="nav-link" href="#">TICKETS</a></li>');
-		btnAdd = $('<button id = "btnAdd" type="button" class="btn btn-dark">ADD MOVIE</li>').on('click', function(){
-			window.location.replace('addMovie.html');
-			return;
-		});
+    	btnTickets = $('<li id = "btnTickets" class="margina"><a class="nav-link" href="tickets.html">TICKETS</a></li>');
 	}
+	
 	
 	
 	
@@ -119,7 +117,7 @@ $(document).ready(function() {
 				return;
 			}
 			if (data.status == 'success') {
-				window.location.replace('movies.html');
+				window.location.replace('projections.html');
 			}
 		});
 		
@@ -157,7 +155,7 @@ $(document).ready(function() {
 			
 			if(data.status == 'success'){
 				alert('Registration successfull.');
-				window.location.replace('movies.html');
+				window.location.replace('projections.html');
 			}else{
 				alert(data.message);
 			}
@@ -166,64 +164,58 @@ $(document).ready(function() {
 	});
 	
 	
-	
-	function getMovies(){
-		var movieFilter = movieInput.val();
-		var genreFilter = genreInput.val();
-		var minDurationFilter = minDurationInput.val();
-		var maxDurationFilter = maxDurationInput.val();
-		var distributorFilter = distributorInput.val();
-		var countryFilter = countryInput.val();
-		var fromYearFilter = fromYearInput.val();
-		var toYearFilter = toYearInput.val();
+	function getUser(){
 		
-		
-		var params = {
-			'movieFilter' : movieFilter,
-			'genreFilter' : genreFilter,
-			'minDurationFilter' : minDurationFilter,
-			'maxDurationFilter' : maxDurationFilter,
-			'distributorFilter' : distributorFilter,
-			'countryFilter' : countryFilter,
-			'fromYearFilter' : fromYearFilter,
-			'toYearFilter' : toYearFilter		
-		};
-		
-	
-		console.log(params);
-		$.get('MovieServlet', params, function(data){
-			var movies = data.movies;
-			console.log(movies);
-			if (data.status == 'success') {
-				tblMovies.find('tbody').remove(); 
-				for(m in movies){			
-					tblMovies.append(
-						'<tbody>' +
-						'<tr>' +
-							'<td><a href="movie.html?id=' + movies[m].id + '">'+ movies[m].name +'</a></td>' +
-							'<td>' + movies[m].genre + '</a></td>' +
-							'<td>' + movies[m].duration + '</td>' +
-							'<td>' + movies[m].distributor + '</td>' +
-							'<td>' + movies[m].originCountry + '</td>' +
-							'<td>' + movies[m].year + '</td>' +
-						'</tr>' +
-						'<tbody>'
-					);
-				}
-			}else {
-				for(m in movies){
-					console.log(movies);
-					console.log('nesto ne valja');
-				}
-			}
+		$.get('UserServlet', {'action' : 'loggedInUserId'}, function(data){
+			
 		});
+		
+		
+		
+		
+		/*var params = {	
+				'action' : "getUser",
+				'userId' : id,
+		};
+		console.log(params);
+		
+		$.get('UserServlet', params, function(data) {
+			if(data.status == 'success') {
+				user = data.user;
+				console.log(user);
+								
+				usernameInput.val(user.username).trigger("change");
+				dateInput.val(dateFormat(new Date(projection.datetime))).trigger("change");
+				passwordInput.val(user.password).trigger("change");
+				roleSelect.val(user.role).trigger("change");	
+				
+			}
+		});*/
+	
 	}
 	
-	$("#searchBtn").click(function (e){
-    	getMovies();
-        event.preventDefault();
-        return false;
-    });
-    
-    
+	$('#deleteSubmit').on('click', function(){
+		var params = {	'action' : "delete", 'id' : id	};
+		$.post('UserServlet', params, function(data){
+			if (data.status == 'success') {
+            	alert("User deleted");
+                window.location.replace("users.html");
+            }else{
+            	alert("Error!");
+            }
+		
+		});
+	});
+	
+	
+	function dateFormat(date){
+        let dateString = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2) + "T" + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
+     
+        return dateString;
+    }
+	
+	
+	
+	
+	
 });

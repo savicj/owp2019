@@ -2,9 +2,73 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<title>ADD USER</title>
+	<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link href="css/projection.css" rel="stylesheet">
+    <script src="js/user.js"></script>
 </head>
 <body>
-
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a id="logoLink" class="navbar-brand" href="projections.html">   Cinemax</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <ul id="navBtn" class="navbar-nav mr-auto">
+        	<li id="btnMovies" class="margina"><a class="nav-link" href="movies.html">MOVIES</a></li>
+        </ul>
+    </nav>
+    
+    <div id="formDiv">
+		<h2>USER</h2>
+		<div class="form-group">
+			<form>
+				<label>USERNAME</label>
+				<input id="usernameInput" class="form-control" placeholder="username" readonly>
+				<label>PASSWORD</label>
+				<input class="form-control" type="password" id="passwordInput" readonly>
+				<label>ROLE</label>
+				<select id="roleSelect" class="form-control">
+					<option value="admin">ADMIN</option>
+					<option value="user">USER</option>
+				</select>
+				<label>REGISTRATION DATE</label>
+				<input id="dateInput" type="datetime-local" class="form-control margina" readonly>
+			</form>
+			
+		</div>
+		<div id="deleteModal">
+			<button type="button" id="btnDelete" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+			  Delete
+			</button>
+			
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">Delete user</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        Are you sure?
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        <button id="deleteSubmit" type="button" class="btn btn-primary">Delete</button>
+			      </div>
+			    </div>
+			  </div>
+		</div>
+	</div>
 </body>
 </html>

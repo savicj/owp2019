@@ -17,11 +17,11 @@ import model.User;
 public class ProjectionDAO {
 	
 	
-	public static Projection findByMovie(Movie m) {
+	public static List<Projection> findByMovie(Movie m) {
 		Connection conn = ConnectionManager.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+		List<Projection> projections = new ArrayList<Projection>();
 		try {
 			String query = "SELECT * FROM projections WHERE movie = ?";
 			pstmt = conn.prepareStatement(query);
@@ -29,7 +29,7 @@ public class ProjectionDAO {
 			pstmt.setInt(1, m.getId());
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				int index = 1;
 				int id = rs.getInt(index++);
 				String movieName = rs.getString(index++);
@@ -50,8 +50,8 @@ public class ProjectionDAO {
 				
 				boolean deleted = rs.getBoolean(index++); 
 				
-				return new Projection(id, movie, pt, hall, date, price, admin, deleted);
-				
+				Projection p = new Projection(id, movie, pt, hall, date, price, admin, deleted);
+				projections.add(p);
 			}			
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -61,7 +61,7 @@ public class ProjectionDAO {
 			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
 		}
 		
-		return null;
+		return projections;
 	}
 	
 	public static Projection get(int id) {
@@ -324,17 +324,19 @@ public class ProjectionDAO {
 		
 		try {
 			
-			String query = "UPDATE projections SET movie = ?, projectionType = ?, hall = ?, date = ?, price = ?, admin = ? WHERE id = ?";
+			String query = "UPDATE projections SET movie = ?, projectionType = ?, hall = ?, datetime = ?, price = ?, admin = ?, deleted = ? WHERE id = ?";
 			pstmt = conn.prepareStatement(query);
 			
 			int i = 1;
 			pstmt.setInt(i++, p.getMovie().getId());
 			pstmt.setString(i++, p.getProjectionType().toString());
 			pstmt.setInt(i++, p.getHall().getId());
-			pstmt.setTimestamp(i++, new Timestamp(p.getDatetime().getTime()));
+			pstmt.setString(i++, p.getDatetime().toString());
 			pstmt.setDouble(i++, p.getPrice());
 			pstmt.setString(i++, p.getAdmin().getUsername());
+			pstmt.setBoolean(i++,p.isDeleted());
 			pstmt.setInt(i++, p.getId());
+			
 			//System.out.println(pstmt);
 			
 			return pstmt.executeUpdate() == 1;
@@ -358,7 +360,7 @@ public class ProjectionDAO {
 		
 		try {
 			
-			String query = "UPDATE projections SET deleted = true WHERE id = ?";
+			String query = "DELETE FROM projections WHERE id = ?";
 			pstmt = conn.prepareStatement(query);
 			
 			pstmt.setInt(1, p.getId());

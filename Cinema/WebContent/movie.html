@@ -2,9 +2,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>PROJECTION</title>
+	<title>MOVIE</title>
 	<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
-    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
@@ -12,10 +11,10 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <link href="css/projection.css" rel="stylesheet">
-    <script src="js/projection.js"></script>
+    <script src="js/movie.js"></script>
 </head>
 <body>
-	<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
         <div class="container-fluid">
             <a id="logoLink" class="navbar-brand" href="projections.html">   Cinemax</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,48 +61,57 @@
             </li>
         </ul>
     </nav>
-
-	<div id="formDiv">
-		<h2>PROJECTION</h2>
+    
+    
+    <div id="formDiv">
+		<h2>MOVIE</h2>
 		<div class="form-group">
 			<form>
-				<label>MOVIE</label>
-				<input type="text" id="movieInput" class="form-control margina" readonly>
-				<label>PROJECTION TYPE</label>
-				<input type="text" id="projectionTypeInput" class="form-control margina" readonly>
-				<label>HALL</label>
-				<input type="text" id="hallInput" class="form-control margina" readonly>
-				<label>DATE AND TIME</label>
-				<input id="dateInput" type="datetime-local" class="form-control margina" readonly>
-				<label>PRICE</label>
-				<input type="number" id="priceInput" class="form-control margina" readonly>
+				<label>NAME</label>
+				<input id="movieInput" class="form-control" readonly></input>
+				<label>DIRECTORS</label>
+				<input id="directorsInput" class="form-control" readonly></input>
+				<label>ACTORS</label>
+				<input id="actorsInput" class="form-control" readonly></input>
+				<label>GENRE</label>
+				<input id="genresInput" class="form-control" readonly></input>
+				<label>DURATION</label>
+				<input id="durationInput" min="30" type="number"class="form-control" readonly></input>
+				<label>DISTRIBUTOR</label>
+				<input id="distributorInput" class="form-control" readonly></input>
+				<label>COUNTRY</label>
+				<input id="countryInput" class="form-control" readonly></input>
+				<label>YEAR</label>
+				<input id="yearInput" min="1950" type="number" class="form-control" readonly></input>
+				<label>OVERVIEW</label>
+				<textarea id="overviewInput" class="form-control" readonly></textarea>
 			</form>
+			</div>
+			<div id="deleteModal">
+		<button type="button" id="btnDelete" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+		  Delete
+		</button>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Delete movie</h5>
+		        <button id="btnDelete" type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        Are you sure?
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button id="deleteSubmit" type="button" class="btn btn-primary">Delete</button>
+		      </div>
+		    </div>
+		  </div>
 		</div>
-		<div id="deleteModal">
-			<button type="button" id="btnDelete" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-			  Delete
-			</button>
-			
-			<!-- Modal -->
-			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title" id="exampleModalLabel">Delete projection</h5>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <div class="modal-body">
-			        Are you sure?
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			        <button id="deleteSubmit" type="button" class="btn btn-primary">Delete</button>
-			      </div>
-			    </div>
-			  </div>
-		</div>
-</div>	
+	</div>
 </body>
 </html>
