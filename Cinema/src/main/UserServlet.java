@@ -40,7 +40,15 @@ public class UserServlet extends HttpServlet {
 				return;
 			}
 			
-	
+			String userID = request.getParameter("id");
+			if(userID != null && userID != "") {
+				User user = UserDAO.getUser(Integer.parseInt(userID));
+				Map<String, Object> data = new LinkedHashMap<>();
+				data.put("user", user);
+				request.setAttribute("data", data);
+				request.getRequestDispatcher("./SuccessServlet").forward(request, response);
+			}
+			
 			String action = request.getParameter("action");	
 			if(action != null && action != "") {
 				
@@ -75,27 +83,6 @@ public class UserServlet extends HttpServlet {
 						}
 						data.put("eroles", roles);
 						request.getRequestDispatcher("./SuccessServlet").forward(request, response);
-					}case "getUser" : {
-						String id = request.getParameter("userId");
-						int userID;
-						User user;
-						if(id != null && id != "") {
-							userID = Integer.parseInt(id);
-							if(UserDAO.getUser(userID) != null) {
-								
-								user = UserDAO.getUser(userID);
-								data.put("user", user);
-								request.getRequestDispatcher("./SuccessServlet").forward(request, response);
-							}else {
-								request.getRequestDispatcher("./LogoutServlet").forward(request, response);
-								break;
-							}
-								
-						}else {
-							request.getRequestDispatcher("./LogoutServlet").forward(request, response);
-							System.out.println("User id is empty.");
-							break;
-						}
 					}
 				}
 
@@ -115,43 +102,27 @@ public class UserServlet extends HttpServlet {
 			return;
 		}
 		try {
-			
 			User loggedInUser = UserDAO.findByUsername(loggedInUserName);
 			if (loggedInUser == null) {
 				request.getRequestDispatcher("./LogoutServlet").forward(request, response);
 				return;
 			}
-			
-	
 			String action = request.getParameter("action");	
 			if(action != null && action != "") {
-				
-				Map<String, Object> data = new LinkedHashMap<>();
-				
 				switch (action) {
-				case "add" : {
+				case "update": {
+					int id;
 					String username = request.getParameter("username");
-					String password = request.getParameter("password");
 					String role = request.getParameter("role");
-					
-					if(username != null && username != "") 
-						if(UserDAO.findByUsername(username) != null) 
-							throw new Exception("Username is taken");
-					
-					ERole erole = ERole.valueOf("USER");
-
-					if(role != null && role != "") {
-						try {
-							erole = ERole.valueOf(role);
-						} catch (Exception e) {
-							System.out.println("Invalid role");
-						}
+					ERole erole = ERole.valueOf(role);
+					String userid = request.getParameter("id");
+					if(userid != null && userid != "") {
+						id = Integer.parseInt(userid);
+						User u = UserDAO.getUser(id);
+						u.setUsername(username);
+						u.setRole(erole);
+						UserDAO.update(u);
 					}
-					String date = request.getParameter("registrationDate");	
-					Timestamp d = new Timestamp(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date).getTime());
-					
-					User user = new User(username, password, d, erole, false);
-					UserDAO.add(user);
 					request.getRequestDispatcher("./SuccessServlet").forward(request, response);
 					break;
 				}
@@ -161,20 +132,15 @@ public class UserServlet extends HttpServlet {
 					if(userid != null && userid != "") {
 						id = Integer.parseInt(userid);
 						User u = UserDAO.getUser(id);
-						if(u == null || u.isDeleted() == true) {
-							throw new Exception("No such user");
-						}else {
+						if(u != null) {
 							List<Ticket> ticket = TicketDAO.findByUser(u.getUsername());
 							System.out.println(ticket);
-							if(ticket.isEmpty()) {
-								
+							if(ticket.isEmpty())
 								UserDAO.delete(u.getUsername());
-							}
-
-							else
+							else {
 								u.setDeleted(true);
 								UserDAO.update(u);
-								System.out.println("trebalo bi da je apdejtovano ");
+							}
 						}
 					}
 					request.getRequestDispatcher("./SuccessServlet").forward(request, response);

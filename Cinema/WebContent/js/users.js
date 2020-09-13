@@ -21,7 +21,6 @@ $(document).ready(function() {
 	changeInterface();
 	getUsers();
 	
-	
 	function changeInterface(){
 		$.get('UserServlet', {'action' : 'loggedInUserRole'}, function(data) {
 			console.log(data.status);
@@ -38,12 +37,12 @@ $(document).ready(function() {
 					
 				}
 				navBtn.append(btnAccount);
-				navBtn.append(btnTickets);
 				navBtn.append(btnLogout);
 				return;
 			}
 		})
 	};
+	
 	
 	
 	function makeButtons() {
@@ -69,12 +68,12 @@ $(document).ready(function() {
 			$.get('UserServlet', param, function(data){
 				if(data == 'success') {
 						let url = 'user.html?id=' + data.loggedInUserId;
+						console.log('user id' + data.loggedInUserId);
 						window.location.replace(url);
 				}
 			});
 		});
-		btnUsers = $('<li id = "btnUsers" class="margina"><a class="nav-link" href="#">USERS</a></li>');
-    	btnTickets = $('<li id = "btnTickets" class="margina"><a class="nav-link" href="tickets.html">TICKETS</a></li>');
+		
 		
 	}
 	

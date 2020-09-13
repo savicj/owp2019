@@ -23,8 +23,7 @@ $(document).ready(function() {
 	makeButtons();
 	changeInterface();
 	getProjection();
-	
-	
+		
 	
 	function changeInterface(){
 		$.get('UserServlet', {'action' : 'loggedInUserRole'}, function(data) {
@@ -35,6 +34,7 @@ $(document).ready(function() {
 				$('#btnUsers').remove();
 				$('#btnTickets').remove();
 				$('#btnDelete').remove();
+				$('#btnUpdate').remove();
 				$('#btnLogin').show();
 				$('#btnRegister').show();
 				
@@ -47,8 +47,8 @@ $(document).ready(function() {
 				if (data.loggedInUserRole == 'ADMIN') {
 					navBtn.append(btnUsers);
 					$('#btnDelete').append();
-					
-					
+					$('#btnUpdate').append();
+									
 				}
 				if (data.loggedInUserRole == 'USER')
 					$('#btnDelete').remove();
@@ -58,7 +58,7 @@ $(document).ready(function() {
 				navBtn.append(btnLogout);
 				return;
 			}
-		})
+		});
 	};
 	
 	
@@ -84,8 +84,10 @@ $(document).ready(function() {
 			let param = { 'action' : "loggedInUserId"};
 			$.get('UserServlet', param, function(data){
 				if(data == 'success') {
-						let url = 'user.html?id=' + data.loggedInUserId;
-						window.location.replace(url);
+					loggedInUserId = data.loggedInUserId;
+					let url = 'user.html?id=' + loggedInUserId;
+					console.log('user id' + loggedInUserId);
+					window.location.replace(url);
 				}
 			});
 		});
@@ -118,7 +120,8 @@ $(document).ready(function() {
 				return;
 			}
 			if (data.status == 'success') {
-				window.location.replace('projections.html');
+				alert('logged in');
+				window.location.reload();
 			}
 		});
 		
@@ -192,23 +195,46 @@ $(document).ready(function() {
 				hallInput.val(projection.hall.name).trigger("change");
 				priceInput.val(projection.price).trigger("change");	
 				
-			}
-			/*var movieFilter = movieInput.val(projection.movie.name);
-			var params = {	'movieName' : movieFilter };
-			
-			$.get('MovieServlet', params, function(data) {
-				
-				if(data.status == 'success'){
-					var movie = data.movieID;
-					console.log(movie);
-					$('#movieHref').setAttribute("href", "movie.html?id="+movie);
-				}
-			
-			});		*/
-			
+			}			
 		});
 	
 	}
+	
+	
+	$('#btnUpdate').on('click', function(event) {
+		var date = new Date(dateInput.val());
+		let datetime = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2) + " " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2) + ":" + ("0" + date.getSeconds()).slice(-3);
+		console.log(datetime);
+		
+		$.ajaxSetup({async: false});
+		 
+		var params = {
+			'action' : 'update',
+			'id' : id,
+			'movie' : movieInput.val(),
+			'datetime' : datetime,
+			'projectionType' : projTypeInput.val(),
+			'hall' : hallInput.val(),
+			'price' : priceInput.val()
+			
+		};
+
+		console.log(params);
+		
+		$.post('ProjectionsServlet', params, function(data) {
+			if(data.status == 'success'){
+				alert('Success');
+				window.location.replace('projections.html');
+			}else{
+				alert('Error');
+			}
+		
+		});
+
+		event.preventDefault();
+		return false;
+	});
+	
 	
 	$('#deleteSubmit').on('click', function(){
 		var params = {	'action' : "delete", 'id' : id	};
@@ -223,6 +249,69 @@ $(document).ready(function() {
 		});
 	});
 	
+	/*function getMovies(){
+	
+		var params = {
+			'movieFilter' : '',
+			'genreFilter' : '',
+			'minDurationFilter' : '1',
+			'maxDurationFilter' : '500',
+			'distributorFilter' : '',
+			'countryFilter' : '',
+			'fromYearFilter' : '1900',
+			'toYearFilter' : '2020'		
+		};
+		$.get('MovieServlet', params, function(data) {
+			if(data.status == 'success'){
+				var movies = data.movies;
+				console.log(data.movies);
+				for(m in movies){
+					movieName = movies[m].name;
+					$('#movieSelect').append(`<option value="${movieName}">${movieName}</option>`);
+				}
+			}
+		});
+	
+	}
+
+	function getHalls(){
+		$(hallInput).empty();
+		var projType = projTypeInput.val();
+		var projTypeFilter;
+		switch (projType){
+					case "2D":
+						projTypeFilter = "twodim";
+						break;
+					case "3D":
+						projTypeFilter = "threedim";
+						break;
+					case "4D":
+						projTypeFilter = "fourdim";
+						break;	
+				}
+		var params = {
+    		'projTypeFilter' : projTypeFilter,
+    	};
+		console.log(params);
+    	
+    	$.get('HallServlet', params, function(data){
+    		if(data.status == 'success'){
+    			var halls = data.halls;
+    			console.log(halls);
+    			for(h in halls){
+    				var hall = halls[h].name;
+    				$('#hallSelect').append(`<option value="${hall}">${hall}</option>`);
+    			}
+    		}
+    	});
+	}
+
+	projTypeInput.on('change', function(event){
+		getHalls();
+		event.preventDefault();
+		return false;
+	
+	});*/
 	
 	function dateFormat(date){
         let dateString = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2) + "T" + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);

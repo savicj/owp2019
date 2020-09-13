@@ -31,13 +31,11 @@
 		<div class="form-group">
 			<form>
 				<label>USERNAME</label>
-				<input id="usernameInput" class="form-control" placeholder="username" readonly>
-				<label>PASSWORD</label>
-				<input class="form-control" type="password" id="passwordInput" readonly>
+				<input id="usernameInput" class="form-control" placeholder="username">
 				<label>ROLE</label>
 				<select id="roleSelect" class="form-control">
-					<option value="admin">ADMIN</option>
-					<option value="user">USER</option>
+					<option value="ADMIN">ADMIN</option>
+					<option value="USER">USER</option>
 				</select>
 				<label>REGISTRATION DATE</label>
 				<input id="dateInput" type="datetime-local" class="form-control margina" readonly>
@@ -45,6 +43,8 @@
 			
 		</div>
 		<div id="deleteModal">
+		
+			<button type="button" id="btnUpdate" class="btn btn-danger">Update </button>
 			<button type="button" id="btnDelete" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
 			  Delete
 			</button>

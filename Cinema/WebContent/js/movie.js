@@ -39,6 +39,7 @@ $(document).ready(function() {
 				$('#btnUsers').remove();
 				$('#btnTickets').remove();
 				$('#btnDelete').remove();
+				$('#btnUpdate').remove();
 				$('#btnLogin').show();
 				$('#btnRegister').show();
 				
@@ -51,10 +52,13 @@ $(document).ready(function() {
 				if (data.loggedInUserRole == 'ADMIN') {
 					navBtn.append(btnUsers);
 					$('#btnDelete').append();
+					$('#btnUpdate').append();
+					
 					
 				}
 				if (data.loggedInUserRole == 'USER'){
 					$('#btnDelete').remove();
+					$('#btnUpdate').remove();						
 				}
 					
 				navBtn.append(btnAccount);
@@ -198,6 +202,42 @@ $(document).ready(function() {
 	}
 	
 	
+	
+	
+	$('#btnUpdate').on('click', function(event) {
+		
+		$.ajaxSetup({async: false});
+		 
+		var params = {
+			'action' : 'update',
+			'id' : id,
+			'movie' : movieInput.val(),
+			'actors' : actorsInput.val(),
+			'directors' : directorsInput.val(),
+			'genres' : genresInput.val(),
+			'duration' : durationInput.val(),
+			'distributor' : distributorInput.val(),
+			'country' : countryInput.val(),
+			'year' : yearInput.val(),
+			'overview' : overviewInput.val()
+			
+		};
+
+		console.log(params);
+		
+		$.post('MovieServlet', params, function(data) {
+			if(data.status == 'success'){
+				alert('Success');
+				window.location.replace('movies.html');
+			}else{
+				alert('Error');
+			}
+		
+		});
+
+		event.preventDefault();
+		return false;
+	});
 	$('#deleteSubmit').on('click', function(){
 		var params = {	'action' : "delete", 'id' : id	};
 		$.post('MovieServlet', params, function(data){

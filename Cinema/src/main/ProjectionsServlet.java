@@ -22,7 +22,6 @@ import model.Projection;
 import model.Ticket;
 import model.User;
 
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +36,6 @@ public class ProjectionsServlet extends HttpServlet {
 		try {
 			int id;
 			String projectionId = request.getParameter("projectionId");
-			String movieName = request.getParameter("movieName");
 			if(projectionId != null && projectionId != "") {
 				id = Integer.parseInt(projectionId);
 				Projection projection = ProjectionDAO.get(id);
@@ -174,10 +172,6 @@ public class ProjectionsServlet extends HttpServlet {
 						throw new Exception("Wanted hall doesn't exist");
 					String date = request.getParameter("datetime");
 					Timestamp d = new Timestamp(dateFormat.parse(date).getTime());
-					
-					System.out.println(d);
-					if(d == null)
-						throw new Exception("Please enter date");
 					User u = loggedInUser;
 					double p = Double.parseDouble(request.getParameter("price"));
 					if(p <= 0)
@@ -191,28 +185,48 @@ public class ProjectionsServlet extends HttpServlet {
 					break;
 				}
 				case "update": {
-					int id = Integer.getInteger(request.getParameter("id"));
-					Movie movie = MovieDAO.findByName(request.getParameter("movie"));
-					if(movie == null)
-						throw new Exception("Wanted movie doesn't exist");
-					EProjectionType pt = EProjectionType.valueOf(request.getParameter("projectionType"));
-					if(pt == null)
-						throw new Exception("The projection type doesn't exist");
-					Hall h = HallDAO.findByName(request.getParameter("hall"));
-					if(h == null)
-						throw new Exception("Wanted hall doesn't exist");
-					Date d = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(request.getParameter("datetime"));
-					if(d == null)
-						throw new Exception("Please enter date");
-					User u = loggedInUser;
-					double p = Double.parseDouble(request.getParameter("price"));
-					if(p <= 0)
-						throw new Exception("Price must be higher than 0");
-					boolean deleted = false;
-					
-					
-					Projection projection = new Projection(id, movie, pt, h, d, p, u, deleted);
-					ProjectionDAO.add(projection);
+					int id = Integer.parseInt(request.getParameter("id"));
+					Projection projection = ProjectionDAO.get(id);
+					if(projection != null) {
+						Movie movie = MovieDAO.findByName(request.getParameter("movie"));
+						if(movie == null)
+							throw new Exception("Wanted movie doesn't exist");
+						String projType = request.getParameter("projectionType");
+						if(projType != null && projType != "") {
+							switch (projType) {
+							case "2D":
+								projType = "twodim";
+								break;
+							case "3D":
+								projType = "threedim";
+								break;
+							case "4D":
+								projType = "fourdim";
+								break;
+							}
+						}
+						EProjectionType pt = EProjectionType.valueOf(projType);
+						if(pt == null)
+							throw new Exception("The projection type doesn't exist");
+						Hall h = HallDAO.findByName(request.getParameter("hall"));
+						if(h == null)
+							throw new Exception("Wanted hall doesn't exist");
+						
+						String date = request.getParameter("datetime");
+						Timestamp d = new Timestamp(dateFormat.parse(date).getTime());
+						double p = Double.parseDouble(request.getParameter("price"));
+						
+						
+						
+						projection.setMovie(movie);
+						projection.setProjectionType(pt);
+						projection.setHall(h);
+						projection.setDatetime(d);
+						projection.setPrice(p);
+						System.out.println(projection);
+						ProjectionDAO.update(projection);
+						
+					}
 					request.getRequestDispatcher("./SuccessServlet").forward(request, response);
 
 					break;

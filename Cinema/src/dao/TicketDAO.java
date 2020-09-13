@@ -27,7 +27,7 @@ public class TicketDAO {
 		
 		try {
 			
-			String query = "SELECT * FROM tickets WHERE user = ?";
+			String query = "SELECT * FROM tickets WHERE tuser = ?";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, username);
 			System.out.println(pstmt);

@@ -252,8 +252,8 @@ public class MovieDAO {
 			pstmt.setString(index++, movie.getOriginCountry());
 			pstmt.setInt(index++, movie.getYear());
 			pstmt.setString(index++, movie.getOverview());
-			pstmt.setInt(index++, movie.getId());
 			pstmt.setBoolean(index++, movie.isDeleted());
+			pstmt.setInt(index++, movie.getId());
 			
 			return pstmt.executeUpdate() == 1;
 

@@ -3,6 +3,8 @@ $(document).ready(function() {
 	var id = window.location.search.slice(1).split('?')[0].split('=')[1];
 	console.log(id);
 	var user;
+	var loggedInUserRole;
+	var loggedInUserId;
 	//nav
 	var navBtn = $('#navBtn');
 	var btnLogout;
@@ -29,13 +31,7 @@ $(document).ready(function() {
 		$.get('UserServlet', {'action' : 'loggedInUserRole'}, function(data) {
 			console.log(data.status);
 			if (data.status == 'unauthenticated') {
-				$('#btnLogout').remove();
-				$('#btnAccount').remove();
-				$('#btnUsers').remove();
-				$('#btnTickets').remove();
-				$('#btnDelete').remove();
-				$('#btnLogin').show();
-				$('#btnRegister').show();
+				window.location.replace('projections.html');
 				
 			}
 			if (data.status == 'success') {
@@ -46,8 +42,6 @@ $(document).ready(function() {
 				if (data.loggedInUserRole == 'ADMIN') {
 					navBtn.append(btnUsers);
 					$('#btnDelete').append();
-					
-					
 				}
 				if (data.loggedInUserRole == 'USER')
 					$('#btnDelete').remove();
@@ -55,6 +49,8 @@ $(document).ready(function() {
 				navBtn.append(btnAccount);
 				navBtn.append(btnTickets);
 				navBtn.append(btnLogout);
+				$('#btnUpdate').append();
+				
 				return;
 			}
 		})
@@ -80,11 +76,12 @@ $(document).ready(function() {
 		
 		
 		btnAccount = $('<li id="btnAccount"><a class="nav-link" href="">ACCOUNT</a></li>').on('click', function(){
-			let param = { 'action' : "loggedInUserId"};
-			$.get('UserServlet', param, function(data){
+			$.get('UserServlet', { 'action' : "loggedInUserId"}, function(data){
 				if(data == 'success') {
-						let url = 'user.html?id=' + data.loggedInUserId;
-						window.location.replace(url);
+					loggedInUserId = data.loggedInUserId;
+					let url = 'user.html?id=' + loggedInUserId;
+					console.log('user id' + loggedInUserId);
+					window.location.replace(url);
 				}
 			});
 		});
@@ -95,104 +92,52 @@ $(document).ready(function() {
 	
 	
 	
-	$('#loginSubmit').on('click', function(event) { 
-		var userNameInput = $('#userNameInput');
-		var passwordInput = $('#passwordInput');
-		var userName = userNameInput.val();
-		var password = passwordInput.val();
-
-		var params = {
-			'userName': userName, 
-			'password': password
-		}
-		console.log(params);
-		
-		$.post('LoginServlet', params, function(data) {
-			console.log(data);
-
-			if (data.status == 'failure') {
-				userNameInput.val('');
-				passwordInput.val('');
-				alert("Username or password are incorrect.");
-				return;
-			}
-			if (data.status == 'success') {
-				window.location.replace('projections.html');
-			}
-		});
-		
-		event.preventDefault();
-		return false;
-	});
-	
-	
-	
-	$('#registrationSubmit').on('click', function(event) {
-		var userName = $('#registrationInputUsername');
-		var password = $('#registrationInputPassword');
-		var repeatPassword = $('#registrationInputRepeatPassword');
-		
-		if(userName.val() == "" || password.val() == "" || repeatPassword.val() == ""){
-			alert("All fields must be filled out.");
-			return;
-		}
-		
-		if(password.val() != repeatPassword.val()){
-			alert("Passwords do not match.");
-			return;
-		}
-		
-		$.ajaxSetup({async: false});
-		
-		var params = {
-			'userName': userName.val(), 
-			'password': password.val(),
-			'repeatPassword' : repeatPassword.val()
-		}
-		
-		$.post('RegistrationServlet', params, function(data) {
-			console.log(data);
-			
-			if(data.status == 'success'){
-				alert('Registration successfull.');
-				window.location.replace('projections.html');
-			}else{
-				alert(data.message);
-			}
-		});
-		
-	});
 	
 	
 	function getUser(){
-		
-		$.get('UserServlet', {'action' : 'loggedInUserId'}, function(data){
-			
-		});
-		
-		
-		
-		
-		/*var params = {	
-				'action' : "getUser",
-				'userId' : id,
+		var params = {
+            'id' : id,
+            //'action' : "loggedInUserRole"
+        };
+
+        $.get('UserServlet', params, function(data){
+
+            if (data.status == 'success') {
+                user = data.user;
+
+                $(usernameInput).val(user.username).trigger("change");
+                $(dateInput).val(dateFormat(new Date(user.registrationDate))).trigger("change");    
+                $(roleSelect).val(user.role).trigger("change");       
+               
+            }
+	});
+
+	}
+	$('#btnUpdate').on('click', function(event) {
+		$.ajaxSetup({async: false});
+		 
+		params = {
+			'action': "update",
+			'id': id, 
+			'username': $('#usernameInput').val(), 
+			'role' : $('#roleSelect').val()
 		};
 		console.log(params);
 		
-		$.get('UserServlet', params, function(data) {
-			if(data.status == 'success') {
-				user = data.user;
-				console.log(user);
-								
-				usernameInput.val(user.username).trigger("change");
-				dateInput.val(dateFormat(new Date(projection.datetime))).trigger("change");
-				passwordInput.val(user.password).trigger("change");
-				roleSelect.val(user.role).trigger("change");	
-				
-			}
-		});*/
-	
-	}
+		$.post('UserServlet', params, function(data) {
+
+			if (data.status == 'success') {
+				alert('Update successful');
+				window.location.replace('users.html');
+				return;
+			}else
+				alert("Update error");
+		});
+
+		event.preventDefault();
+		return false;
+});
+
 	
 	$('#deleteSubmit').on('click', function(){
 		var params = {	'action' : "delete", 'id' : id	};

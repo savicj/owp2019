@@ -24,7 +24,7 @@ public class UserDAO {
 		
 		try {
 			
-			String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+			String query = "SELECT * FROM users WHERE username = ? AND password = ? AND deleted = false";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, username);
 			pstmt.setString(2, password);
@@ -62,7 +62,7 @@ public class UserDAO {
 		
 		try {
 			
-			String query = "SELECT * FROM users WHERE username = ? ";
+			String query = "SELECT * FROM users WHERE id = ? ";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, ID);
 			System.out.println(pstmt);
@@ -210,13 +210,14 @@ public class UserDAO {
 		
 		try {
 			
-			String query = "UPDATE users SET password = ?, role = ?, deleted = ? WHERE username = ?";
+			String query = "UPDATE users SET username = ?, password = ?, role = ?, deleted = ? WHERE id = ?";
 			pstmt = conn.prepareStatement(query);
 			int i = 1;
+			pstmt.setString(i++, user.getUsername());
 			pstmt.setString(i++, user.getPassword());
 			pstmt.setString(i++, user.getRole().toString());
 			pstmt.setBoolean(i++, user.isDeleted());
-			pstmt.setString(i++, user.getUsername());
+			pstmt.setInt(i++, user.getId());
 
 			System.out.println(pstmt);
 			

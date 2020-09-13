@@ -14,11 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import model.ERole;
 import model.Movie;
 import model.Projection;
-import model.Ticket;
 import model.User;
 import dao.MovieDAO;
 import dao.ProjectionDAO;
-import dao.TicketDAO;
 import dao.UserDAO;
 
 public class MovieServlet extends HttpServlet {
@@ -62,11 +60,9 @@ public class MovieServlet extends HttpServlet {
 				if(yearToFilter == null || yearToFilter == "") 
 					yearToFilter = "2020";
 				yearTo = Integer.parseInt(yearToFilter);
-				System.out.println(name +" "+ genre +" "+ durationFrom +" "+ durationTo+" "+ distributor+" "+ country+" "+ yearFrom+" "+ yearTo);
 				
 				
 				List<Movie> movies = MovieDAO.getAll(name, genre, durationFrom, durationTo, distributor, country, yearFrom, yearTo);
-				System.out.println(movies + " filmovi");
 				Map<String, Object> data = new LinkedHashMap<>();
 				data.put("movies", movies);
 				
@@ -83,9 +79,6 @@ public class MovieServlet extends HttpServlet {
 				request.getRequestDispatcher("./SuccessServlet").forward(request, response);
 			}
 			
-//		}catch (Exception e) {
-//			e.printStackTrace();
-//		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -125,7 +118,6 @@ public class MovieServlet extends HttpServlet {
 						directors.add(d);
 					}
 				}catch (Exception e){	
-					System.out.println("Directors parameter doesn't contain ','.");
 					directors.add(director);
 				}
 				String actor = request.getParameter("actors");
@@ -135,7 +127,6 @@ public class MovieServlet extends HttpServlet {
 						actors.add(d);
 					}
 				}catch (Exception e){	
-					System.out.println("Actors parameter doesn't contain ','.");	
 					actors.add(actor);
 				}
 				
@@ -146,7 +137,6 @@ public class MovieServlet extends HttpServlet {
 						genres.add(d);
 					}
 				}catch (Exception e){	
-					System.out.println("Genres parameter doesn't contain ','.");	
 					genres.add(genre);
 				}
 				String dur = request.getParameter("duration");
@@ -155,11 +145,9 @@ public class MovieServlet extends HttpServlet {
 					duration = Integer.parseInt(dur);
 					if(duration <= 0) {
 						duration = 30;
-						System.out.println("Duration can't be less than 30.");
 					}
 				}else{
 					duration = 30;
-					System.out.println("Duration is null or empty, default 30.");					
 				}
 				String distributor = request.getParameter("distributor");
 				String country = request.getParameter("country");
@@ -169,11 +157,9 @@ public class MovieServlet extends HttpServlet {
 					year = Integer.parseInt(y);
 					if(year <= 1950) {
 						year = 2020;
-						System.out.println("Year can't be less then 1950.");
 					}
 				}else{
 					year = 2020;
-					System.out.println("Year is null or empty, default 2020.");					
 				}
 				String overview = request.getParameter("overview");
 				
@@ -184,6 +170,85 @@ public class MovieServlet extends HttpServlet {
 				break;
 				
 			}
+			case "update": {
+				int id;
+				String moveiId = request.getParameter("id");
+				if(moveiId != null && moveiId != "") {
+					id = Integer.parseInt(moveiId);
+					Movie m = MovieDAO.get(id);
+					
+					if(m != null) {
+						String name = request.getParameter("movie");
+						String director = request.getParameter("directors");
+						ArrayList<String> directors = new ArrayList<String>();
+						try {
+							for(String d : director.split(",")) {
+								directors.add(d);
+							}
+						}catch (Exception e){	
+							directors.add(director);
+						}
+						String actor = request.getParameter("actors");
+						ArrayList<String> actors = new ArrayList<String>();
+						try {
+							for(String d : actor.split(",")) {
+								actors.add(d);
+							}
+						}catch (Exception e){	
+							e.printStackTrace();
+							actors.add(actor);
+						}
+						
+						String genre = request.getParameter("genres");
+						ArrayList<String> genres = new ArrayList<String>();
+						try {
+							for(String d : genre.split(",")) {
+								genres.add(d);
+							}
+						}catch (Exception e){	
+							genres.add(genre);
+						}
+						String dur = request.getParameter("duration");
+						int duration;
+						if(dur != null && dur != "") {
+							duration = Integer.parseInt(dur);
+							if(duration <= 0) {
+								duration = 30;
+							}
+						}else{
+							duration = 30;
+						}
+						String distributor = request.getParameter("distributor");
+						String country = request.getParameter("country");
+						String y = request.getParameter("year");
+						int year;
+						if(y != null && y != "") {
+							year = Integer.parseInt(y);
+							if(year <= 1950) {
+								year = 2020;
+							}
+						}else{
+							year = 2020;
+						}
+						String overview = request.getParameter("overview");
+						
+						
+						m.setName(name);
+						m.setDirectors(directors);
+						m.setActors(actors);
+						m.setGenre(genres);
+						m.setDistributor(distributor);
+						m.setDuration(duration);
+						m.setOriginCountry(country);
+						m.setYear(year);
+						m.setOverview(overview);
+
+						MovieDAO.update(m);
+					}					
+				}
+				request.getRequestDispatcher("./SuccessServlet").forward(request, response);
+				break;
+			}
 			case "delete": {
 				int id;
 				String moveiId = request.getParameter("id");
@@ -191,18 +256,15 @@ public class MovieServlet extends HttpServlet {
 					id = Integer.parseInt(moveiId);
 					Movie m = MovieDAO.get(id);
 					if(m == null || m.isDeleted() == true) {
-						throw new Exception("No such projection");
 					}else {
 						List<Projection> projection = ProjectionDAO.findByMovie(m);
 						System.out.println(projection);
 						if(projection.isEmpty()) {
-							System.out.println("trebalo bi da je obrisano skroz");
 							MovieDAO.delete(id);
 						}else {
 							
 							m.setDeleted(true);
 							MovieDAO.update(m);
-							System.out.println("trebalo bi da je apdejtovano deleted");
 						}
 					}
 				}

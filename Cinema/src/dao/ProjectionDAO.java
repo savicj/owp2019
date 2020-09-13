@@ -17,6 +17,54 @@ import model.User;
 public class ProjectionDAO {
 	
 	
+	public static List<Projection> checkIfAvailable(String dateFrom, String dateTo){
+		List<Projection> p = new ArrayList<>();
+		Connection conn = ConnectionManager.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String query = "SELECT *  FROM projections " + 
+					"WHERE  datetime <= ? and datetime >= ? deleted = 0;";
+			
+			pstmt = conn.prepareStatement(query);
+			int i = 1;
+			
+			pstmt.setString(i++,dateTo);
+			pstmt.setString(i++, dateFrom);
+			
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				i = 1;
+				int id = rs.getInt(i++);
+				Integer mov = rs.getInt(i++);
+				Movie m = MovieDAO.get(mov);
+				String projT = rs.getString(i++);
+				EProjectionType pt = EProjectionType.valueOf(projT);
+				Integer hallName = rs.getInt(i++);
+				Hall h = HallDAO.get(hallName);
+				Date date = rs.getTimestamp(i++);
+				Double price = rs.getDouble(i++);
+				String user = rs.getString(i++);
+				User admin = UserDAO.findByUsername(user);				
+				boolean deleted = rs.getBoolean(i++);
+				
+				Projection projection = new Projection(id, m, pt, h, date, price, admin, deleted);
+				p.add(projection);
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {System.out.println("pstmt.close se ne odradi"); ex1.printStackTrace();}
+			try {rs.close();} catch (Exception ex1) {System.out.println("rs.close se ne odradi"); ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {System.out.println("conn.close se ne odradi"); ex1.printStackTrace();}
+		}
+		return p;
+	}
+	
+	
 	public static List<Projection> findByMovie(Movie m) {
 		Connection conn = ConnectionManager.getConnection();
 		PreparedStatement pstmt = null;
