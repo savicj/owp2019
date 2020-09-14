@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.Hall;
 import dao.HallDAO;
+import model.Projection;
+import dao.ProjectionDAO;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -20,7 +22,7 @@ public class HallServlet extends HttpServlet {
    
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	//String hall = request.getParameter("hallFilter");
+    	String projection = request.getParameter("projection");
     	String projectionType = request.getParameter("projTypeFilter");
     	if(projectionType != null && projectionType != "") {
 			switch (projectionType) {
@@ -31,14 +33,23 @@ public class HallServlet extends HttpServlet {
 			case "4D":
 				projectionType = "fourdim";
 			}
+			List<Hall> halls = HallDAO.getAll(projectionType);
+			System.out.println(halls);
+			Map<String, Object> data = new LinkedHashMap<>();
+			data.put("halls", halls);
+			
+			request.setAttribute("data", data);
+			request.getRequestDispatcher("./SuccessServlet").forward(request, response);
+		}else if(projection != null && projection != "") {
+			Projection p = ProjectionDAO.get(Integer.parseInt(projection));
+			Hall hall = HallDAO.get(p.getHall().getId());
+			System.out.println(hall);
+			Map<String, Object> data = new LinkedHashMap<>();
+			data.put("hall", hall);
+			
+			request.setAttribute("data", data);
+			request.getRequestDispatcher("./SuccessServlet").forward(request, response);
 		}
-    	List<Hall> halls = HallDAO.getAll(projectionType);
-    	System.out.println(halls);
-    	Map<String, Object> data = new LinkedHashMap<>();
-		data.put("halls", halls);
-		
-		request.setAttribute("data", data);
-		request.getRequestDispatcher("./SuccessServlet").forward(request, response);
     }
 
 	

@@ -50,3 +50,15 @@ label{
 .table-wrapper-scroll-y {
     display: block;
     }
+    
+    
+    
+    
+footer {
+    text-align: center;
+    font-family: sans-serif;
+    color: white;
+    background-color: rgba(52, 58, 64);
+    padding: 10px;
+    width: 100%;
+}

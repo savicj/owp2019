@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-	<title>Statistics</title>
+	<title>BUY TICKET</title>
 	<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -10,8 +10,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <link href="css/movies.css" rel="stylesheet">
-    <script src="js/statistics.js"></script>
+    <link href="css/projection.css" rel="stylesheet">
+    <script src="js/addTicket.js"></script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
@@ -23,24 +23,57 @@
         </div>
         <ul id="navBtn" class="navbar-nav mr-auto">
         	<li id="btnMovies" class="margina"><a class="nav-link" href="movies.html">MOVIES</a></li>
+        	<li id ="btnUsers" class="margina"><a class="nav-link" href="users.html">USERS</a></li>
+        	<li id ="btnTickets" class="margina"><a class="nav-link" href="tickets.html">TICKETS</a></li>
        	</ul>
     </nav>
     
     
-    <section id="mySection">
-    	<h1>MOVIE AND TICKETS STATISTICS</h1>
-    	<table class="table table-striped table-dark table-hover" id="tblMovies">
-	    	<thead>
-	    	<tr>
-	    		<th>MOVIE</th>
-	    		<th>NUMBER OF PROJECTIONS</th>
-	    		<th>NUMBER OF TICKETS</th>
-	    		<th>TOTAL PRICE</th>
-	    	</tr>
-	    	</thead>	    	
-      	</table>
-    
-    </section>
+    <div id="formDiv">
+		<h2>TICKET</h2>
+		<div class="form-group">
+			<form>
+				<label>USER</label>
+				<input id="userInput" class="form-control"></input>
+				<label>PROJECTION</label>
+				<input id="projectionInput" type="datetime-local" class="form-control margina">
+				<label>PROJECTION TYPE</label>
+				<input id="projectionTypeInput" class="form-control"></input>
+				<label>HALL</label>
+				<input id="hallInput" class="form-control"></input>
+				<label>SEAT</label>
+				<input id="seatInput" class="form-control"></input>
+				<label>PRICE</label>
+				<input id="priceInput" min="30" type="number"class="form-control"></input>
+				
+			</form>
+		</div>
+	</div>
+
+
+<div id="hall">
+	<h2>SCREEN</h2>
+	<ol>
+		<li id="row1" class="row">
+			<ol class="seats">
+			</ol>
+		</li>
+		<li id="row2" class="row">
+			<ol class="seats">
+			</ol>
+		</li>
+		<li id="row3" class="row">
+			<ol class="seats">
+			</ol>
+		</li>
+		<li id="row4" class="row">
+			<ol class="seats">
+			</ol>
+		</li>
+	</ol>
+</div>
+
+
 <footer class="page-footer fixed-bottom"> 
         Copyright &copy; 2020 Cinemax
 </footer>

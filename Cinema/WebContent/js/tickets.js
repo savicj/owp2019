@@ -15,12 +15,12 @@ $(document).ready(function() {
 	var projectionInput = $('#projectionInput');
 	var ticketInput = $('#ticketInput');
 	
+	var btnAdd;
 	
 
 	makeButtons();
 	changeInterface();
 	getTickets();
-	
 	
 	function changeInterface(){
 		$.get('UserServlet', {'action' : 'loggedInUserRole'}, function(data) {
@@ -40,6 +40,8 @@ $(document).ready(function() {
 					navBtn.append(btnAccount);
 					navBtn.append(btnTickets);
 					navBtn.append(btnLogout);
+					$('#mySection').append(btnAdd);
+
 					
 				}
 				if(data.loggedInUserRole == 'USER')
@@ -79,7 +81,10 @@ $(document).ready(function() {
 		});
 		btnUsers = $('<li id = "btnUsers" class="margina"><a class="nav-link" href="users.html">USERS</a></li>');
     	btnTickets = $('<li id = "btnTickets" class="margina"><a class="nav-link" href="tickets.html">TICKETS</a></li>');
-		
+		btnAdd = $('<button id = "btnAdd" type="button" class="btn btn-dark">ADD TICKET</li>').on('click', function(){
+			window.location.replace('addTicket.html');
+			return;
+			});
 	}
 	
 	

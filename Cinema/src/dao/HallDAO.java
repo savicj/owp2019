@@ -50,6 +50,53 @@ public class HallDAO {
 	
 	}
 	
+	public static Hall findByProjection(String ID) {
+		Connection conn = ConnectionManager.getConnection();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String query = "SELECT * FROM halls WHERE projection = ?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, ID);
+			//System.out.println(pstmt);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				int index = 1;
+				int id = rs.getInt(index++);
+				String name = rs.getString(index++);
+				
+				String projTypes = rs.getString(index);
+				
+				ArrayList<EProjectionType> projectionTypes = new ArrayList<EProjectionType>();
+				for(String s : projTypes.split(",")) {
+					try {
+//						System.out.println(s);
+						EProjectionType type = EProjectionType.valueOf(s);
+						projectionTypes.add(type);
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				
+				return new Hall(id, name, projectionTypes);
+			}
+			
+			
+		}catch (Exception e) {
+				e.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {rs.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+		
+		return null;
+	}
 	
 	public static Hall get(int id) {
 		Connection conn = ConnectionManager.getConnection();

@@ -97,8 +97,8 @@ $(document).ready(function() {
 				}
 			});
 		});
-		btnUsers = $('<li id = "btnUsers" class="margina"><a class="nav-link" href="#">USERS</a></li>');
-    	btnTickets = $('<li id = "btnTickets" class="margina"><a class="nav-link" href="#">TICKETS</a></li>');
+		btnUsers = $('<li id = "btnUsers" class="margina"><a class="nav-link" href="users.html">USERS</a></li>');
+    	btnTickets = $('<li id = "btnTickets" class="margina"><a class="nav-link" href="tickets.html">TICKETS</a></li>');
 		//btnDelete = $('<button type="button" class="btn btn-dark" id="btnDelete">DELETE</button>');
 	}
 	

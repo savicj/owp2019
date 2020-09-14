@@ -22,21 +22,25 @@ public class TicketServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
      
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String ticketID = request.getParameter("ticketID");
-		String projectionID = request.getParameter("projectionID");
 		String userID = request.getParameter("userID");
+		String projectionID = request.getParameter("projectionID");
+		String projection = request.getParameter("projection");
+		String ticketID = request.getParameter("ticketID");
+		String user = request.getParameter("user");
+		int proj;
 		int id;
 		if(ticketID != null && ticketID != "") {
 			id = Integer.parseInt(ticketID);
 			Map<String, Object> data = new LinkedHashMap<>();
 			data.put("ticket", TicketDAO.get(id));
 			System.out.println(TicketDAO.get(id));
+			
 			request.setAttribute("data", data);
 			request.getRequestDispatcher("./SuccessServlet").forward(request, response);
 		}else if(userID != null && userID != "") {
 				id = Integer.parseInt(userID);
-				User user = UserDAO.getUser(id);
-				List<Ticket> tickets = TicketDAO.findByUser(user.getUsername());
+				User u = UserDAO.getUser(id);
+				List<Ticket> tickets = TicketDAO.findByUser(u.getUsername());
 				System.out.println(tickets);
 
 				Map<String, Object> data = new LinkedHashMap<>();
@@ -55,21 +59,24 @@ public class TicketServlet extends HttpServlet {
 				
 				request.setAttribute("data", data);
 				request.getRequestDispatcher("./SuccessServlet").forward(request, response);
-		}
-		String p = request.getParameter("projection");
-		String user = request.getParameter("user");
-		int projection;
-		if(p != "" && p != null) {
-			projection = Integer.parseInt(p);
-		}else {
-			projection = 0;
-		}
-		List<Ticket> allTickets = TicketDAO.getAll(projection, user);
-		Map<String, Object> data = new LinkedHashMap<>();
-		data.put("tickets", allTickets);
+		}else if(projection != "" && projection != null) {
+			proj = Integer.parseInt(projection);
+			List<Ticket> allTickets = TicketDAO.getAll(proj, user);
+			Map<String, Object> data = new LinkedHashMap<>();
+			data.put("tickets", allTickets);
+			
+			request.setAttribute("data", data);
+			request.getRequestDispatcher("./SuccessServlet").forward(request, response);
 		
-		request.setAttribute("data", data);
-		request.getRequestDispatcher("./SuccessServlet").forward(request, response);
+		}else if(projection == "" || projection == "") {
+			proj = 0;
+			List<Ticket> allTickets = TicketDAO.getAll(proj, user);
+			Map<String, Object> data = new LinkedHashMap<>();
+			data.put("tickets", allTickets);
+			
+			request.setAttribute("data", data);
+			request.getRequestDispatcher("./SuccessServlet").forward(request, response);
+		}
 		
 	}
 

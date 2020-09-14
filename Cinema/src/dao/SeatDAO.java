@@ -56,7 +56,7 @@ public class SeatDAO {
 	 }
 	 
 
-	public static List<Seat> getSeatsFromHall(Hall hall) {
+	public static List<Seat> getSeatsFromHall(int hall) {
 		List<Seat> seats = new ArrayList<Seat>();
 
 		Connection conn = ConnectionManager.getConnection();
@@ -65,10 +65,10 @@ public class SeatDAO {
 
 		try {
 
-			String query = "SELECT num FROM seats WHERE hall = ?";
+			String query = "SELECT * FROM seats WHERE hall = ?";
 			pstmt = conn.prepareStatement(query);
 			int i = 1;
-			pstmt.setInt(i, hall.getId());
+			pstmt.setInt(i, hall);
 			System.out.println(pstmt);
 
 			rs = pstmt.executeQuery();

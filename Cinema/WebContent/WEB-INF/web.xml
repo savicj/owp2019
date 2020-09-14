@@ -112,4 +112,14 @@
     <servlet-name>TicketServlet</servlet-name>
     <url-pattern>/TicketServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SeatServlet</display-name>
+    <servlet-name>SeatServlet</servlet-name>
+    <servlet-class>main.SeatServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SeatServlet</servlet-name>
+    <url-pattern>/SeatServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

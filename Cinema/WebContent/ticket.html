@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>ADD PROJECTION</title>
+	<meta charset="ISO-8859-1">
+	<title>Ticket</title>
 	<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
-    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
@@ -12,7 +11,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <link href="css/projection.css" rel="stylesheet">
-    <script src="js/addProjection.js"></script>
+    <script src="js/ticket.js"></script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
@@ -25,33 +24,56 @@
         <ul id="navBtn" class="navbar-nav mr-auto">
         	<li id="btnMovies" class="margina"><a class="nav-link" href="movies.html">MOVIES</a></li>
         	<li id ="btnUsers" class="margina"><a class="nav-link" href="users.html">USERS</a></li>
-        	<!-- <li id="btnAccount"><a class="nav-link" href="">ACCOUNT</a></li> -->
-        	<li id ="btnTickets" class="margina"><a class="nav-link" href="#">TICKETS</a></li>
+        	<li id ="btnTickets" class="margina"><a class="nav-link" href="tickets.html">TICKETS</a></li>
        	</ul>
     </nav>
-	<div id="formDiv">
-		<h2>PROJECTION</h2>
+    
+    
+    <div id="formDiv">
+		<h2>TICKET</h2>
 		<div class="form-group">
 			<form>
-				<label>MOVIE</label>
-				<select id="movieSelect" class="form-control"></select>
+				<label>USER</label>
+				<input id="userInput" class="form-control"></input>
+				<label>PROJECTION</label>
+				<input id="projectionInput" type="datetime-local" class="form-control margina">
 				<label>PROJECTION TYPE</label>
-				<select id="projTypeSelect" class="form-control">
-					<option values="">projection type</option>>
-					<option value="2D">2D</option>
-					<option value="3D">3D</option>
-					<option value="4D">4D</option>
-				</select>
+				<input id="projectionTypeInput" class="form-control"></input>
 				<label>HALL</label>
-				<select id="hallSelect" class="form-control"></select>
-				<label>DATE AND TIME</label>
-				<input id="dateInput" type="datetime-local" class="form-control margina">
+				<input id="hallInput" class="form-control"></input>
+				<label>SEAT</label>
+				<input id="seatInput" class="form-control"></input>
 				<label>PRICE</label>
-				<input class="form-control" type="number" id="priceInput" min="150" max="1000">
+				<input id="priceInput" min="30" type="number"class="form-control"></input>
+				
 			</form>
-			<button class="btn btn-dark" id="addBtn">ADD</button>
 		</div>
+		<div id="deleteModal">
+			<button type="button" id="btnDelete" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+			  Delete
+			</button>
 		
+		<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">Delete ticket</h5>
+			        <button id="btnDelete" type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        Are you sure?
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        <button id="deleteSubmit" type="button" class="btn btn-primary">Delete</button>
+			      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
 	</div>
 <footer class="page-footer fixed-bottom"> 
         Copyright &copy; 2020 Cinemax
