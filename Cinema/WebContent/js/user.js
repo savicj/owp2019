@@ -18,13 +18,13 @@ $(document).ready(function() {
 	var passwordInput = $('#passwordInput');
 	var roleSelect = $('#roleSelect');
 	var dateInput = $('#dateInput');
-	
+	var tblTicket = $('#tblTicket');
 	
 
 	makeButtons();
 	changeInterface();
 	getUser();
-	
+	getTickets();
 	
 	
 	function changeInterface(){
@@ -152,13 +152,34 @@ $(document).ready(function() {
 		});
 	});
 	
+	function getTickets(){
+		$.get('TicketServlet', {	"userID" : id	}, function(data){
+			if(data.status == 'success'){
+				tblTicket.find('tbody').remove();
+				ticket = data.tickets;
+				for(t in ticket){
+					tblTicket.append(
+						'<tbody>' +
+						'<tr>' +
+							'<td><a href="ticket.html?id=' + ticket[t].id + '">'+ dateformat(new Date(ticket[t].date)) +'</a></td>' +
+						'</tr>' +
+						'<tbody>'
+					);
+				}
+			}
+		});
+	}
 	
 	function dateFormat(date){
         let dateString = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2) + "T" + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
      
         return dateString;
     }
-	
+	function dateformat(date){
+        let dateString = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2) + " " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
+     
+        return dateString;
+    }
 	
 	
 	

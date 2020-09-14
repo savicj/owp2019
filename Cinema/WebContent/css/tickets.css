@@ -1,43 +1,33 @@
+
 body{
 	background-color: #2d3436;
 	background-image: linear-gradient(360deg, #2d3436 0%, #000000 74%);
+	overflow-x: hidden;	
 }
 
-
-h2, h1{
+h1{
 	color: white;
 	font-weight: bold;
 }
 
-label{
-	color: white;
+
+
+#search{
+	margin: 10px, 10px, 10px, 10px;
+	padding: 10px;
+	border-radius: 10px;	
 }
 
-#formDiv{
-	margin: auto;
-	margin-top: 13vh;
-	margin-bottom: 10vh;
- 	width: 25%;
-	text-align: left;
-	border-style: solid;
-	padding: 5vh;
-}
-
-#btnDelete, #btnUpdate{
-	margin-top: 5px;
-}
-#addBtn {
-	margin-top: 5px;
-}
 
 #mySection {
 	background-size: cover;
     background-position: top;
     height:50vh; 
-    width: 45%;
+    width: 90vw;
     margin: auto;
+    padding: 75px 100px;
     text-align: center;
-    margin-bottom: 15%;
+    margin-bottom: 40%;
 }
 
 .my-custom-scrollbar {

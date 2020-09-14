@@ -24,6 +24,21 @@ public class MovieServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//try {
+			String action = request.getParameter("action");
+			if(action != null && action != "") {
+				switch(action) {
+				case "getAll":
+					List<Movie> movies = MovieDAO.getAll();
+					
+					
+					Map<String, Object> data = new LinkedHashMap<>();
+					data.put("movies", movies);
+					
+					request.setAttribute("data", data);
+					request.getRequestDispatcher("./SuccessServlet").forward(request, response);
+					return;
+				}
+			}
 			String movieID = request.getParameter("movieid");
 			int id;
 			if(movieID == null || movieID == "") {

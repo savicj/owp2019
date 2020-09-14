@@ -8,8 +8,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Hall;
-import model.Movie;
 import model.Projection;
 import model.Seat;
 import model.Ticket;
@@ -19,6 +17,41 @@ import model.User;
 public class TicketDAO {
 //id, proj, seat, date, user
 	
+	public static Ticket get(int ID) {
+		Connection conn = ConnectionManager.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String query = "SELECT * FROM tickets WHERE id = ?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, ID);
+			System.out.println(pstmt);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int index = 1;
+				int id = rs.getInt(index++);
+				Projection projection = ProjectionDAO.get(rs.getInt(index++));
+				String seatmark = rs.getString(index++);
+				Seat seat = SeatDAO.get(seatmark, projection.getHall());
+				Date datetime = rs.getDate(index++);
+				User user = UserDAO.findByUsername(rs.getString(index++));
+				
+				return new Ticket(id, projection, seat, datetime, user);
+				
+			}
+			
+		} catch (Exception e) {e.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {rs.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+		return null;				
+		
+	}
 	public static List<Ticket> findByUser(String username) {
 		List<Ticket> tickets = new ArrayList<Ticket>();
 		Connection conn = ConnectionManager.getConnection();
@@ -128,7 +161,7 @@ public class TicketDAO {
 	 * }
 	 */
 	
-	public static List<Ticket> getAll() {
+	public static List<Ticket> getAll(int projection, String tuser) {
 		List<Ticket> tickets = new ArrayList<Ticket>();
 		Connection conn = ConnectionManager.getConnection();
 		PreparedStatement pstmt = null;
@@ -136,8 +169,20 @@ public class TicketDAO {
 		
 		try {
 			
-			String query = "SELECT * FROM tickets";
+			String query = "SELECT * FROM tickets where tuser LIKE ? AND projection LIKE ?";
 			pstmt = conn.prepareStatement(query);
+			
+			int i = 1;
+			if(tuser == "" || tuser == null)
+				pstmt.setString(i++, "%");
+			else
+				pstmt.setString(i++, tuser);
+			if(projection == 0)
+				pstmt.setString(i++, "%");
+			else
+				pstmt.setInt(i++, projection);
+			
+			
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			

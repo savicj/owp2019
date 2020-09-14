@@ -223,6 +223,53 @@ public class ProjectionDAO {
 		return p;
 	}
 	
+	public static List<Projection> getAll(int movie){
+		List<Projection> p = new ArrayList<>();
+		Connection conn = ConnectionManager.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String query = "SELECT *  FROM projections " + 
+					"WHERE movie LIKE ?";
+			pstmt = conn.prepareStatement(query);
+			int i = 1;
+			if(movie == -1) {
+				pstmt.setString(i++, "%");
+			}else {
+				//String m = Integer.toString(movie);
+				pstmt.setInt(i++, movie);
+			}			
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				i = 1;
+				int id = rs.getInt(i++);
+				Integer mov = rs.getInt(i++);
+				Movie m = MovieDAO.get(mov);
+				String projT = rs.getString(i++);
+				EProjectionType pt = EProjectionType.valueOf(projT);
+				Integer hallName = rs.getInt(i++);
+				Hall h = HallDAO.get(hallName);
+				Date date = rs.getTimestamp(i++);
+				Double price = rs.getDouble(i++);
+				String user = rs.getString(i++);
+				User admin = UserDAO.findByUsername(user);				
+				boolean deleted = rs.getBoolean(i++);
+				
+				Projection projection = new Projection(id, m, pt, h, date, price, admin, deleted);
+				p.add(projection);
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {System.out.println("pstmt.close se ne odradi"); ex1.printStackTrace();}
+			try {rs.close();} catch (Exception ex1) {System.out.println("rs.close se ne odradi"); ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {System.out.println("conn.close se ne odradi"); ex1.printStackTrace();}
+		}
+		return p;
+	}
 //	public static List<Projection> getAllProjForMovieAndDate(Movie movie, Date from, Date to){
 //		List<Projection> p = new ArrayList<>();
 //		Connection conn = ConnectionManager.getConnection();

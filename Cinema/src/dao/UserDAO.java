@@ -14,7 +14,6 @@ import model.User;
 
 public class UserDAO {
 
-	private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	public static User getUser(String username, String password) {
 		Connection conn = ConnectionManager.getConnection();
@@ -103,7 +102,7 @@ public class UserDAO {
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()) {
+			if(rs.next()) {
 				int index = 1;
 				Integer id = rs.getInt(index++);
 				String uName = rs.getString(index++);

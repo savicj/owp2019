@@ -174,6 +174,54 @@ public class MovieDAO {
 		return movies;
 	}
 	
+	public static List<Movie> getAll(){
+		List<Movie> movies = new ArrayList<>();
+		Connection conn = ConnectionManager.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try {
+			String query = "SELECT * FROM movies " ;
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				int index = 1;
+				int id = rset.getInt(index++);
+				String name = rset.getString(index++);
+				String dir = rset.getString(index++);
+				ArrayList<String> directors = new ArrayList<String>();
+				for(String d : dir.split(","))
+					directors.add(d);
+				String act = rset.getString(index++);
+				ArrayList<String> actors = new ArrayList<String>();
+				for(String a : act.split(","))
+					actors.add(a);
+				String gen = rset.getString(index++);
+				ArrayList<String> genre = new ArrayList<String>();
+				for(String g : gen.split(","))
+					genre.add(g);
+				int duration = rset.getInt(index++);
+				String distributor = rset.getString(index++);
+				String originCountry = rset.getString(index++);
+				int year = rset.getInt(index++);
+				String overview = rset.getString(index++);
+				boolean deleted = rset.getBoolean(index++);
+
+
+				Movie movie = new Movie(id, name, directors, actors, genre, duration, distributor, originCountry, year, overview, deleted);
+				movies.add(movie);
+
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {rset.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+		
+		return movies;
+	}
 	
 	
 	public static boolean add(Movie movie) {

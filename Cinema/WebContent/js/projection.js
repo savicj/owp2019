@@ -17,14 +17,15 @@ $(document).ready(function() {
 	var hallInput = $('#hallInput');
 	var priceInput = $('#priceInput');
 	var projTypeInput = $('#projectionTypeInput');
+	var tblTicket = $('#tblTicket');
 	
 	
 
 	makeButtons();
 	changeInterface();
 	getProjection();
-		
-	
+	getTickets();
+
 	function changeInterface(){
 		$.get('UserServlet', {'action' : 'loggedInUserRole'}, function(data) {
 			console.log(data.status);
@@ -37,6 +38,7 @@ $(document).ready(function() {
 				$('#btnUpdate').remove();
 				$('#btnLogin').show();
 				$('#btnRegister').show();
+				$('#mySection').remove();
 				
 			}
 			if (data.status == 'success') {
@@ -48,6 +50,8 @@ $(document).ready(function() {
 					navBtn.append(btnUsers);
 					$('#btnDelete').append();
 					$('#btnUpdate').append();
+					$('#mySection').append();
+					
 									
 				}
 				if (data.loggedInUserRole == 'USER')
@@ -249,76 +253,34 @@ $(document).ready(function() {
 		});
 	});
 	
-	/*function getMovies(){
-	
-		var params = {
-			'movieFilter' : '',
-			'genreFilter' : '',
-			'minDurationFilter' : '1',
-			'maxDurationFilter' : '500',
-			'distributorFilter' : '',
-			'countryFilter' : '',
-			'fromYearFilter' : '1900',
-			'toYearFilter' : '2020'		
-		};
-		$.get('MovieServlet', params, function(data) {
+	function getTickets(){
+		$.get('TicketServlet', {	"projectionID" : id	}, function(data){
 			if(data.status == 'success'){
-				var movies = data.movies;
-				console.log(data.movies);
-				for(m in movies){
-					movieName = movies[m].name;
-					$('#movieSelect').append(`<option value="${movieName}">${movieName}</option>`);
+				tblTicket.find('tbody').remove();
+				ticket = data.tickets;
+				for(t in ticket){
+					tblTicket.append(
+						'<tbody>' +
+						'<tr>' +
+							'<td><a href="ticket.html?id=' + ticket[t].id + '">'+ dateformat(new Date(ticket[t].date)) +'</a></td>' +
+							'<td><a href="user.html?id=' + ticket[t].user.id + '">'+ ticket[t].user.username +'</a></td>' +
+						'</tr>' +
+						'<tbody>'
+					);
 				}
 			}
 		});
-	
 	}
-
-	function getHalls(){
-		$(hallInput).empty();
-		var projType = projTypeInput.val();
-		var projTypeFilter;
-		switch (projType){
-					case "2D":
-						projTypeFilter = "twodim";
-						break;
-					case "3D":
-						projTypeFilter = "threedim";
-						break;
-					case "4D":
-						projTypeFilter = "fourdim";
-						break;	
-				}
-		var params = {
-    		'projTypeFilter' : projTypeFilter,
-    	};
-		console.log(params);
-    	
-    	$.get('HallServlet', params, function(data){
-    		if(data.status == 'success'){
-    			var halls = data.halls;
-    			console.log(halls);
-    			for(h in halls){
-    				var hall = halls[h].name;
-    				$('#hallSelect').append(`<option value="${hall}">${hall}</option>`);
-    			}
-    		}
-    	});
-	}
-
-	projTypeInput.on('change', function(event){
-		getHalls();
-		event.preventDefault();
-		return false;
-	
-	});*/
-	
 	function dateFormat(date){
         let dateString = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2) + "T" + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
      
         return dateString;
     }
-	
+	function dateformat(date){
+        let dateString = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2) + " " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
+     
+        return dateString;
+    }
 	
 	
 	

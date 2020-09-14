@@ -34,6 +34,8 @@ public class ProjectionsServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		try {
+			
+			
 			int id;
 			String projectionId = request.getParameter("projectionId");
 			if(projectionId != null && projectionId != "") {
@@ -56,9 +58,7 @@ public class ProjectionsServlet extends HttpServlet {
 				if(movie != null && movie != "") {
 					if(MovieDAO.findByName(movie) != null) {
 						m = MovieDAO.findByName(movie).getId();
-						//System.out.println("m postoji!!!!!!!");
 					}else {
-						//System.out.println("movie nije nadjen!!!!!!!");
 						m = -1;
 					}
 				}else {

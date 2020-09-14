@@ -319,7 +319,6 @@ CREATE TABLE tickets(
     id INTEGER PRIMARY KEY,
     projection INTEGER NOT NULL,
     seat INTEGER NOT NULL,
-    hall INTEGER NOT NULL,
     tdate DATE NOT NULL,
     tuser VARCHAR(500) NOT NULL
 --    FOREIGN KEY(projection) REFERENCES projections(id)
@@ -328,272 +327,271 @@ CREATE TABLE tickets(
 );
 	
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(1, '1A', 1, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(1, '1B', 1, '2020-07-02 18:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(1, '1A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(1, '1B', '2020-07-02 18:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(2, '6C', 2, '2020-18-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(2, '7C', 2, '2020-18-02 12:17:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(2, '3B', 2, '2020-10-02 11:11:00', 'user');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(2, '4B', 2, '2020-10-02 11:15:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(2, '6C', '2020-18-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(2, '7C', '2020-18-02 12:17:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(2, '3B', '2020-10-02 11:11:00.000', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(2, '4B', '2020-10-02 11:15:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(3, '1B', 1, '2020-21-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(3, '2B', 1, '2020-20-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(3, '1B', '2020-21-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(3, '2B', '2020-20-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(4, '6C', 2, '2020-09-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(4, '4B', 2, '2020-17-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(4, '6C', '2020-09-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(4, '4B', '2020-17-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(5, '5A', 3, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(5, '7B', 3, '2020-07-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(5, '5A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(5, '7B', '2020-07-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(6, '1A', 3, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(6, '1B', 3, '2020-07-02 18:10:00', 'user');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(6, '2B', 3, '2020-07-02 18:14:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(6, '1A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(6, '1B', '2020-07-02 18:10:00.000', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(6, '2B', '2020-07-02 18:14:00.000', 'user');
 
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(7, '6C', 3, '2020-19-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(7, '7C', 3, '2020-19-02 16:30:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(7, '3B', 3, '2020-18-02 11:11:00', 'user');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(7, '4B', 3, '2020-18-02 14:05:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(7, '6C', '2020-19-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(7, '7C', '2020-19-02 16:30:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(7, '3B', '2020-18-02 11:11:00.000', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(7, '4B', '2020-18-02 14:05:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(8, '6C', 2, '2020-21-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(8, '7B', 2, '2020-20-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(8, '6C', '2020-21-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(8, '7B', '2020-20-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(9, '6C', 2, '2020-09-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(9, '4B', 2, '2020-17-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(9, '6C', '2020-09-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(9, '4B', '2020-17-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(10, '3A', 1, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(10, '2B', 1, '2020-07-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(10, '3A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(10, '2B', '2020-07-02 12:10:00.000', 'user');
 
 
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(11, '1A', 4, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(11, '1B', 4, '2020-07-02 18:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(11, '1A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(11, '1B', '2020-07-02 18:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(12, '6C', 5, '2020-18-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(12, '7C', 5, '2020-18-02 16:30:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(12, '3B', 5, '2020-10-02 11:11:00', 'user');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(12, '4B', 5, '2020-10-02 14:05:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(12, '6C', '2020-18-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(12, '7C', '2020-18-02 16:30:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(12, '3B', '2020-10-02 11:11:00.000', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(12, '4B', '2020-10-02 14:05:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(13, '6C', 4, '2020-21-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(13, '7B', 4, '2020-20-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(13, '6C', '2020-21-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(13, '7B', '2020-20-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(14, '6C', 5, '2020-09-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(14, '4B', 5, '2020-17-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(14, '6C', '2020-09-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(14, '4B', '2020-17-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(15, '1A', 1, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(15, '2B', 1, '2020-07-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(15, '1A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(15, '2B', '2020-07-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(16, '1A', 1, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(16, '1B', 1, '2020-07-02 18:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(16, '1A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(16, '1B', '2020-07-02 18:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(17, '2A', 1, '2020-19-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(7, '1A', 1, '2020-19-02 16:30:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(17, '2B', 1, '2020-18-02 11:11:00', 'user');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(17, '1B', 1, '2020-18-02 14:05:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(17, '2A', '2020-19-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(17, '1A', '2020-19-02 16:30:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(17, '2B', '2020-18-02 11:11:00.000', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(17, '1B', '2020-18-02 14:05:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(18, '1A', 1, '2020-21-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(18, 'AB', 1, '2020-20-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(18, '1A', '2020-21-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(18, 'AB', '2020-20-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(19, '6C', 2, '2020-09-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(19, '4B', 2, '2020-17-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(19, '6C', '2020-09-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(19, '4B', '2020-17-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(20, '5A', 2, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(20, '7B', 2, '2020-07-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(20, '5A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(20, '7B', '2020-07-02 12:10:00.000', 'user');
 
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(21, '1A', 2, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(21, '1B', 2, '2020-07-02 18:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(21, '1A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(21, '1B', '2020-07-02 18:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(22, '6C', 3, '2020-18-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(22, '7C', 3, '2020-18-02 12:17:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(22, '3B', 3, '2020-10-02 11:11:00', 'user');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(22, '4B', 3, '2020-10-02 11:15:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(22, '6C', '2020-18-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(22, '7C', '2020-18-02 12:17:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(22, '3B', '2020-10-02 11:11:00.000', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(22, '4B', '2020-10-02 11:15:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(23, '6C', 3, '2020-21-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(23, '7B', 3, '2020-20-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(23, '6C', '2020-21-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(23, '7B', '2020-20-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(24, '6C', 3, '2020-09-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(24, '4B', 3, '2020-17-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(24, '6C', '2020-09-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(24, '4B', '2020-17-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(25, '5A', 3, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(25, '7B', 3, '2020-07-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(25, '5A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(25, '7B', '2020-07-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(26, '1A', 4, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(26, '1B', 4, '2020-07-02 18:10:00', 'user');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(26, '2B', 4, '2020-07-02 18:14:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(26, '1A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(26, '1B', '2020-07-02 18:10:00.000', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(26, '2B', '2020-07-02 18:14:00.000', 'user');
 
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(27, '6C', 4, '2020-19-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(27, '7C', 4, '2020-19-02 16:30:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(27, '3B', 4, '2020-18-02 11:11:00', 'user');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(27, '4B', 4, '2020-18-02 14:05:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(27, '6C', '2020-19-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(27, '7C', '2020-19-02 16:30:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(27, '3B', '2020-18-02 11:11:00.000', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(27, '4B', '2020-18-02 14:05:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(28, '6C', 5, '2020-21-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(28, '7B', 5, '2020-20-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(28, '6C', '2020-21-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(28, '7B', '2020-20-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(29, '6C', 5, '2020-09-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(29, '4B', 5, '2020-17-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(29, '6C', '2020-09-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(29, '4B', '2020-17-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(30, '2A', 1, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(30, '2B', 1, '2020-07-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(30, '2A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(30, '2B', '2020-07-02 12:10:00.000', 'user');
 
 
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(31, '1A', 1, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(31, '1B', 1, '2020-07-02 18:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(31, '1A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(31, '1B', '2020-07-02 18:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(32, '1A', 1, '2020-18-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(32, '2A', 1, '2020-18-02 16:30:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(32, '1B', 1, '2020-10-02 11:11:00', 'user');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(32, '2B', 1, '2020-10-02 14:05:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(32, '1A', '2020-18-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(32, '2A', '2020-18-02 16:30:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(32, '1B', '2020-10-02 11:11:00.000', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(32, '2B', '2020-10-02 14:05:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(33, '2A', 1, '2020-21-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(33, '2B', 1, '2020-20-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(33, '2A', '2020-21-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(33, '2B', '2020-20-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(34, '1C', 1, '2020-09-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(34, '2A', 1, '2020-17-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(34, '1C', '2020-09-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(34, '2A', '2020-17-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(35, '5A', 2, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(35, '7B', 2, '2020-07-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(35, '5A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(35, '7B', '2020-07-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(36, '1A', 2, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(36, '1B', 2, '2020-07-02 18:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(36, '1A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(36, '1B', '2020-07-02 18:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(37, '6C', 2, '2020-19-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(37, '7C', 2, '2020-19-02 16:30:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(37, '3B', 2, '2020-18-02 11:11:00', 'user');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(37, '4B', 2, '2020-18-02 14:05:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(37, '6C', '2020-19-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(37, '7C', '2020-19-02 16:30:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(37, '3B', '2020-18-02 11:11:00.000', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(37, '4B', '2020-18-02 14:05:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(38, '6C', 3, '2020-21-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(38, '7B', 3, '2020-20-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(38, '6C', '2020-21-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(38, '7B', '2020-20-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(39, '6C', 3, '2020-09-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(39, '4B', 3, '2020-17-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(39, '6C', '2020-09-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(39, '4B', '2020-17-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(40, '5A', 3, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(40, '7B', 3, '2020-07-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(40, '5A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(40, '7B', '2020-07-02 12:10:00.000', 'user');
 
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(41, '1A', 4, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(41, '1B', 4, '2020-07-02 18:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(41, '1A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(41, '1B', '2020-07-02 18:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(42, '6C', 4, '2020-18-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(42, '7C', 4, '2020-18-02 12:17:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(42, '3B', 4, '2020-10-02 11:11:00', 'user');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(42, '4B', 4, '2020-10-02 11:15:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(42, '6C', '2020-18-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(42, '7C', '2020-18-02 12:17:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(42, '3B', '2020-10-02 11:11:00.000', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(42, '4B', '2020-10-02 11:15:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(43, '1B', 4, '2020-21-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(43, '2B', 4, '2020-20-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(43, '1B', '2020-21-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(43, '2B', '2020-20-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(44, '6C', 5, '2020-09-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(44, '4B', 5, '2020-17-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(44, '6C', '2020-09-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(44, '4B', '2020-17-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(45, '5A', 5, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(45, '7B', 5, '2020-07-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(45, '5A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(45, '7B', '2020-07-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(46, '1A', 1, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(46, '1B', 1, '2020-07-02 18:10:00', 'user');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(46, '2B', 1, '2020-07-02 18:14:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(46, '1A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(46, '1B', '2020-07-02 18:10:00.000', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(46, '2B', '2020-07-02 18:14:00.000', 'user');
 
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(47, '2A', 1, '2020-19-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(47, '3B', 1, '2020-18-02 11:11:00', 'user');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(47, '2B', 1, '2020-18-02 14:05:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(47, '2A', '2020-19-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(47, '3B', '2020-18-02 11:11:00.000', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(47, '2B', '2020-18-02 14:05:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(48, '1B', 1, '2020-21-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(48, '3B', 1, '2020-20-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(48, '1B', '2020-21-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(48, '3B', '2020-20-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(49, '1A', 1, '2020-09-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(49, '2B', 1, '2020-17-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(49, '1A', '2020-09-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(49, '2B', '2020-17-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(50, '3A', 2, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(50, '2B', 2, '2020-07-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(50, '3A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(50, '2B', '2020-07-02 12:10:00.000', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(51, '1A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(51, '1B', '2020-07-02 18:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(51, '1A', 2, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(51, '1B', 2, '2020-07-02 18:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(52, '6C', '2020-18-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(52, '7C', '2020-18-02 12:17:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(52, '3B', '2020-10-02 11:11:00.000', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(52, '4B', '2020-10-02 11:15:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(52, '6C', 2, '2020-18-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(52, '7C', 2, '2020-18-02 12:17:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(52, '3B', 2, '2020-10-02 11:11:00', 'user');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(52, '4B', 2, '2020-10-02 11:15:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(53, '1B', '2020-21-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(53, '2B', '2020-20-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(53, '1B', 3, '2020-21-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(53, '2B', 3, '2020-20-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(54, '6C', '2020-09-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(54, '4B', '2020-17-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(54, '6C', 3, '2020-09-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(54, '4B', 3, '2020-17-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(55, '5A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(55, '7B', '2020-07-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(55, '5A', 3, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(55, '7B', 3, '2020-07-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(56, '1A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(56, '1B', '2020-07-02 18:10:00.000', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(56, '2B', '2020-07-02 18:14:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(56, '1A', 4, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(56, '1B', 4, '2020-07-02 18:10:00', 'user');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(56, '2B', 4, '2020-07-02 18:14:00', 'user');
 
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(57, '6C', '2020-19-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(57, '7C', '2020-19-02 16:30:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(57, '3B', '2020-18-02 11:11:00.000', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(57, '4B', '2020-18-02 14:05:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(57, '6C', 4, '2020-19-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(57, '7C', 4, '2020-19-02 16:30:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(57, '3B', 4, '2020-18-02 11:11:00', 'user');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(57, '4B', 4, '2020-18-02 14:05:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(58, '6C', '2020-21-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(58, '7B', '2020-20-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(58, '6C', 4, '2020-21-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(58, '7B', 4, '2020-20-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(59, '6C', '2020-09-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(59, '4B', '2020-17-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(59, '6C', 5, '2020-09-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(59, '4B', 5, '2020-17-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(60, '3A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(60, '7C', '2020-18-02 12:17:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(60, '3B', '2020-10-02 11:11:00.000', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(60, '2B', '2020-07-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(60, '3A', 5, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(60, '7C', 5, '2020-18-02 12:17:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(60, '3B', 5, '2020-10-02 11:11:00', 'user');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(60, '2B', 5, '2020-07-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(61, '1A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(61, '1B', '2020-07-02 18:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(61, '1A', 1, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(61, '1B', 1, '2020-07-02 18:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(62, '1A', '2020-18-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(62, '3A', '2020-10-02 11:15:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(62, '1A', 1, '2020-18-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(62, '3A', 1, '2020-10-02 11:15:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(63, '1B', '2020-21-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(63, '2B', '2020-20-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(63, '1B', 1, '2020-21-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(63, '2B', 1, '2020-20-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(64, '1B', '2020-09-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(64, '3A', '2020-17-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(64, '1B', 1, '2020-09-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(64, '3A', 1, '2020-17-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(65, '5A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(65, '7B', '2020-07-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(65, '5A', 2, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(65, '7B', 2, '2020-07-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(66, '1A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(66, '1B', '2020-07-02 18:10:00.000', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(66, '2B', '2020-07-02 18:14:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(66, '1A', 2, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(66, '1B', 2, '2020-07-02 18:10:00', 'user');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(66, '2B', 2, '2020-07-02 18:14:00', 'user');
 
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(67, '6C', '2020-19-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(67, '7C', '2020-19-02 16:30:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(67, '3B', '2020-18-02 11:11:00.000', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(67, '4B', '2020-18-02 14:05:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(67, '6C', 2, '2020-19-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(67, '7C', 2, '2020-19-02 16:30:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(67, '3B', 2, '2020-18-02 11:11:00', 'user');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(67, '4B', 2, '2020-18-02 14:05:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(68, '6C', '2020-21-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(68, '7B', '2020-20-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(68, '6C', 3, '2020-21-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(68, '7B', 3, '2020-20-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(69, '6C', '2020-09-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(69, '4B', '2020-17-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(69, '6C', 3, '2020-09-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(69, '4B', 3, '2020-17-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(70, '3A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(70, '2B', '2020-07-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(70, '3A', 3, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(70, '2B', 3, '2020-07-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(71, '1A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(71, '1B', '2020-07-02 18:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(71, '1A', 4, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(71, '1B', 4, '2020-07-02 18:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(72, '6C', '2020-18-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(72, '7C', '2020-18-02 12:17:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(72, '3B', '2020-10-02 11:11:00.000', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(72, '4B', '2020-10-02 11:15:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(72, '6C', 4, '2020-18-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(72, '7C', 4, '2020-18-02 12:17:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(72, '3B', 4, '2020-10-02 11:11:00', 'user');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(72, '4B', 4, '2020-10-02 11:15:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(73, '1B', '2020-21-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(73, '2B', '2020-20-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(73, '1B', 4, '2020-21-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(73, '2B', 4, '2020-20-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(74, '6C', '2020-09-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(74, '4B', '2020-17-02 12:10:00.000', 'user');
 
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(74, '6C', 5, '2020-09-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(74, '4B', 5, '2020-17-02 12:10:00', 'user');
-
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(75, '5A', 5, '2020-04-02 12:10:00', 'b');
-INSERT INTO tickets(projection, seat, hall, tdate, tuser) VALUES(75, '7B', 5, '2020-07-02 12:10:00', 'user');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(75, '5A', '2020-04-02 12:10:00.000', 'b');
+INSERT INTO tickets(projection, seat, tdate, tuser) VALUES(75, '7B', '2020-07-02 12:10:00.000', 'user');

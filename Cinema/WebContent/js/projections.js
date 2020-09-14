@@ -90,11 +90,8 @@ $(document).ready(function() {
 			});
 		});
 		btnUsers = $('<li id = "btnUsers" class="margina"><a class="nav-link" href="users.html">USERS</a></li>');
-    	btnTickets = $('<li id = "btnTickets" class="margina"><a class="nav-link" href="#">TICKETS</a></li>');
-		btnAdd = $('<button id = "btnAdd" type="button" class="btn btn-dark">ADD PROJECTION</li>').on('click', function(){
-			window.location.replace('addProjection.html');
-			return;
-		});
+    	btnTickets = $('<li id = "btnTickets" class="margina"><a class="nav-link" href="tickets.html">TICKETS</a></li>');
+		
 	}
 	
 	
@@ -258,59 +255,9 @@ $(document).ready(function() {
     		}
     	});
 	}
-	/*movieInput.on('keyup', function(event){
-		getProjections();
-		event.preventDefault();
-		return false;
-	});
 	
-	dateFromInput.on('keyup', function(event){
-		getProjections();
-		event.preventDefault();
-		return false;
-	});
 	
-	timeFromInput.on('keyup', function(event){
-		getProjections();
-		event.preventDefault();
-		return false;
-	});
 	
-	dateToInput.on('keyup', function(event){
-		getProjections();
-		event.preventDefault();
-		return false;
-	});
-	
-	timeToInput.on('keyup', function(event){
-		getProjections();
-		event.preventDefault();
-		return false;
-	});
-	
-	hallInput.on('change', function(event){
-		getProjections();
-		event.preventDefault();
-		return false;
-	});
-	
-	projType.on('change', function(event){
-		getProjections();
-		event.preventDefault();
-		return false;
-	});
-	
-	minPriceInput.on('keyup', function(event){
-		getProjections();
-		event.preventDefault();
-		return false;
-	});
-	
-	maxPriceInput.on('keyup', function(event){
-		getProjections();
-		event.preventDefault();
-		return false;
-	});*/
 	
 	$("#searchBtn").click(function (e){
     	getProjections();
@@ -323,11 +270,6 @@ $(document).ready(function() {
      
         return dateString;
     }
-	
-	
-	
-	
-	
 	
 	
 	
