@@ -13,24 +13,15 @@ h1{
 }
 
 
-#movieInput{ width:200px; padding: 10px; margin:6px;}
-#dateFromInput{ width:180px; padding: 10px; margin:6px;}
-#timeFromInput{ width:150px; padding: 10px; margin:6px;}
-#dateToInput{ width:180px; padding: 10px; margin:6px;}
-#timeToInput{ width:150px; padding: 10px; margin:6px;}
-#hallInput{ width:180px; padding: 5px; margin:6px;}
-#projectionTypeInput{ width:150px; padding: 5px; margin:6px;}
-#minPriceInput{ width:150px; padding: 10px; margin:6px;}
-#maxPriceInput{ width:150px; padding: 10px; margin:6px;}
-
-#searchBtn{margin: 6px;}
 
 #search{
 	margin: 10px, 10px, 10px, 10px;
 	padding: 10px;
 	border-radius: 10px;	
-	align: center;
 }
+
+#usernameInput{ width:200px; padding: 10px; margin-right:10px;}
+#roleInput{ width:200px; padding: 10px; margin-right:10px;}
 
 
 
@@ -41,6 +32,7 @@ h1{
     padding: 75px 100px;
     margin-bottom: 30%;
     text-align: center;
+    white-space: pre;
 }
 
 

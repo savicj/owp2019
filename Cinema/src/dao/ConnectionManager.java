@@ -13,7 +13,7 @@ import org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory;
 	
 		private static final String DATABASE = "cinema.db";
 		private static final String FILE_SEPARATOR = System.getProperty("file.separator");
-		private static final String WINDOWS_PATH = "E:" + FILE_SEPARATOR + "Projekti" + FILE_SEPARATOR + "Web" + FILE_SEPARATOR + "owp2019" + FILE_SEPARATOR + "Cinema" + FILE_SEPARATOR + DATABASE;
+		private static final String WINDOWS_PATH = "C:" + FILE_SEPARATOR + "SQLite" + FILE_SEPARATOR  + DATABASE;
 		//private static final String LINUX_PATH = "SQLite"+ FILE_SEPARATOR + DATABASE;
 	
 		private static final String PATH = WINDOWS_PATH;
